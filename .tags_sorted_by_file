@@ -1,0 +1,64 @@
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_PROGRAM_VERSION	5.8	//
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+CC	Makefile	/^CC = gcc$/;"	m
+CFLAG	Makefile	/^CFLAG = -g$/;"	m
+CURDIR	Makefile	/^CURDIR=$/;"	m
+INCLUDE	Makefile	/^INCLUDE=$/;"	m
+LIB	Makefile	/^LIB=$/;"	m
+OBJ	Makefile	/^OBJ=main wyf_log$/;"	m
+OBJS	Makefile	/^OBJS=$(OBJ:%=%.o)$/;"	m
+PROC	Makefile	/^PROC=wyf$/;"	m
+WYF_HASH_H_	bak/wyf_hash.h	/^#define WYF_HASH_H_$/;"	d
+wyf_queue_clear	bak/wyf_queue_bak.c	/^int wyf_queue_clear(WYF_QUEUE *h)$/;"	f
+wyf_queue_empty	bak/wyf_queue_bak.c	/^int wyf_queue_empty(WYF_QUEUE *h)$/;"	f
+wyf_queue_init	bak/wyf_queue_bak.c	/^WYF_QUEUE* wyf_queue_init()$/;"	f
+wyf_queue_pop_back	bak/wyf_queue_bak.c	/^WYF_QUEUE* wyf_queue_pop_back(WYF_QUEUE *h)$/;"	f
+wyf_queue_pop_front	bak/wyf_queue_bak.c	/^WYF_QUEUE* wyf_queue_pop_front(WYF_QUEUE *h)$/;"	f
+wyf_queue_push_back	bak/wyf_queue_bak.c	/^int wyf_queue_push_back(WYF_QUEUE* h, void* d)$/;"	f
+wyf_queue_push_front	bak/wyf_queue_bak.c	/^int wyf_queue_push_front(WYF_QUEUE* h, void* d)$/;"	f
+wyf_queue_size	bak/wyf_queue_bak.c	/^int wyf_queue_size(WYF_QUEUE *h)$/;"	f
+WYF_QUEUE	bak/wyf_queue_bak.h	/^typedef struct wyf_queue WYF_QUEUE;$/;"	t	typeref:struct:wyf_queue
+WYF_QUEUE_H_	bak/wyf_queue_bak.h	/^#define WYF_QUEUE_H_$/;"	d
+data	bak/wyf_queue_bak.h	/^	void *data;$/;"	m	struct:wyf_queue
+next	bak/wyf_queue_bak.h	/^	WYF_QUEUE *next;$/;"	m	struct:wyf_queue
+prev	bak/wyf_queue_bak.h	/^	WYF_QUEUE *prev;$/;"	m	struct:wyf_queue
+wyf_queue	bak/wyf_queue_bak.h	/^struct wyf_queue {$/;"	s
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+main	main.c	/^int main (int argc, char* argv[])$/;"	f
+wyf_array_clear	wyf_array.c	/^int wyf_array_clear(WYF_ARRAY *h)$/;"	f
+wyf_array_empty	wyf_array.c	/^int wyf_array_empty(WYF_ARRAY *h)$/;"	f
+wyf_array_init	wyf_array.c	/^WYF_ARRAY* wyf_array_init()$/;"	f
+wyf_array_pop_back	wyf_array.c	/^WYF_ARRAY* wyf_array_pop_back(WYF_ARRAY *h)$/;"	f
+wyf_array_pop_front	wyf_array.c	/^WYF_ARRAY* wyf_array_pop_front(WYF_ARRAY *h)$/;"	f
+wyf_array_push_back	wyf_array.c	/^int wyf_array_push_back(WYF_ARRAY* h, void* d)$/;"	f
+wyf_array_push_front	wyf_array.c	/^int wyf_array_push_front(WYF_ARRAY* h, void* d)$/;"	f
+wyf_array_size	wyf_array.c	/^int wyf_array_size(WYF_ARRAY *h)$/;"	f
+WYF_ARRAY	wyf_array.h	/^typedef struct wyf_array WYF_ARRAY;$/;"	t	typeref:struct:wyf_array
+WYF_ARRAY_H_	wyf_array.h	/^#define WYF_ARRAY_H_$/;"	d
+data	wyf_array.h	/^	void *data;$/;"	m	struct:wyf_array
+next	wyf_array.h	/^	WYF_ARRAY *next;$/;"	m	struct:wyf_array
+prev	wyf_array.h	/^	WYF_ARRAY *prev;$/;"	m	struct:wyf_array
+wyf_array	wyf_array.h	/^struct wyf_array {$/;"	s
+WYF_CONF_H_	wyf_conf.h	/^#define WYF_CONF_H_$/;"	d
+WYF_DEFINE_H_	wyf_define.h	/^#define WYF_DEFINE_H_$/;"	d
+WYF_LOG_ERROR	wyf_define.h	/^#define WYF_LOG_ERROR	/;"	d
+loggers	wyf_log.c	/^static WYF_QUEUE *loggers;$/;"	v	file:
+wyf_close_file	wyf_log.c	/^void wyf_close_file(int fd) {$/;"	f
+wyf_log_error	wyf_log.c	/^void wyf_log_error(int fd, char *fmt, ...) {$/;"	f
+wyf_log_stdout	wyf_log.c	/^void wyf_log_stdout(char *fmt, ...)$/;"	f
+wyf_open_file	wyf_log.c	/^int wyf_open_file(const char *filename) {$/;"	f
+LOGGER	wyf_log.h	/^typedef struct logger LOGGER;$/;"	t	typeref:struct:logger
+WYF_LOG_H_	wyf_log.h	/^#define WYF_LOG_H_$/;"	d
+fd	wyf_log.h	/^	int fd;$/;"	m	struct:logger
+logger	wyf_log.h	/^struct logger {$/;"	s
+name	wyf_log.h	/^	char *name;$/;"	m	struct:logger
+wyf_process	wyf_master.c	/^int wyf_process() {$/;"	f
+BUFFSIZE	wyf_master.h	/^#define BUFFSIZE /;"	d
+CHILDNUM	wyf_master.h	/^#define CHILDNUM /;"	d
+WYF_MASTER_H_	wyf_master.h	/^#define WYF_MASTER_H_$/;"	d
+WYF_MEM_H_	wyf_mem.h	/^#define WYF_MEM_H_$/;"	d
+wyf_strdup	wyf_string.c	/^ char * wyf_strdup(char* src)$/;"	f
+WYF_STRING_H_	wyf_string.h	/^#define WYF_STRING_H_$/;"	d

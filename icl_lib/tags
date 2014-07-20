@@ -1,0 +1,129 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+BUFFSIZE	src/wyf_master.h	25;"	d
+CC	Makefile	/^CC = gcc$/;"	m
+CFLAG	Makefile	/^CFLAG = -g$/;"	m
+CHILDNUM	src/wyf_master.h	24;"	d
+DIR_BIN	Makefile	/^DIR_BIN=$/;"	m
+DIR_INC	Makefile	/^DIR_INC=.\/include$/;"	m
+DIR_OBJ	Makefile	/^DIR_OBJ=.\/output$/;"	m
+DIR_OBJS	Makefile	/^DIR_OBJS=$(patsubst %.c, %.o, $(SOURCE))$/;"	m
+DIR_SRC	Makefile	/^DIR_SRC=.\/src$/;"	m
+LDFLAGS	Makefile	/^LDFLAGS=$/;"	m
+LOGGER	bak/wyf_log.h	/^typedef struct logger LOGGER;$/;"	t	typeref:struct:logger
+OBJS	Makefile	/^OBJS=$(addprefix $(OUTPUT)\/, $(OBJS_NAME))$/;"	m
+OBJS_NAME	Makefile	/^OBJS_NAME=$(notdir $(DIR_OBJS))$/;"	m
+OUTPUT	Makefile	/^OUTPUT=.\/debug$/;"	m
+PROTOCOL	src/net/wyf_wrapi.c	14;"	d	file:
+SOURCE	Makefile	/^SOURCE=$(wildcard .\/src\/*.c)$/;"	m
+TARGET	Makefile	/^TARGET=wyf$/;"	m
+WYF_ARRAY	src/wyf_array.h	/^typedef struct wyf_array WYF_ARRAY;$/;"	t	typeref:struct:wyf_array
+WYF_ARRAY_H_	src/wyf_array.h	9;"	d
+WYF_CONF_H_	src/wyf_conf.h	9;"	d
+WYF_DEBUG	src/wyf_log.h	21;"	d
+WYF_DEFINE_H_	src/wyf_define.h	9;"	d
+WYF_DGRAM	src/net/wyf_wrapi.c	/^	WYF_DGRAM     = SOCK_DGRAM,$/;"	e	enum:wyf_socket_type	file:
+WYF_ERROR	src/wyf_log.h	19;"	d
+WYF_FITAL	src/wyf_log.h	20;"	d
+WYF_HASH_H_	bak/wyf_hash.h	9;"	d
+WYF_INET	src/net/wyf_wrapi.c	/^	WYF_INET     = PF_INET,$/;"	e	enum:wyf_socket_domain	file:
+WYF_INET6	src/net/wyf_wrapi.c	/^	WYF_INET6    = PF_INET6,$/;"	e	enum:wyf_socket_domain	file:
+WYF_INFO	src/wyf_log.h	17;"	d
+WYF_KEY	src/net/wyf_wrapi.c	/^	WYF_KEY      = PF_KEY,$/;"	e	enum:wyf_socket_domain	file:
+WYF_LOCAL	src/net/wyf_wrapi.c	/^	WYF_LOCAL    = PF_LOCAL,$/;"	e	enum:wyf_socket_domain	file:
+WYF_LOG_ERROR	src/wyf_define.h	12;"	d
+WYF_LOG_FN	bak/wyf_log.h	/^typedef void (*wyf_log_fn)(int, char*, ....) WYF_LOG_FN;$/;"	t
+WYF_LOG_H_	bak/wyf_log.h	9;"	d
+WYF_LOG_H_	src/wyf_log.h	9;"	d
+WYF_MASTER_H_	src/wyf_master.h	9;"	d
+WYF_MEM_H_	src/wyf_mem.h	9;"	d
+WYF_NDRV	src/net/wyf_wrapi.c	/^	WYF_NDRV     = PF_NDRV;$/;"	e	enum:wyf_socket_domain	file:
+WYF_NET_WRAPI_H_	src/net/wyf_wrapi.h	9;"	d
+WYF_QUEUE	bak/wyf_queue_bak.h	/^typedef struct wyf_queue WYF_QUEUE;$/;"	t	typeref:struct:wyf_queue
+WYF_QUEUE_H_	bak/wyf_queue_bak.h	9;"	d
+WYF_RAW	src/net/wyf_wrapi.c	/^	WYF_RAW       = SOCK_RAW,$/;"	e	enum:wyf_socket_type	file:
+WYF_RDM	src/net/wyf_wrapi.c	/^	WYF_RDM       = SOCK_RDM;$/;"	e	enum:wyf_socket_type	file:
+WYF_ROUTE	src/net/wyf_wrapi.c	/^	WYF_ROUTE    = PF_ROUTE,$/;"	e	enum:wyf_socket_domain	file:
+WYF_SEQPACKET	src/net/wyf_wrapi.c	/^	WYF_SEQPACKET = SOCK_DEQPACKET,$/;"	e	enum:wyf_socket_type	file:
+WYF_STREAM	src/net/wyf_wrapi.c	/^	WYF_STREAM    = SOCK_STREAM,$/;"	e	enum:wyf_socket_type	file:
+WYF_STRING_H_	src/wyf_string.h	9;"	d
+WYF_SYSTEM	src/net/wyf_wrapi.c	/^	WYF_SYSTEM   = PF_SYSTEM,$/;"	e	enum:wyf_socket_domain	file:
+WYF_TRACK	src/wyf_log.h	22;"	d
+WYF_UNIX	src/net/wyf_wrapi.c	/^	WYF_UNIX     = PF_INET,$/;"	e	enum:wyf_socket_domain	file:
+WYF_WARN	src/wyf_log.h	18;"	d
+data	bak/wyf_queue_bak.h	/^	void *data;$/;"	m	struct:wyf_queue
+data	src/wyf_array.h	/^	void *data;$/;"	m	struct:wyf_array
+fd	bak/wyf_log.h	/^	int fd;$/;"	m	struct:logger
+fd	src/wyf_log.c	/^static int fd;$/;"	v	file:
+glevel	src/wyf_log.h	/^static int glevel = 1;$/;"	v
+log_fn	bak/wyf_log.h	/^	WYF_LOG_FN log_fn; $/;"	m	struct:logger
+logger	bak/wyf_log.h	/^struct logger {$/;"	s
+main	src/main.c	/^int main (int argc, char* argv[])$/;"	f
+name	bak/wyf_log.h	/^	char *name;$/;"	m	struct:logger
+next	bak/wyf_queue_bak.h	/^	WYF_QUEUE *next;$/;"	m	struct:wyf_queue
+next	src/wyf_array.h	/^	WYF_ARRAY *next;$/;"	m	struct:wyf_array
+prev	bak/wyf_queue_bak.h	/^	WYF_QUEUE *prev;$/;"	m	struct:wyf_queue
+prev	src/wyf_array.h	/^	WYF_ARRAY *prev;$/;"	m	struct:wyf_array
+wyf_array	src/wyf_array.h	/^struct wyf_array {$/;"	s
+wyf_array_clear	src/wyf_array.c	/^int wyf_array_clear(WYF_ARRAY *h)$/;"	f
+wyf_array_empty	src/wyf_array.c	/^int wyf_array_empty(WYF_ARRAY *h)$/;"	f
+wyf_array_init	src/wyf_array.c	/^WYF_ARRAY *wyf_array_init()$/;"	f
+wyf_array_pop_back	src/wyf_array.c	/^WYF_ARRAY *wyf_array_pop_back(WYF_ARRAY *h)$/;"	f
+wyf_array_pop_front	src/wyf_array.c	/^WYF_ARRAY *wyf_array_pop_front(WYF_ARRAY *h)$/;"	f
+wyf_array_push_back	src/wyf_array.c	/^int wyf_array_push_back(WYF_ARRAY *h, void *d)$/;"	f
+wyf_array_push_front	src/wyf_array.c	/^int wyf_array_push_front(WYF_ARRAY *h, void *d)$/;"	f
+wyf_array_size	src/wyf_array.c	/^int wyf_array_size(WYF_ARRAY *h)$/;"	f
+wyf_asctime	src/wyf_time.c	/^char *wyf_asctime()$/;"	f
+wyf_calloc	src/wyf_mem.c	/^void *wyf_calloc(int count, int len)$/;"	f
+wyf_cli_confd	src/net/wyf_wrapi.c	/^int wyf_cli_confd = -1;$/;"	v
+wyf_close_file	bak/wyf_log.c	/^void wyf_close_file(int fd) {$/;"	f
+wyf_close_file	src/wyf_log.c	/^void wyf_close_file() {$/;"	f
+wyf_errno	src/wyf_string.c	/^int wyf_errno(void)$/;"	f
+wyf_free	src/wyf_mem.c	/^void *wyf_free(void *ptr)$/;"	f
+wyf_log_debug	src/wyf_log.h	50;"	d
+wyf_log_def	bak/wyf_log.c	/^void wyf_log_def(char *name, char *fmt, va_list ap) {$/;"	f
+wyf_log_error	src/wyf_log.h	46;"	d
+wyf_log_fital	src/wyf_log.h	48;"	d
+wyf_log_info	src/wyf_log.h	42;"	d
+wyf_log_stdout	bak/wyf_log.c	/^void wyf_log_stdout(char *fmt, ...)$/;"	f
+wyf_log_stdout	src/wyf_log.c	/^void wyf_log_stdout(char *fmt, ...)$/;"	f
+wyf_log_track	src/wyf_log.h	52;"	d
+wyf_log_warn	src/wyf_log.h	44;"	d
+wyf_log_wn	src/wyf_log.c	/^void wyf_log_wn(int lvl, char *fmt, ...)$/;"	f
+wyf_malloc	src/wyf_mem.c	/^void *wyf_malloc(int len)$/;"	f
+wyf_net_connect	src/net/wyf_wrapi.c	/^int wyf_net_connect(char *dst, int port)$/;"	f
+wyf_net_read	src/net/wyf_wrapi.c	/^int wyf_net_read(char *buf, int len)$/;"	f
+wyf_net_send	src/net/wyf_wrapi.c	/^int wyf_net_send(char *buf, int len)$/;"	f
+wyf_open_file	bak/wyf_log.c	/^int wyf_open_file(const char *log_nm, WYF_LOG_FN log_fn) {$/;"	f
+wyf_open_file	src/wyf_log.c	/^int wyf_open_file(const char *filename) {$/;"	f
+wyf_process	src/wyf_master.c	/^int wyf_process() {$/;"	f
+wyf_queue	bak/wyf_queue_bak.h	/^struct wyf_queue {$/;"	s
+wyf_queue_clear	bak/wyf_queue_bak.c	/^int wyf_queue_clear(WYF_QUEUE *h)$/;"	f
+wyf_queue_empty	bak/wyf_queue_bak.c	/^int wyf_queue_empty(WYF_QUEUE *h)$/;"	f
+wyf_queue_init	bak/wyf_queue_bak.c	/^WYF_QUEUE* wyf_queue_init()$/;"	f
+wyf_queue_pop_back	bak/wyf_queue_bak.c	/^WYF_QUEUE* wyf_queue_pop_back(WYF_QUEUE *h)$/;"	f
+wyf_queue_pop_front	bak/wyf_queue_bak.c	/^WYF_QUEUE* wyf_queue_pop_front(WYF_QUEUE *h)$/;"	f
+wyf_queue_push_back	bak/wyf_queue_bak.c	/^int wyf_queue_push_back(WYF_QUEUE* h, void* d)$/;"	f
+wyf_queue_push_front	bak/wyf_queue_bak.c	/^int wyf_queue_push_front(WYF_QUEUE* h, void* d)$/;"	f
+wyf_queue_size	bak/wyf_queue_bak.c	/^int wyf_queue_size(WYF_QUEUE *h)$/;"	f
+wyf_realloc	src/wyf_mem.c	/^void *wyf_realloc(void *ptr, int len)$/;"	f
+wyf_set_level	src/wyf_log.c	/^void wyf_set_level(int lvl)$/;"	f
+wyf_sig_handler	src/wyf_sig.c	/^static void wyf_sig_handler(int sig)$/;"	f	file:
+wyf_sig_setup	src/wyf_sig.c	/^void wyf_sig_setup(void)$/;"	f
+wyf_sigitoa	src/wyf_sig.c	/^char *wyf_sigitoa(int sig)$/;"	f
+wyf_socket_domain	src/net/wyf_wrapi.c	/^enum wyf_socket_domain$/;"	g	file:
+wyf_socket_type	src/net/wyf_wrapi.c	/^enum wyf_socket_type $/;"	g	file:
+wyf_strcat	src/wyf_string.c	/^char *wyf_strcat(char *dst, char *src)$/;"	f
+wyf_strcmp	src/wyf_string.c	/^int wyf_strcmp(char *dst, char *src)$/;"	f
+wyf_strcpy	src/wyf_string.c	/^int wyf_strcpy(char *dst, char *src)$/;"	f
+wyf_strdump	src/wyf_string.c	/^char *wyf_strdump(char *src)$/;"	f
+wyf_strdump_free	src/wyf_string.c	/^void wyf_strdump_free(char *ptr)$/;"	f
+wyf_strerror	src/wyf_string.c	/^char *wyf_strerror(void)$/;"	f
+wyf_strlen	src/wyf_string.c	/^int wyf_strlen(char *ops)$/;"	f
+wyf_strncmp	src/wyf_string.c	/^int wyf_strncmp(char *dst, char *src, int len)$/;"	f
+wyflib_wyf_sig_h	src/wyf_sig.h	10;"	d
+wyflib_wyf_time_h	src/wyf_time.h	10;"	d

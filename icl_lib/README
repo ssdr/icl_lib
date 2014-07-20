@@ -1,0 +1,10 @@
+/*
+ * README
+ *
+ *  Created on: 2014年1月23日
+ *      Author: peterxiemin
+ */
+
+总之：做通用库和做软件是一样的，只不过你的用户是开发者
+
+1、做一个通用的链表结构WYF_ARRAY

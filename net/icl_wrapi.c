@@ -7,8 +7,11 @@
 
 #include <sys/socket.h>
 #include <sys/types.h>
-#include "net/icl_net_wrapi.h"
-#include "icl_log.h"
+#include <string.h>
+#include <errno.h>
+#include <netdb.h>
+#include "icl_wrapi.h"
+
 
 //这里这个参数目前还没有弄明白，暂时设置为0，后面查清楚了再补上
 #define PROTOCOL 0
@@ -20,9 +23,9 @@ enum icl_socket_type
 	ICL_STREAM    = SOCK_STREAM,
 	ICL_DGRAM     = SOCK_DGRAM,
 	ICL_RAW       = SOCK_RAW,
-	ICL_SEQPACKET = SOCK_DEQPACKET,
-	ICL_RDM       = SOCK_RDM;
-}
+	//ICL_SEQPACKET = SOCK_DEQPACKET,
+	ICL_RDM       = SOCK_RDM
+};
 
 enum icl_socket_domain
 {
@@ -32,24 +35,24 @@ enum icl_socket_domain
 	ICL_ROUTE    = PF_ROUTE,
 	ICL_KEY      = PF_KEY,
 	ICL_INET6    = PF_INET6,
-	ICL_SYSTEM   = PF_SYSTEM,
-	ICL_NDRV     = PF_NDRV;
-}
+	//ICL_SYSTEM   = PF_SYSTEM,
+	//ICL_NDRV     = PF_NDRV
+};
 
 
 int icl_net_connect(char *dst, int port)
 {
 	int ret;
-	struct sockaddr_int addr;
+	struct sockaddr_in addr;
 	struct hostent *ip;
 	addr.sin_family = ICL_INET;
 	addr.sin_port = htons(port);
 	icl_cli_confd = socket(ICL_INET, ICL_STREAM, PROTOCOL);
 	if (icl_cli_confd < 0) {
-		icl_log_error("%s", icl_strerror());
+		printf("%s", strerror(errno));
 		return (-1);
 	}
-	ip =  gethostname(dst);
+	ip =  gethostbyname(dst);
 	if (ip != NULL) {
 		memcpy(&(addr.sin_addr), ip->h_addr, ip->h_length);	
 	}
@@ -60,12 +63,12 @@ int icl_net_connect(char *dst, int port)
 			addr.sin_addr.s_addr = addr_t;
 		}
 		else {
-			icl_log_error("%s", icl_strerror());
+			printf("%s", strerror(errno));
 		}
 	}
 	ret = connect (icl_cli_confd, (struct sockaddr *)&addr,  sizeof(addr));
 	if (ret == 0) {
-		icl_log_error("%s", icl_strerror());
+		printf("%s", strerror(errno));
 	}
 	else {
 		return (-1);	
@@ -79,7 +82,8 @@ int icl_net_read(char *buf, int len)
 	char *p = buf;
 	// sanity check
 	if (icl_cli_confd < 0) {
-		icl_log_error("icl_cli_confd init error.");
+		printf("icl_cli_confd init error.");
+
 		return (-1);
 	}
 	while (left > 0) {
@@ -89,12 +93,12 @@ int icl_net_read(char *buf, int len)
 			p += used;
 		}
 		else if (used == 0) {
-			icl_log_info("break out from server.");
+			printf("break out from server.");
 			break;
 		}
 		else {
 			//这部分如果是在事件循环系统中，需要特别处理,single 模块里直接退出就可以了
-			icl_log_error("return value < 0 from read . error: %d", icl_strerror());
+			printf("return value < 0 from read . error: %d", strerror(errno));
 		}
 	}
 	return (0);
@@ -107,18 +111,18 @@ int icl_net_send(char *buf, int len)
 	char *p = buf;
 	// sanity check
 	if (icl_cli_confd < 0) {
-		icl_log_error("icl_cli_confd init error.");
+		printf("icl_cli_confd init error.");
 		return (-1);
 	}
 	while (left > 0)
 	{
-		used = send(icl_cli_confd, p, left);
+		used = send(icl_cli_confd, p, left, 0);
 		if (used > 0) {
 			left -= used;
 			p += used;
 		}
 		else {
-			icl_log_error("send error , error: %d", icl_errno());
+			printf("send error , error: %d", strerror(errno));
 		}
 	}
 	return (0);

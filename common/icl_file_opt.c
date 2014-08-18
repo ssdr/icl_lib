@@ -7,6 +7,9 @@
 
 
 #include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 #include "icl_file_opt.h"
 
 
@@ -20,12 +23,12 @@ FILE *icl_fdopen(int fd, const char *mode)
 	return fdopen(fd, mode);
 }
 
-int *icl_fseek(FILE *stream, long off_set, int whence)
+int icl_fseek(FILE *stream, long off_set, int whence)
 {
 	return fseek(stream, off_set, whence);
 }
 
-int *icl_ftell(FILE *stream)
+long icl_ftell(FILE *stream)
 {
 	return ftell(stream);
 }

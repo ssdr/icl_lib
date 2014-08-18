@@ -14,7 +14,7 @@ FILE  *icl_fopen(const char *path, const char *mode);
 FILE  *icl_fdopen(int fd, const char *mode);
 
 int icl_fseek(FILE *stream, long off_set, int whence);
-int icl_ftell(FILE *stream);
+long icl_ftell(FILE *stream);
 int icl_fclose(FILE *stream);
 
 unsigned long  icl_get_flsz(const char *path);

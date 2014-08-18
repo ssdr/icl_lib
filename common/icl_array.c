@@ -7,6 +7,7 @@
 
 #include "icl_array.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 //整体的结构是一个闭环
 

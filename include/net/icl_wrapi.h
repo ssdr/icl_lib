@@ -12,9 +12,9 @@
 
 int icl_net_connect(char *dst, int port);
 
-int icl_net_read(int sockfd, char *buf, int len);
+int icl_net_read(char *buf, int len);
 
-int icl_net_send(int sockfd, char *buf, int len);
+int icl_net_send(char *buf, int len);
 
 
 #endif /* ICL_NET_WRAPI_H_ */

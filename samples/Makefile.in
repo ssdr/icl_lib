@@ -10,7 +10,7 @@ CFLAG = -g
 #RANLIB  = ranlib
 
 
-OUTPUT=../debug
+OUTPUT=../../debug
 
 COMMON_INC=../../include/common
 NET_INC=../../include/net
@@ -20,8 +20,13 @@ DIR_INC=-I$(COMMON_INC) -I$(NET_INC) -I$(PROC_INC)
 #暂时不需要第三方库
 LDFLAGS=
 
-COMMON_SRC=$(wildcard ../common/*.c)
-NET_SRC=$(wildcard ../net/*.c)
+
+COMMON_DIR=../../common
+NET_DIR=../../net
+PROC_DIR=./
+
+COMMON_SRC=$(wildcard ../../common/*.c)
+NET_SRC=$(wildcard ../../net/*.c)
 PROC_SRC=$(wildcard *.c)
 
 #ALL_SRC=$(COMMON_SRC) $(NET_SRC)
@@ -30,32 +35,28 @@ COMMON_OBJS=$(patsubst %.c, %.o, $(COMMON_SRC))
 NET_OBJS=$(patsubst %.c, %.o, $(NET_SRC))
 PROC_OBJS=$(patsubst %.c, %.o, $(PROC_SRC))
 
-OUTPUT_COMMON_OBJS=$(addprefix $(OUTPUT)/common/, $($(notdir COMMON_OBJS)))
-OUTPUT_NET_OBJS=$(addprefix $(OUTPUT)/net/, $($(notdir NET_OBJS)))
-OUTPUT_PROC_OBJS=$(PROC_OBJS)
+#a:
+#	@echo "$(COMMON_SRC)"
+#	@echo "$(NET_SRC)"
+#	@echo "$(PROC_SRC)"
 
-OBJ_DST=$(OUTPUT_COMMON_OBJS) $(OUTPUT_NET_OBJS) $(OUTPUT_PROC_OBJS)
+OBJ_DST=$(COMMON_OBJS) $(NET_OBJS) $(PROC_OBJS)
 
+.PHONY = all clean
 PROC=
 
-$(PROC):	$(OBJ_DST)
+all: clean $(OBJ_DST)
 	$(CC) $(CFLAG) -o $(PROC) $(OBJ_DST)
-
 	
+$(COMMON_DIR)/%.o:	%.c
+	$(CC) -c $< -o $@ $(DIR_INC)
 
-#$(STATIC_LIB):	depends $(OBJ_DST)
-#	$(AR) $(ARFL) -o $(OUTPUT)/$(STATIC_LIB) $(OBJ_DST)
-#	$(RANLIB) $(OUTPUT)/$(STATIC_LIB)
+$(NET_DIR)/%.o:	%.c
+	$(CC) -c $< -o $@	$(DIR_INC)
 
-$(OUTPUT_COMMON_OBJS):	$(COMMON_SRC)
-	$(CC) $< -o $@ 	$(DIR_INC)
-
-$(OUTPUT_NET_OBJS):	$(NET_SRC)
-	$(CC) $< -o $@	$(DIR_INC)
-
-$(OUTPUT_PROC_OBJS):	$(PROC_SRC)
-	$(CC) $< -o $@	$(DIR_INC)
+$(PROC_DIR)/%.o:	%.c
+	$(CC) -c $< -o $@	$(DIR_INC)
 
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -f $(OBJ_DST) $(PROC)
 

@@ -10,45 +10,41 @@
 #include <signal.h>
 #include <signal.h>
 #include "icl_sig.h"
-#include "icl_log.h"
 #include "icl_string.h"
 
-static void icl_sig_handler(int sig)
+
+#define SIGCOUNT 64
+
+int sig[SIGCOUNT];
+static int index;
+
+void icl_sig_handler(int sig)
 {
-    icl_log_info("icl_sig_handler %d\n", sig);
+    printf("icl_sig_handler %d\n", sig);
+}
+
+int icl_sig_register(int index) 
+{
+	if (sig[index] == 0) {
+		sig[index] = 1;
+	}
+	else {
+		printf("sig %d already register!\n", index);
+	}
+	return 0;
 }
 
 void icl_sig_setup(void)
 {
     int i;
     struct sigaction action;
-    static int sig[] = {SIGINT, SIGQUIT, SIGTERM};
     sigemptyset(&action.sa_mask);
-    action.sa_flags = 0;
-    action.sa_handler = icl_sig_handler;
-    for (i = 0; i < sizeof(sig)/sizeof(sig[0]); i++ ) {
-        if (sigaction(sig[i], &action, (struct sigaction*)0) < 0)
-        {
-            icl_log_fital("sigaction: %s\n fital.", icl_sigitoa(sig[i]));
-        }
-    }
-}
-
-char *icl_sigitoa(int sig)
-{
-    char *siga;
-    switch (sig) {
-        case 1:
-            siga = icl_strdump("SIGINT");
-            break;
-        case 2:
-            siga = icl_strdump("SIGQUIT");
-            break;
-        case 3:
-            siga = icl_strdump("SIGTERM");
-        default:
-            siga = icl_strdump("UNKNOW");
-            break;
-    }
-    return siga;
+	action.sa_flags = 0;
+	action.sa_handler = icl_sig_handler;
+	for (i = 0; i < SIGCOUNT; i++ ) {
+		if (sig[i] == 1 && sigaction(sig[i], &action, (struct sigaction*)0) < 0)
+		{
+			printf("sigaction: %s\n fital.", sig[i]);
+		}
+	}
 }

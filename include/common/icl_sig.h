@@ -10,9 +10,7 @@
 #define icllib_icl_sig_h
 
 void icl_sig_setup(void);
-
-char *icl_sigitoa(int sig);
-
-static void icl_sig_handler(int sig);
+int icl_sig_register(int index);
+void icl_sig_handler(int sig);
 
 #endif

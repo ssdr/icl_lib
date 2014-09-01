@@ -1,7 +1,7 @@
 /*
  * icl_file_opt.c
  *
- *  Created on: 2014年7月20日
+ *  Created on: 2014年9月1日
  *      Author: peterxmw
  */
 
@@ -10,12 +10,23 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <errno.h>
 #include "icl_file_opt.h"
 
 
 FILE *icl_fopen(const char *path, const char *mode)
 {
 	return fopen(path, mode);
+}
+
+int icl_open(const char *path, int flags)
+{
+	return open(path, flags);
+}
+
+int icl_open2(const char *path, int flags, mode_t mode)
+{
+	return open(path, flags, mode);
 }
 
 FILE *icl_fdopen(int fd, const char *mode)
@@ -49,3 +60,86 @@ unsigned long icl_get_flsz(const char *path)
 	}
 	return filesize;
 }
+
+#define READ	0
+#define WRITE	1
+#define FREAD	2
+#define FWRITE	3
+
+/* stream */
+
+int icl_fwrite(void *ptr, int size, int nmemb, FILE *stream)
+{
+	return icl_io(ptr, size, nmemb, stream, FWRITE);
+}
+
+int icl_fread(void *ptr, int size, int nmemb, FILE *stream)
+{
+	return icl_io(ptr, size, nmemb, stream, FREAD);
+}
+
+/* no stream */
+
+int icl_write(int fd, void *buf, int count)
+{
+	return icl_io(buf, count, 1, &fd, WRITE);
+}
+
+int icl_read(int fd, void *buf, int count)
+{
+	return icl_io(buf, count, 1, &fd, READ);
+}
+
+int icl_io(void *ptr, int size, int nmemb, void *stream, int flags)
+{
+	int left = size * nmemb;
+	char *p = ptr;
+	int ret = -1;
+	while (left) {
+		switch (flags) {
+			case FREAD: {
+							FILE *s = (FILE *) stream;			
+							ret = fread(p, nmemb, left/nmemb, s);
+						    printf("icl_io ret: %d\n", ret);
+							break;
+						}
+			case FWRITE: {
+							 FILE *s = (FILE *) stream;			
+							 ret = fwrite(p, nmemb, left/nmemb, s);
+							 break;
+						 }
+			case READ: {
+						   int fd = *(int *) stream;
+						   ret = read(fd, p, left);
+						   printf("icl_io ret: %d\n", ret);
+						   break;
+					   }
+			case WRITE: {
+							int fd = *(int *) stream;
+							ret = write(fd, p, left);
+							break;
+
+						}
+			default: {
+						 printf("flag error\n");
+						 return -1;
+						 ;;
+
+					 }
+		}
+
+		if (ret == 0) {
+			printf("iclio end-of-file\n");
+			return -1;
+		}
+		if (ret < 0) {
+			printf("iclio failed (%d: %s)\n", errno, strerror(errno));
+			return -1;
+		}
+		left -= ret;
+		p += ret;
+	}
+	return 0;
+}
+
+

@@ -49,13 +49,13 @@ all: clean $(OBJ_DST)
 	$(CC) $(CFLAG) -o $(PROC) $(OBJ_DST)
 	
 $(COMMON_DIR)/%.o:	%.c
-	$(CC) -c $< -o $@ $(DIR_INC)
+	$(CC) -c $(CFLAG) $< -o $@ $(DIR_INC)
 
 $(NET_DIR)/%.o:	%.c
-	$(CC) -c $< -o $@	$(DIR_INC)
+	$(CC) -c $(CFLAG) $< -o $@	$(DIR_INC)
 
 $(PROC_DIR)/%.o:	%.c
-	$(CC) -c $< -o $@	$(DIR_INC)
+	$(CC) -c $(CFLAG) $< -o $@	$(DIR_INC)
 
 clean:
 	rm -f $(OBJ_DST) $(PROC)

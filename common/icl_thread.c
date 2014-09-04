@@ -4,7 +4,6 @@
  *  Created on: 2014年9月2日
  *      Author: peterxm
  */
-#include "icl_time.h"
 #include "icl_thread.h"
 
 
@@ -134,12 +133,12 @@ int icl_pthread_rwlock_tryrdlock(pthread_rwlock_t *rwlock)
 	return 0;
 }
 
-int icl_pthread_rwlock_tryrwlock(pthread_rwlock_t *rwlock)
+int icl_pthread_rwlock_trywrlock(pthread_rwlock_t *rwlock)
 {
-	int ret = pthread_rwlock_tryrwlock(rwlock);
+	int ret = pthread_rwlock_trywrlock(rwlock);
 	if (ret != 0) {
 		/* no block */
-		printf("pthread_rwlock_tryrwlock failed.\n", ret, strerror(ret));
+		printf("pthread_rwlock_trywrlock failed.\n", ret, strerror(ret));
 		return -1;
 	}
 	return 0;
@@ -151,7 +150,7 @@ int icl_pthread_cond_init(pthread_cond_t *cond,
 {
 	int ret = pthread_cond_init(cond, attr);
 	if (ret != 0) {
-		printf("pthread_cond_init failed (%d, %s)\n", ret, strrerror(ret));
+		printf("pthread_cond_init failed (%d, %s)\n", ret, strerror(ret));
 		return -1;
 	}
 	/* success */
@@ -162,7 +161,7 @@ int icl_pthread_cond_destroy(pthread_cond_t *cond)
 {
 	int ret = pthread_cond_destroy(cond);
 	if (ret != 0) {
-		printf("pthread_cond_destroy failed (%d, %s)\n", ret, strrerror(ret));
+		printf("pthread_cond_destroy failed (%d, %s)\n", ret, strerror(ret));
 		return -1;
 	}
 	/* success */
@@ -180,7 +179,7 @@ int icl_pthread_cond_wait(pthread_cond_t *cond,
 {
 	int ret = pthread_cond_wait(cond, mutex);
 	if (ret != 0) {
-		printf("pthread_cond_wait failed(%d, %s)\n", ret, strrerror(ret));
+		printf("pthread_cond_wait failed(%d, %s)\n", ret, strerror(ret));
 		return -1;
 	}
 	/* success */
@@ -188,13 +187,13 @@ int icl_pthread_cond_wait(pthread_cond_t *cond,
 }
 
 /* TimeSpec is defined in icl_time */
-int icl_pthread_cond_timewait(pthread_cond_t *cond, 
+int icl_pthread_cond_timedwait(pthread_cond_t *cond, 
 								pthread_mutex_t *mutex,
 								const TimeSpec *timeout)
 {
-	int ret = pthread_cond_timewait(cond, mutex, timeout);
+	int ret = pthread_cond_timedwait(cond, mutex, timeout);
 	if (ret != 0) {
-		printf("pthread_cond_timewait failed (%d, %s)\n", ret, strrerror(ret));
+		printf("pthread_cond_timedwait failed (%d, %s)\n", ret, strerror(ret));
 		return -1;
 	}
 	/* success */
@@ -205,7 +204,7 @@ int icl_pthread_cond_signal(pthread_cond_t *cond)
 {
 	int ret = pthread_cond_signal(cond);
 	if (ret != 0) {
-		printf("pthread_cond_signal failed (%d, %s)\n", ret, strrerror(ret));
+		printf("pthread_cond_signal failed (%d, %s)\n", ret, strerror(ret));
 		return -1;
 	}
 	/* success */
@@ -216,7 +215,7 @@ int icl_pthread_cond_broadcast(pthread_cond_t *cond)
 {
 	int ret = pthread_cond_broadcast(cond);
 	if (ret != 0) {
-		printf("pthread_cond_broadcast failed (%d, %s)\n", ret, strrerror(ret));
+		printf("pthread_cond_broadcast failed (%d, %s)\n", ret, strerror(ret));
 		return -1;
 	}
 	/* success */
@@ -279,7 +278,7 @@ int icl_pthread_join(pthread_t thread, void **rval_ptr)
 int icl_pthread_detach(pthread_t thread) {
 	int ret = pthread_detach(thread);
 	if (ret != 0) {
-		printf("pthread_detach failed (%d, %s)\n", ret, strrerror(ret));
+		printf("pthread_detach failed (%d, %s)\n", ret, strerror(ret));
 		return -1;
 	}
 	/* success */
@@ -297,24 +296,3 @@ int icl_pthread_cancel(pthread_t tid)
 	return 0;
 }
 
-
-/* cleanup function will exec with thoes condition:
- * 1.call pthread_exit
- * 2.other pthread call pthread_cancel()
- * 3.pthread_cleanup_pop(execute) execute is not zero
- * notice : push and pop must be pair 
- */
-(*rtn) (void*);
-
-void icl_pthread_cleanup_push(rtn r, void *arg)
-{
-	pthread_cleanup_push(r, arg);
-}
-
-void icl_pthread_cleanup_pop(int e)
-{
-	if (e == 0) {
-		printf("e is 0, cleanup function will not exec.\n");
-	}
-	pthread_cleanup_pop(e);
-}

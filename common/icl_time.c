@@ -27,6 +27,33 @@ char *icl_asctime()
 	return time_str;
 }
 
+/* 
+ * struct timespec {
+ * 	time_t tv_sec;
+ * 	long   tv_nsec;
+ * } */
+typedef struct timespec TimeSpec;
+
+void min2tmspec(TimeSpec *tsp, long minutes)
+{
+	struct timeval now;
+	/* get the current time */
+	gettimeofday(&now);
+	tsp->tv_sec = now.tv_sec;
+	tsp->tv_nsec = now.tv_usec * 1000; /* usec to nsec */
+	tsp->tv_sec += minutes * 60;
+}
+
+void sec2tmspec(TimeSpec *tsp, long seconds)
+{
+	struct timeval now;
+	/* get the current time */
+	gettimeofday(&now);
+	tsp->tv_sec = now.tv_sec;
+	tsp->tv_nsec = now.tv_usec * 1000; /* usec to nsec */
+	tsp->tv_sec += seconds;
+}
+
 void icl_prtnow()
 {
 	char pTime[50];

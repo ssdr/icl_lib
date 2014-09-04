@@ -16,9 +16,15 @@ COMMON_INC=../../include/common
 NET_INC=../../include/net
 PROC_INC=./
 
-DIR_INC=-I$(COMMON_INC) -I$(NET_INC) -I$(PROC_INC)
-#暂时不需要第三方库
-LDFLAGS=
+THIRD_LIB_DIR=../../thirdlib
+
+#第三方头文件
+REDISCLI_INC=$(THIRD_LIB_DIR)/libhiredis/include
+
+DIR_INC=-I$(COMMON_INC) -I$(NET_INC) -I$(PROC_INC) -I$(REDISCLI_INC)
+
+#第三方库
+LDFLAGS=-L$(THIRD_LiB_DIR)/libhiredis/lib  -lhiredis -lpthread
 
 
 COMMON_DIR=../../common
@@ -46,7 +52,7 @@ OBJ_DST=$(COMMON_OBJS) $(NET_OBJS) $(PROC_OBJS)
 PROC=
 
 all: clean $(OBJ_DST)
-	$(CC) $(CFLAG) -o $(PROC) $(OBJ_DST)
+	$(CC) $(CFLAG) -o $(PROC) $(OBJ_DST) $(LDFLAGS)
 	
 $(COMMON_DIR)/%.o:	%.c
 	$(CC) -c $(CFLAG) $< -o $@ $(DIR_INC)

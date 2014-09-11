@@ -143,3 +143,65 @@ int icl_io(void *ptr, int size, int nmemb, void *stream, int flags)
 }
 
 
+void icl_stat(const char *pathname)
+{
+	struct stat sb;
+	if (stat(pathname, &sb) == -1) {
+		perror("stat");
+		exit(EXIT_SUCCESS);
+	}
+	printf("File type:                ");
+
+	switch (sb.st_mode & S_IFMT) {
+		case S_IFBLK:  printf("block device\n");            break;
+		case S_IFCHR:  printf("character device\n");        break;
+		case S_IFDIR:  printf("directory\n");               break;
+		case S_IFREG:  printf("regular file\n");            break;
+		case S_IFSOCK: printf("socket\n");                  break;
+		default:       printf("unknown?\n");                break;
+	}
+	printf("Mode:                     %lo (octal)\n",
+			(unsigned long) sb.st_mode);
+
+	printf("Link count:               %ld\n", (long) sb.st_nlink);
+	printf("Ownership:                UID=%ld   GID=%ld\n",
+			(long) sb.st_uid, (long) sb.st_gid);
+
+	printf("Preferred I/O block size: %ld bytes\n",
+			(long) sb.st_blksize);
+	printf("File size:                %lld bytes\n",
+			(long long) sb.st_size);
+	printf("Blocks allocated:         %lld\n",
+			(long long) sb.st_blocks);
+
+	printf("Last status change:       %s", ctime(&sb.st_ctime));
+	printf("Last file access:         %s", ctime(&sb.st_atime));
+	printf("Last file modification:   %s", ctime(&sb.st_mtime));
+}
+
+int icl_link(const char *src_pathname, const char *dst_pathname)
+{
+	int ret = link(src_pathname, dst_pathname);
+	/* failed */
+	if (ret != 0)
+	{
+		printf("icl_link failed (%d)(%s)\n", errno, strerror(errno));
+	}
+	/* sucess */
+	return 0;
+}
+
+
+int icl_unlink(const char *pathname)
+{
+	int ret = unlink(pathname);
+	/* failed */
+	if (ret != 0)
+	{
+		printf("icl_unlink failed (%d)(%s)\n", errno, strerror(errno));
+	}
+	/* sucess */
+	return 0;
+}
+
+

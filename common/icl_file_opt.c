@@ -179,6 +179,12 @@ void icl_stat(const char *pathname)
 	printf("Last file modification:   %s", ctime(&sb.st_mtime));
 }
 
+/* 
+ *
+ * 可以使用link和stat配合创建lockfile，避免使用记录锁，降低复杂度，提高性能
+ * 参考ts封包项目，lockfile解决多进程操作*.bin文件
+ *
+ * */
 int icl_link(const char *src_pathname, const char *dst_pathname)
 {
 	int ret = link(src_pathname, dst_pathname);

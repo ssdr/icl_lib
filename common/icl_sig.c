@@ -1,11 +1,13 @@
-//
-//  icl_sig.c
-//  icllib
-//
-//  Created by peterxm on 14-3-20.
-//  Copyright (c) 2014年 peterxm. All rights reserved.
-//
-
+/*
+ * icl_sig.c
+ * icllib
+ *
+ * Created by peterxm on 14-3-20.
+ * Copyright (c) 2014年 peterxm. All rights reserved.
+ *
+ *
+ */
+  
 #include <stdio.h>
 #include <signal.h>
 #include <signal.h>

@@ -22,6 +22,7 @@ struct hostent *icl_gethostbyname_r(char *hostname)
 	struct  hostent  *hostinfo, *phost;
 	int     ret;
 
+	/* 这块内存需要自己释放，否则会存在内存泄露 */
 	hostinfo = malloc(sizeof(struct hostent));
 
 	if(gethostbyname_r(hostname, hostinfo, buf, sizeof(buf), &phost, &ret)) {

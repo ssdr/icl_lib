@@ -1,7 +1,7 @@
 /*
  * icl_define.h
  *
- *  Created on: 2014年2月8日
+ *  Created on: 2014骞�2鏈�8鏃�
  *      Author: peterxmw
  */
 
@@ -10,6 +10,12 @@
 
 
 #define ICL_LOG_ERROR	-1
+
+#define ICL_INT64 long long int
+#define ICL_UINT64 unsigned long long int
+
+#define ICL_INT32 int
+#define ICL_UINT32 unsigned int
 
 #endif /* ICL_DEFINE_H_ */
 

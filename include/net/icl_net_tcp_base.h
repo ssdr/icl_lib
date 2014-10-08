@@ -1,12 +1,12 @@
 /*
- * icl_net_tcpdef.h
+ * icl_net_tcp_base.h
  *
  *  Created on: 2014年10月8日
  *      Author: peterxiemin
  */
 
-#ifndef ICL_NET_TCPDEF_H_
-#define ICL_NET_TCPDEF_H_
+#ifndef ICL_NET_TCP_BASE_H_
+#define ICL_NET_TCP_BASE_H_
 
 
 #include <sys/socket.h>
@@ -90,4 +90,4 @@ char *icl_inet_ntoa(struct in_addr inaddr);
 
 uint16_t icl_htons(uint16_t host16bitvalue);
 
-#endif /* ICL_NET_TCPDEF_H_ */
+#endif /* ICL_NET_TCP_BASE_H_ */

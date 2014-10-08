@@ -17,8 +17,8 @@
 
 
 
-int icl_select(int maxfdpl, fd_set *readset, fd_set *writeset,
-				fd_set *exceptset, const struct timeval *timeout)
-		{
-			return select(maxfdpl, readset, writeset, exceptset, timeout);
-		}
+int icl_select(int maxfdpl, fd_set *readset, fd_set *writeset, fd_set *exceptset,
+		const struct timeval *timeout)
+{
+	return select(maxfdpl, readset, writeset, exceptset, timeout);
+}

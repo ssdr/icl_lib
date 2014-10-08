@@ -1,5 +1,5 @@
 # Makefile
-# Created on: 2014Äê1ÔÂ23ÈÕ
+# Created on: 2014-10-08
 #     Author: peterxmw
 
 include ../Makefile.in

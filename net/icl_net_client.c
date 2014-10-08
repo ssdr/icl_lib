@@ -1,7 +1,7 @@
 /*
- * icl_net_wrapi.c
+ * icl_net_client.c
  *
- *  Created on: 2014骞�3鏈�2鏃�
+ *  Created on: 2014-09-27
  *      Author: peterxiemin
  */
 
@@ -10,12 +10,11 @@
 #include <string.h>
 #include <errno.h>
 #include <netdb.h>
-#include "icl_wrapi.h"
+#include "icl_net_client.h"
 
 
 
 
-//杩欓噷杩欎釜鍙傛暟鐩墠杩樻病鏈夊紕鏄庣櫧锛屾殏鏃惰缃负0锛屽悗闈㈡煡娓呮浜嗗啀琛ヤ笂
 #define PROTOCOL 0
 
 int icl_cli_confd = -1;
@@ -59,7 +58,6 @@ int icl_net_connect(char *dst, int port)
 		memcpy(&(addr.sin_addr), ip->h_addr, ip->h_length);	
 	}
 	else {
-		//鍩熷悕瑙ｆ瀽澶辫触锛� 杩欓噷鐩存帴瀵筰p杩涜杞寲
 		in_addr_t addr_t = inet_addr(dst);
 		if (addr_t != INADDR_NONE) {
 			addr.sin_addr.s_addr = addr_t;
@@ -99,7 +97,6 @@ int icl_net_read(char *buf, int len)
 			break;
 		}
 		else {
-			//杩欓儴鍒嗗鏋滄槸鍦ㄤ簨浠跺惊鐜郴缁熶腑锛岄渶瑕佺壒鍒鐞�,single 妯″潡閲岀洿鎺ラ��鍑哄氨鍙互浜�
 			printf("return value < 0 from read . error: %d", strerror(errno));
 		}
 	}

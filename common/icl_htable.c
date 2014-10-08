@@ -1,7 +1,7 @@
 /*
  * icl_htable.c
  *
- *  Created on: 2014Äê10ÔÂ5ÈÕ
+ *  Created on: 2014-10-05
  *      Author: peterxiemin
  */
 
@@ -34,7 +34,7 @@ int icl_htable_set(icl_htable_t *iht, const char *key, const char *value)
 	}
 	else {
 		while (!p->next) {
-			/* Èç¹ûÖØ¸´set£¬ ÔòÖ±½ÓºöÂÔµô */
+			/* ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½setï¿½ï¿½ ï¿½ï¿½Ö±ï¿½Óºï¿½ï¿½Ôµï¿½ */
 			if (strncmp(key, p->key, strlen(key)+1) == 0) {
 				printf("(key, value) replicate\n");
 				return 0;

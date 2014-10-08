@@ -1,7 +1,7 @@
 /*
  * icl_define.h
  *
- *  Created on: 2014骞�2鏈�8鏃�
+ *  Created on: 2014-02-18
  *      Author: peterxmw
  */
 

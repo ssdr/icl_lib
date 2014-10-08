@@ -1,7 +1,7 @@
 /*
  * icl_list.h
  *
- *  Created on: 2014Äê1ÔÂ27ÈÕ
+ *  Created on: 2014-09-27
  *      Author: peterxmw
  */
 

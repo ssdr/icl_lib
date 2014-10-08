@@ -1,7 +1,7 @@
 /*
  * icl_htable.h
  *
- *  Created on: 2014Äê10ÔÂ5ÈÕ
+ *  Created on: 2014-10-25
  *      Author: peterxiemin
  */
 
@@ -10,6 +10,7 @@
 #ifndef ICL_HTABLE_H_
 #define ICL_HTABLE_H_
 
+#include <icl_hash.h>
 #include <stdio.h>
 
 typedef struct icl_htable_node icl_htable_node;

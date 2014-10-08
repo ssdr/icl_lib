@@ -1,6 +1,6 @@
 /*
  * author: xiemin
- * file_name: icl_map.h
+ * file_name: icl_hash.h
  * company:ifeng
  * date:2014-09-29
  *

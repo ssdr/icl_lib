@@ -1,7 +1,7 @@
 /*
  *
  * author: xiemin
- * file_name: icl_map.c
+ * file_name: icl_hash.c
  * company: ifeng
  * date: 2014-09-29
  *
@@ -10,7 +10,6 @@
 #include <icl_hash.h>
 
 #if 0
-/* 该实现有可能在64位系统存在一定问题 */
 
 static unsigned long m_table32n[256] = {
     0x00000000, 0x04C11DB7, 0x09823B6E, 0x0D4326D9, 0x130476DC, 0x17C56B6B, 0x1A864DB2, 0x1E475005,

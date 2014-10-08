@@ -9,7 +9,7 @@
 #include <icl_array.h>
 
 /*
- * ��create��init�϶�Ϊһ
+ * create 和 init合二为一
  */
 icl_array_t *icl_array_create(int n, int size) {
 	icl_array_t *iat = malloc(sizeof(icl_array_t));

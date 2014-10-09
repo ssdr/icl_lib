@@ -16,11 +16,17 @@
 #include <sys/select.h>
 #include <sys/time.h>
 
+/*
 void ICL_FD_ZERO(fd_set *fdset);
 void ICL_FD_SET(int fd, fd_set *fdset);
 void ICL_FD_CLR(int fd, fd_set *fdset);
 int ICL_FD_ISSET(int fd, fd_set *fdset);
+*/
 
+#define FD_ZERO 	ICL_FD_ZERO
+#define FD_SET 		ICL_FD_SET
+#define FD_CLR 		ICL_FD_CLR
+#define FD_ISSET 	ICL_FD_ISSET
 
 /*
  * struct timeval {

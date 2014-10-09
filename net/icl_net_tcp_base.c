@@ -34,6 +34,59 @@ int icl_accept(int sockfd, struct sockaddr *cliaddr, socklen_t addrlen)
 }
 
 
+int icl_net_read(int clifd, char *buf, int len)
+{
+	int left = len;
+	int used = 0;
+	char *p = buf;
+	// sanity check
+	if (clifd < 0) {
+		printf("icl_cli_confd init error.");
+
+		return (-1);
+	}
+	while (left > 0) {
+		used = read(clifd, p, left);
+		if (used > 0) {
+			left -= used;
+			p += used;
+		}
+		else if (used == 0) {
+			printf("break out from server.");
+			break;
+		}
+		else {
+			printf("return value < 0 from read . error: %d", strerror(errno));
+		}
+	}
+	return (0);
+}
+
+
+int icl_net_send(int clifd, const char *buf, int len)
+{
+	int left = len;
+	int used;
+	char *p = buf;
+	// sanity check
+	if (clifd < 0) {
+		printf("icl_cli_confd init error.");
+		return (-1);
+	}
+	while (left > 0)
+	{
+		used = send(clifd, p, left, 0);
+		if (used > 0) {
+			left -= used;
+			p += used;
+		}
+		else {
+			printf("send error , error: %d", strerror(errno));
+		}
+	}
+	return (0);
+}
+
 in_addr_t icl_int_addr(const char *strptr)
 {
 	return icl_int_addr(strptr);
@@ -54,3 +107,5 @@ uint16_t icl_htons(uint16_t host16bitvalue)
 {
 	return htons(host16bitvalue);
 }
+
+

@@ -12,9 +12,10 @@
 #ifndef ICL_NET_SELECT_H
 #define ICL_NET_SELECT_H
 
-
+#include <sys/types.h>
 #include <sys/select.h>
 #include <sys/time.h>
+#include <stdio.h>
 
 /*
 void ICL_FD_ZERO(fd_set *fdset);

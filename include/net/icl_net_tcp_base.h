@@ -8,10 +8,10 @@
 #ifndef ICL_NET_TCP_BASE_H_
 #define ICL_NET_TCP_BASE_H_
 
-
+#include <stdio.h>
 #include <sys/socket.h>
-
-
+#include <sys/types.h>
+#include <errno.h>
 /*
  * family
  */
@@ -53,6 +53,10 @@ int icl_bind(int sockfd, const struct sockaddr *servaddr, socklen_t addrlen);
 int icl_listen(int sockfd, int baklog);
 
 int icl_accept(int sockfd, struct sockaddr *cliaddr, socklen_t addrlen);
+
+int icl_net_read(int clifd, char *buffer, int len);
+
+int icl_net_send(int clifd, const char *buffer, int len);
 
 
 /*

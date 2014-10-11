@@ -12,9 +12,16 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <errno.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+
 /*
  * family
  */
+
+#define PROTOCOL 0
+
 enum icl_socket_domain
 {
 	ICL_LOCAL    = PF_LOCAL,
@@ -52,7 +59,7 @@ int icl_bind(int sockfd, const struct sockaddr *servaddr, socklen_t addrlen);
 
 int icl_listen(int sockfd, int baklog);
 
-int icl_accept(int sockfd, struct sockaddr *cliaddr, socklen_t addrlen);
+int icl_accept(int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen);
 
 int icl_net_read(int clifd, char *buffer, int len);
 
@@ -85,7 +92,9 @@ int icl_net_send(int clifd, const char *buffer, int len);
  *
  *
  */
-in_addr_t icl_int_addr(const char *strptr);
+
+
+in_addr_t icl_inet_addr(const char *strptr);
 
 int icl_inet_aton(const char *strptr, struct in_addr *addrptr);
 

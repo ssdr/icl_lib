@@ -19,7 +19,7 @@ char *icl_getenv(const char *name)
 }
 
 
-int icl_putenv(const char *str)
+int icl_putenv(char *str)
 {
 	/* overwrite old value */
 	int ret = putenv(str);

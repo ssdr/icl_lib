@@ -10,6 +10,9 @@
 /*
  * gethostbyname 是不可重入函数，在多线程环境下会出现位置错误，可以使用gethostbyname_r代替
  */
+
+#include <icl_net_dns.h>
+
 struct hostent *icl_gethostbyname(char *hostname)
 {
 	return gethostbyname(hostname);

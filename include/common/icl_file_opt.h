@@ -10,6 +10,9 @@
 #ifndef ICLLIB_ICL_FILE_OPT_H
 #define ICLLIB_ICL_FILE_OPT_H
 
+#include <stdio.h>
+#include <stdlib.h>
+
 FILE  *icl_fopen(const char *path, const char *mode); 
 
 int	icl_open(const char *path, int flags);

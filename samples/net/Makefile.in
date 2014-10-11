@@ -10,13 +10,13 @@ CFLAG = -g
 #RANLIB  = ranlib
 
 
-OUTPUT=../../debug
+OUTPUT=../../../debug
 
-COMMON_INC=../../include/common
-NET_INC=../../include/net
+COMMON_INC=../../../include/common
+NET_INC=../../../include/net
 PROC_INC=./
 
-THIRD_LIB_DIR=../../thirdlib
+THIRD_LIB_DIR=../../../thirdlib
 
 #redis
 REDISCLI_INC=$(THIRD_LIB_DIR)/libhiredis/include
@@ -27,8 +27,8 @@ DIR_INC=-I$(COMMON_INC) -I$(NET_INC) -I$(PROC_INC) -I$(REDISCLI_INC)
 LDFLAGS=-L$(THIRD_LiB_DIR)/libhiredis/lib  -lhiredis -lpthread
 
 
-COMMON_DIR=../../common
-NET_DIR=../../net
+COMMON_DIR=../../../common
+NET_DIR=../../../net
 PROC_DIR=./
 
 COMMON_SRC=$(wildcard $(COMMON_DIR)/*.c)

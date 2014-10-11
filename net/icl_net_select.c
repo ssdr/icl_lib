@@ -8,7 +8,7 @@
  *
  */
 
-#include <icl_select.h>
+#include <icl_net_select.h>
 
 /*
  * timeout 三种状态
@@ -17,7 +17,7 @@
 
 
 int icl_select(int maxfdpl, fd_set *readset, fd_set *writeset, fd_set *exceptset,
-		const struct timeval *timeout)
+		struct timeval *timeout)
 {
 	return select(maxfdpl, readset, writeset, exceptset, timeout);
 }

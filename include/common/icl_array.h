@@ -11,6 +11,7 @@
 #define ICL_ARRAY_H_
 
 #include <stdio.h>
+#include <stdlib.h>
 
 struct icl_array_t {
 	int nelt;

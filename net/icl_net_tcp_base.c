@@ -28,7 +28,7 @@ int icl_listen(int sockfd, int backlog)
 	return listen(sockfd, backlog);
 }
 
-int icl_accept(int sockfd, struct sockaddr *cliaddr, socklen_t addrlen)
+int icl_accept(int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen)
 {
 	return accept(sockfd, cliaddr, addrlen);
 }
@@ -67,7 +67,7 @@ int icl_net_send(int clifd, const char *buf, int len)
 {
 	int left = len;
 	int used;
-	char *p = buf;
+	const char *p = buf;
 	// sanity check
 	if (clifd < 0) {
 		printf("icl_cli_confd init error.");
@@ -89,12 +89,12 @@ int icl_net_send(int clifd, const char *buf, int len)
 
 in_addr_t icl_int_addr(const char *strptr)
 {
-	return icl_int_addr(strptr);
+	return inet_addr(strptr);
 }
 
 int icl_inet_aton(const char *strptr, struct in_addr *addrptr)
 {
-	return int_aton(strptr, addrptr);
+	return inet_aton(strptr, addrptr);
 }
 
 char *icl_inet_ntoa(struct in_addr inaddr)

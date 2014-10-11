@@ -5,68 +5,15 @@
  *      Author: peterxiemin
  */
 #include <stdio.h>
-#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
 #include <sys/types.h>
+#include <sys/socket.h>
 #include <string.h>
 #include <errno.h>
-#include "icl_net_client.h"
+#include "icl_net_tcp_base.h"
 
-#define PROTOCOL 0
 
-int icl_net_connect(int clifd, struct sockaddr_in *addr) {
-	int ret = connect(clifd, (struct sockaddr *) &addr, sizeof(struct sockaddr));
-	if (ret == 0) {
-		printf("%s", strerror(errno));
-	} else {
-		return (-1);
-	}
-}
-
-int icl_net_read(int clifd, char *buf, int len) {
-	int left = len;
-	int used = 0;
-	char *p = buf;
-	// sanity check
-	if (clifd < 0) {
-		printf("icl_cli_confd init error.");
-
-		return (-1);
-	}
-	while (left > 0) {
-		used = read(clifd, p, left);
-		if (used > 0) {
-			left -= used;
-			p += used;
-		} else if (used == 0) {
-			printf("break out from server.");
-			break;
-		} else {
-			printf("return value < 0 from read . error: %d", strerror(errno));
-		}
-	}
-	return (0);
-}
-
-int icl_net_send(int clifd, char *buf, int len) {
-	int left = len;
-	int used;
-	char *p = buf;
-	// sanity check
-	if (clifd < 0) {
-		printf("icl_cli_confd init error.");
-		return (-1);
-	}
-	while (left > 0) {
-		used = send(clifd, p, left, 0);
-		if (used > 0) {
-			left -= used;
-			p += used;
-		} else {
-			printf("send error , error: %d", strerror(errno));
-		}
-	}
-	return (0);
-}
 
 int main(int argc, char *argv[]) {
 	char dst[16] = "127.0.0.1";
@@ -92,23 +39,29 @@ int main(int argc, char *argv[]) {
 		}
 	}
 
-	int ret = icl_net_connect(clifd, &addr);
+	int ret = icl_connect(clifd, (struct sockaddr *)&addr, sizeof(struct sockaddr));
 	if (ret < 0) {
 		printf("connect error \n");
 		return -1;
 	}
 	char buffer[4096];
-	memset(buffer, 0, 4096);
-	ret = icl_net_read(clifd, buffer, 4096);
-	if (ret < 0) {
-		printf("icl_net_read error\n");
-		return -1;
+	/* for test */
+	int i;
+	for (i = 0; i < 4096; i++) {
+		buffer[i] = 'a';
 	}
+	buffer[4095] = '\0';
 	ret = icl_net_send(clifd, buffer, strlen(buffer));
 	if (ret < 0) {
 		printf("icl_net_send error\n");
 		return -1;
 	}
+	ret = icl_net_read(clifd, buffer, 4096);
+	if (ret < 0) {
+		printf("icl_net_read error\n");
+		return -1;
+	}
+	
 
 	close(clifd);
 	return 0;

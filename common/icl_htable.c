@@ -4,8 +4,7 @@
  *  Created on: 2014-10-05
  *      Author: peterxiemin
  */
-
-
+#include <icl_hash.h>
 #include <icl_htable.h>
 
 
@@ -13,14 +12,14 @@ icl_htable_t *icl_htable_create(int size)
 {
 	icl_htable_t *iht = malloc(sizeof(icl_htable_t));
 	iht->size = size;
-	iht->p = (icl_htable_node **) calloc(sizeof(icl_htable_node *) * size);
+	iht->p = (icl_htable_node **) calloc(size, sizeof(icl_htable_node *));
 	return iht;
 }
 
 
 int icl_htable_set(icl_htable_t *iht, const char *key, const char *value)
 {
-	unsigned long int n = icl_hash(key, 1);
+	unsigned long int n = icl_hash_func2(key, 1);
 	n = n % iht->size;
 	icl_htable_node *p = iht->p[0];// *(iht->p + n);
 
@@ -54,7 +53,7 @@ int icl_htable_get(icl_htable_t *iht, const char *key, char *value,
 		return -1;
 	}
 
-	unsigned long int n = icl_hash(key, 1);
+	unsigned long int n = icl_hash_func2(key, 1);
 	n = n % iht->size;
 	icl_htable_node *p = iht->p[0]; // *(iht->p + n);
 	while(!p) {

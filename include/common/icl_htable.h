@@ -6,7 +6,6 @@
  */
 
 
-
 #ifndef ICL_HTABLE_H_
 #define ICL_HTABLE_H_
 
@@ -34,4 +33,4 @@ struct icl_htable_t
 
 icl_htable_t *icl_htable_create(int size);
 
-#endif ICL_HTABLE_H_
+#endif /*ICL_HTABLE_H_*/

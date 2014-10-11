@@ -14,6 +14,9 @@
 #define icl_int64 long long int
 #define icl_uint64 unsigned long long int
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 unsigned icl_hash_crc32(const void *buffer, size_t len);
 icl_int64 icl_hash_crc64(const void *buffer, size_t len);

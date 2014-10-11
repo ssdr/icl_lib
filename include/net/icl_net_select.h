@@ -24,10 +24,10 @@ void ICL_FD_CLR(int fd, fd_set *fdset);
 int ICL_FD_ISSET(int fd, fd_set *fdset);
 */
 
-#define FD_ZERO 	ICL_FD_ZERO
-#define FD_SET 		ICL_FD_SET
-#define FD_CLR 		ICL_FD_CLR
-#define FD_ISSET 	ICL_FD_ISSET
+#define ICL_FD_ZERO 	FD_ZERO
+#define ICL_FD_SET 		FD_SET
+#define ICL_FD_CLR 		FD_CLR
+#define ICL_FD_ISSET 	FD_ISSET
 
 /*
  * struct timeval {
@@ -37,7 +37,7 @@ int ICL_FD_ISSET(int fd, fd_set *fdset);
  */
 
 int icl_select(int maxfdpl, fd_set *readset, fd_set *writeset, fd_set *exceptset,
-					const struct timeval *timeout);
+					struct timeval *timeout);
 
 #endif /*ICL_NET_SELECT_H*/
 

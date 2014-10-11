@@ -23,7 +23,7 @@ icl_array_t *icl_array_create(int n, int size) {
 void *icl_array_push_back(icl_array_t *iat) {
 	if (iat == NULL) {
 		printf("icl_array_t is NULL\n");
-		return -1;
+		return NULL;
 	}
 
 	if (iat->pos >= iat->nelt) {

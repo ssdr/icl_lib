@@ -11,17 +11,16 @@
 #include <icl_net_tcp_base.h>
 
 #define handle_error(msg) \
-	           do { perror(msg); exit(EXIT_FAILURE); } while (0)
-
+	           do { perror(msg);exit(-1);} while (0)
 int main(int argc, char *argv[])
 {
 
 	int servfd = socket(AF_INET, SOCK_STREAM, 0);
 	struct sockaddr_in servaddr, cliaddr;
-	memset(&servaddr, 0, sizeof(servaddr));
 	servaddr.sin_family = AF_INET;
-	servaddr.sin_port = 7744;
+	servaddr.sin_port = htons(7744);
 	servaddr.sin_addr.s_addr = INADDR_ANY;
+	bzero(&(servaddr.sin_zero),8);
 	int ret = bind(servfd, (struct sockaddr *)&servaddr, sizeof(struct sockaddr));
 	if (ret < 0) {
 		handle_error("bind error port 7744:");
@@ -33,22 +32,25 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
-	char buffer[4096];
-	memset(buffer, 0,  4096);
+	char buffer[MAXLINE];
+	memset(buffer, 0,  MAXLINE);
 	while (1) {
-		int clifd = accept(servfd, (struct sockaddr *)&cliaddr, (socklen_t *)sizeof(struct sockaddr));
+		int sock_len = sizeof(struct sockaddr);
+		int clifd = accept(servfd, (struct sockaddr *)&cliaddr, (socklen_t *)&sock_len);
 		if (clifd == -1) {
-			printf("accept error\n");
-			return -1;
+			handle_error("accept error");
 		}
-		int ret = icl_net_read(clifd, buffer, 4096);
+		printf("accept ok!\n");
+		int ret = icl_net_read(clifd, buffer, MAXLINE);
 		if (ret < 0) {
-			printf("read error\n");
+			handle_error("read error");
 		}
-		ret = icl_net_send(clifd, buffer, strlen(buffer));
+		printf("icl_net_read ok!\n");
+		ret = icl_net_send(clifd, buffer, strlen(buffer)+1);
 		if (ret < 0) {
-			printf("send error\n");
+			handle_error("send error");
 		}
+		printf("icl_net_send ok!\n");
 		close(clifd);
 	}
 

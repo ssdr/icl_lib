@@ -1,0 +1,494 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AF_LOCAL	thirdlib/libhiredis/include/net.h	39;"	d
+DCHARHASH	common/icl_hash.c	312;"	d	file:
+DICT_ERR	thirdlib/libhiredis/include/dict.h	40;"	d
+DICT_HT_INITIAL_SIZE	thirdlib/libhiredis/include/dict.h	76;"	d
+DICT_NOTUSED	thirdlib/libhiredis/include/dict.h	43;"	d
+DICT_OK	thirdlib/libhiredis/include/dict.h	39;"	d
+DO1	common/icl_hash.c	121;"	d	file:
+DO2	common/icl_hash.c	122;"	d	file:
+DO4	common/icl_hash.c	123;"	d	file:
+DO8	common/icl_hash.c	124;"	d	file:
+FREAD	common/icl_file_opt.c	66;"	d	file:
+FWRITE	common/icl_file_opt.c	67;"	d	file:
+HASH4	common/icl_hash.c	388;"	d	file:
+HASH4a	common/icl_hash.c	386;"	d	file:
+HASH4b	common/icl_hash.c	387;"	d	file:
+HASHC	common/icl_hash.c	346;"	d	file:
+HIREDIS_MAJOR	thirdlib/libhiredis/include/hiredis.h	38;"	d
+HIREDIS_MINOR	thirdlib/libhiredis/include/hiredis.h	39;"	d
+HIREDIS_PATCH	thirdlib/libhiredis/include/hiredis.h	40;"	d
+ICLLIB_ICL_FILE_OPT_H	include/common/icl_file_opt.h	11;"	d
+ICLLIB_ICL_TIME_H	include/common/icl_time.h	10;"	d
+ICL_ARRAY_H_	include/common/icl_array.h	11;"	d
+ICL_CONF_H_	include/common/icl_conf.h	9;"	d
+ICL_DEBUG	include/common/icl_log.h	21;"	d
+ICL_DEFINE_H_	include/common/icl_define.h	9;"	d
+ICL_DEQUE_H_	include/common/icl_deque.h	10;"	d
+ICL_DGRAM	include/net/icl_net_tcp_base.h	/^	ICL_DGRAM     = SOCK_DGRAM,$/;"	e	enum:icl_socket_type
+ICL_DNS_H_	include/net/icl_net_dns.h	13;"	d
+ICL_ERROR	include/common/icl_log.h	19;"	d
+ICL_FD_CLR	include/net/icl_net_select.h	29;"	d
+ICL_FD_ISSET	include/net/icl_net_select.h	30;"	d
+ICL_FD_SET	include/net/icl_net_select.h	28;"	d
+ICL_FD_ZERO	include/net/icl_net_select.h	27;"	d
+ICL_FITAL	include/common/icl_log.h	20;"	d
+ICL_FORK_H_	include/common/icl_fork.h	11;"	d
+ICL_HASH_H_	include/common/icl_hash.h	11;"	d
+ICL_HTABLE_H_	include/common/icl_htable.h	10;"	d
+ICL_INET	include/net/icl_net_tcp_base.h	/^	ICL_INET     = PF_INET,$/;"	e	enum:icl_socket_domain
+ICL_INET6	include/net/icl_net_tcp_base.h	/^	ICL_INET6    = PF_INET6,$/;"	e	enum:icl_socket_domain
+ICL_INFO	include/common/icl_log.h	17;"	d
+ICL_INT32	include/common/icl_define.h	17;"	d
+ICL_INT64	include/common/icl_define.h	14;"	d
+ICL_KEY	include/net/icl_net_tcp_base.h	/^	ICL_KEY      = PF_KEY,$/;"	e	enum:icl_socket_domain
+ICL_LIST	include/common/icl_list.h	/^typedef struct icl_list ICL_LIST;$/;"	t	typeref:struct:icl_list
+ICL_LIST_H_	include/common/icl_list.h	9;"	d
+ICL_LOCAL	include/net/icl_net_tcp_base.h	/^	ICL_LOCAL    = PF_LOCAL,$/;"	e	enum:icl_socket_domain
+ICL_LOG_ERROR	include/common/icl_define.h	12;"	d
+ICL_LOG_H_	include/common/icl_log.h	9;"	d
+ICL_MEM_H_	include/common/icl_mem.h	9;"	d
+ICL_NET_EPOLL_H_	include/net/icl_net_epoll.h	12;"	d
+ICL_NET_SELECT_H	include/net/icl_net_select.h	13;"	d
+ICL_NET_TCP_BASE_H_	include/net/icl_net_tcp_base.h	9;"	d
+ICL_PTHREAD_COND_INITIALIZER	include/common/icl_thread.h	19;"	d
+ICL_PTHREAD_MUTEX_INITIALIZER	include/common/icl_thread.h	21;"	d
+ICL_RAW	include/net/icl_net_tcp_base.h	/^	ICL_RAW       = SOCK_RAW,$/;"	e	enum:icl_socket_type
+ICL_RDM	include/net/icl_net_tcp_base.h	/^	ICL_RDM       = SOCK_RDM$/;"	e	enum:icl_socket_type
+ICL_ROUTE	include/net/icl_net_tcp_base.h	/^	ICL_ROUTE    = PF_ROUTE,$/;"	e	enum:icl_socket_domain
+ICL_STREAM	include/net/icl_net_tcp_base.h	/^	ICL_STREAM    = SOCK_STREAM,$/;"	e	enum:icl_socket_type
+ICL_STRING_H_	include/common/icl_string.h	9;"	d
+ICL_TRACK	include/common/icl_log.h	22;"	d
+ICL_UINT32	include/common/icl_define.h	18;"	d
+ICL_UINT64	include/common/icl_define.h	15;"	d
+ICL_UNIX	include/net/icl_net_tcp_base.h	/^	ICL_UNIX     = PF_INET,$/;"	e	enum:icl_socket_domain
+ICL_WARN	include/common/icl_log.h	18;"	d
+INFTIM	samples/net/servepoll/server_epoll.c	17;"	d	file:
+INITIALCRC	common/icl_hash.c	162;"	d	file:
+INITIALCRC	common/icl_hash.c	165;"	d	file:
+KEY_SIZE	include/common/icl_htable.h	17;"	d
+LISTENQ	samples/net/servepoll/server_epoll.c	15;"	d	file:
+MAXLINE	samples/net/servepoll/server_epoll.c	13;"	d	file:
+OPEN_MAX	samples/net/servepoll/server_epoll.c	14;"	d	file:
+POLY64REV	common/icl_hash.c	161;"	d	file:
+POLY64REV	common/icl_hash.c	164;"	d	file:
+PROC	samples/array/Makefile	/^PROC = array$/;"	m
+PROC	samples/iclio/Makefile	/^PROC = iclio$/;"	m
+PROC	samples/net/client/Makefile	/^PROC = client$/;"	m
+PROC	samples/net/server/Makefile	/^PROC = server$/;"	m
+PROC	samples/queue/Makefile	/^PROC = queue$/;"	m
+PROC	samples/redis-cli/Makefile	/^PROC = redis-cli $/;"	m
+PROC	samples/thread/Makefile	/^PROC = thread$/;"	m
+PROTOCOL	include/net/icl_net_tcp_base.h	23;"	d
+READ	common/icl_file_opt.c	64;"	d	file:
+REDIS_BLOCK	thirdlib/libhiredis/include/hiredis.h	57;"	d
+REDIS_CONNECTED	thirdlib/libhiredis/include/hiredis.h	61;"	d
+REDIS_DISCONNECTING	thirdlib/libhiredis/include/hiredis.h	67;"	d
+REDIS_ERR	thirdlib/libhiredis/include/hiredis.h	42;"	d
+REDIS_ERR_EOF	thirdlib/libhiredis/include/hiredis.h	50;"	d
+REDIS_ERR_IO	thirdlib/libhiredis/include/hiredis.h	49;"	d
+REDIS_ERR_OOM	thirdlib/libhiredis/include/hiredis.h	52;"	d
+REDIS_ERR_OTHER	thirdlib/libhiredis/include/hiredis.h	53;"	d
+REDIS_ERR_PROTOCOL	thirdlib/libhiredis/include/hiredis.h	51;"	d
+REDIS_FREEING	thirdlib/libhiredis/include/hiredis.h	71;"	d
+REDIS_IN_CALLBACK	thirdlib/libhiredis/include/hiredis.h	74;"	d
+REDIS_KEEPALIVE_INTERVAL	thirdlib/libhiredis/include/hiredis.h	91;"	d
+REDIS_MONITORING	thirdlib/libhiredis/include/hiredis.h	80;"	d
+REDIS_OK	thirdlib/libhiredis/include/hiredis.h	43;"	d
+REDIS_READER_MAX_BUF	thirdlib/libhiredis/include/hiredis.h	89;"	d
+REDIS_REPLY_ARRAY	thirdlib/libhiredis/include/hiredis.h	83;"	d
+REDIS_REPLY_ERROR	thirdlib/libhiredis/include/hiredis.h	87;"	d
+REDIS_REPLY_INTEGER	thirdlib/libhiredis/include/hiredis.h	84;"	d
+REDIS_REPLY_NIL	thirdlib/libhiredis/include/hiredis.h	85;"	d
+REDIS_REPLY_STATUS	thirdlib/libhiredis/include/hiredis.h	86;"	d
+REDIS_REPLY_STRING	thirdlib/libhiredis/include/hiredis.h	82;"	d
+REDIS_SUBSCRIBED	thirdlib/libhiredis/include/hiredis.h	77;"	d
+SDS_MAX_PREALLOC	thirdlib/libhiredis/include/sds.h	34;"	d
+SERV_PORT	samples/net/servepoll/server_epoll.c	16;"	d	file:
+SIGCOUNT	common/icl_sig.c	18;"	d	file:
+SIZE	samples/iclio/iclio.c	9;"	d	file:
+TimeSpec	common/icl_time.c	/^typedef struct timespec TimeSpec;$/;"	t	typeref:struct:timespec	file:
+TimeSpec	include/common/icl_time.h	/^typedef struct timespec TimeSpec;$/;"	t	typeref:struct:timespec
+VAL_SIZE	include/common/icl_htable.h	18;"	d
+WRITE	common/icl_file_opt.c	65;"	d	file:
+_BSD_SOURCE	thirdlib/libhiredis/include/fmacros.h	5;"	d
+_ICL_THREAD_H_	include/common/icl_thread.h	13;"	d
+_OSX	thirdlib/libhiredis/include/fmacros.h	17;"	d
+_POSIX_C_SOURCE	thirdlib/libhiredis/include/fmacros.h	9;"	d
+_XOPEN_SOURCE	thirdlib/libhiredis/include/fmacros.h	11;"	d
+_XOPEN_SOURCE	thirdlib/libhiredis/include/fmacros.h	13;"	d
+__DICT_H	thirdlib/libhiredis/include/dict.h	37;"	d
+__HIREDIS_AE_H__	thirdlib/libhiredis/include/adapters/ae.h	32;"	d
+__HIREDIS_ASYNC_H	thirdlib/libhiredis/include/async.h	33;"	d
+__HIREDIS_FMACRO_H	thirdlib/libhiredis/include/fmacros.h	2;"	d
+__HIREDIS_H	thirdlib/libhiredis/include/hiredis.h	33;"	d
+__HIREDIS_LIBEVENT_H__	thirdlib/libhiredis/include/adapters/libevent.h	32;"	d
+__HIREDIS_LIBEV_H__	thirdlib/libhiredis/include/adapters/libev.h	32;"	d
+__HIREDIS_LIBUV_H__	thirdlib/libhiredis/include/adapters/libuv.h	2;"	d
+__NET_H	thirdlib/libhiredis/include/net.h	34;"	d
+__SDS_H	thirdlib/libhiredis/include/sds.h	32;"	d
+addRead	thirdlib/libhiredis/include/async.h	/^        void (*addRead)(void *privdata);$/;"	m	struct:redisAsyncContext::__anon1
+addWrite	thirdlib/libhiredis/include/async.h	/^        void (*addWrite)(void *privdata);$/;"	m	struct:redisAsyncContext::__anon1
+buf	thirdlib/libhiredis/include/hiredis.h	/^    char *buf; \/* Read buffer *\/$/;"	m	struct:redisReader
+buf	thirdlib/libhiredis/include/sds.h	/^    char buf[];$/;"	m	struct:sdshdr
+c	thirdlib/libhiredis/include/async.h	/^    redisContext c;$/;"	m	struct:redisAsyncContext
+channels	thirdlib/libhiredis/include/async.h	/^        struct dict *channels;$/;"	m	struct:redisAsyncContext::__anon2	typeref:struct:redisAsyncContext::__anon2::dict
+cleanup	thirdlib/libhiredis/include/async.h	/^        void (*cleanup)(void *privdata);$/;"	m	struct:redisAsyncContext::__anon1
+connectCallback	samples/redis-cli/bak/example-ae.c	/^void connectCallback(const redisAsyncContext *c, int status) {$/;"	f
+connectCallback	samples/redis-cli/bak/example-libev.c	/^void connectCallback(const redisAsyncContext *c, int status) {$/;"	f
+connectCallback	samples/redis-cli/bak/example-libevent.c	/^void connectCallback(const redisAsyncContext *c, int status) {$/;"	f
+connectCallback	samples/redis-cli/bak/example-libuv.c	/^void connectCallback(const redisAsyncContext *c, int status) {$/;"	f
+context	thirdlib/libhiredis/include/adapters/ae.h	/^    redisAsyncContext *context;$/;"	m	struct:redisAeEvents
+context	thirdlib/libhiredis/include/adapters/libev.h	/^    redisAsyncContext *context;$/;"	m	struct:redisLibevEvents
+context	thirdlib/libhiredis/include/adapters/libevent.h	/^    redisAsyncContext *context;$/;"	m	struct:redisLibeventEvents
+context	thirdlib/libhiredis/include/adapters/libuv.h	/^  redisAsyncContext* context;$/;"	m	struct:redisLibuvEvents
+crc32_table	common/icl_hash.c	/^static const unsigned long crc32_table[256] = {$/;"	v	file:
+crc64_table	common/icl_hash.c	/^static icl_uint64 crc64_table[256] = {$/;"	v	file:
+createArray	thirdlib/libhiredis/include/hiredis.h	/^    void *(*createArray)(const redisReadTask*, int);$/;"	m	struct:redisReplyObjectFunctions
+createInteger	thirdlib/libhiredis/include/hiredis.h	/^    void *(*createInteger)(const redisReadTask*, long long);$/;"	m	struct:redisReplyObjectFunctions
+createNil	thirdlib/libhiredis/include/hiredis.h	/^    void *(*createNil)(const redisReadTask*);$/;"	m	struct:redisReplyObjectFunctions
+createString	thirdlib/libhiredis/include/hiredis.h	/^    void *(*createString)(const redisReadTask*, char*, size_t);$/;"	m	struct:redisReplyObjectFunctions
+data	include/common/icl_list.h	/^	void *data;$/;"	m	struct:icl_list
+data	thirdlib/libhiredis/include/async.h	/^        void *data;$/;"	m	struct:redisAsyncContext::__anon1
+data	thirdlib/libhiredis/include/async.h	/^    void *data;$/;"	m	struct:redisAsyncContext
+delRead	thirdlib/libhiredis/include/async.h	/^        void (*delRead)(void *privdata);$/;"	m	struct:redisAsyncContext::__anon1
+delWrite	thirdlib/libhiredis/include/async.h	/^        void (*delWrite)(void *privdata);$/;"	m	struct:redisAsyncContext::__anon1
+dict	thirdlib/libhiredis/include/dict.h	/^typedef struct dict {$/;"	s
+dict	thirdlib/libhiredis/include/dict.h	/^} dict;$/;"	t	typeref:struct:dict
+dictCompareHashKeys	thirdlib/libhiredis/include/dict.h	101;"	d
+dictEntry	thirdlib/libhiredis/include/dict.h	/^typedef struct dictEntry {$/;"	s
+dictEntry	thirdlib/libhiredis/include/dict.h	/^} dictEntry;$/;"	t	typeref:struct:dictEntry
+dictFreeEntryKey	thirdlib/libhiredis/include/dict.h	90;"	d
+dictFreeEntryVal	thirdlib/libhiredis/include/dict.h	79;"	d
+dictGetEntryKey	thirdlib/libhiredis/include/dict.h	108;"	d
+dictGetEntryVal	thirdlib/libhiredis/include/dict.h	109;"	d
+dictHashKey	thirdlib/libhiredis/include/dict.h	106;"	d
+dictIterator	thirdlib/libhiredis/include/dict.h	/^typedef struct dictIterator {$/;"	s
+dictIterator	thirdlib/libhiredis/include/dict.h	/^} dictIterator;$/;"	t	typeref:struct:dictIterator
+dictSetHashKey	thirdlib/libhiredis/include/dict.h	94;"	d
+dictSetHashVal	thirdlib/libhiredis/include/dict.h	83;"	d
+dictSize	thirdlib/libhiredis/include/dict.h	111;"	d
+dictSlots	thirdlib/libhiredis/include/dict.h	110;"	d
+dictType	thirdlib/libhiredis/include/dict.h	/^typedef struct dictType {$/;"	s
+dictType	thirdlib/libhiredis/include/dict.h	/^} dictType;$/;"	t	typeref:struct:dictType
+disconnectCallback	samples/redis-cli/bak/example-ae.c	/^void disconnectCallback(const redisAsyncContext *c, int status) {$/;"	f
+disconnectCallback	samples/redis-cli/bak/example-libev.c	/^void disconnectCallback(const redisAsyncContext *c, int status) {$/;"	f
+disconnectCallback	samples/redis-cli/bak/example-libevent.c	/^void disconnectCallback(const redisAsyncContext *c, int status) {$/;"	f
+disconnectCallback	samples/redis-cli/bak/example-libuv.c	/^void disconnectCallback(const redisAsyncContext *c, int status) {$/;"	f
+element	thirdlib/libhiredis/include/hiredis.h	/^    struct redisReply **element; \/* elements vector for REDIS_REPLY_ARRAY *\/$/;"	m	struct:redisReply	typeref:struct:redisReply::redisReply
+elements	thirdlib/libhiredis/include/hiredis.h	/^    int elements; \/* number of elements in multibulk container *\/$/;"	m	struct:redisReadTask
+elements	thirdlib/libhiredis/include/hiredis.h	/^    size_t elements; \/* number of elements, for REDIS_REPLY_ARRAY *\/$/;"	m	struct:redisReply
+elt_size	include/common/icl_array.h	/^	int elt_size;$/;"	m	struct:icl_array_t
+entry	thirdlib/libhiredis/include/dict.h	/^    dictEntry *entry, *nextEntry;$/;"	m	struct:dictIterator
+err	thirdlib/libhiredis/include/async.h	/^    int err;$/;"	m	struct:redisAsyncContext
+err	thirdlib/libhiredis/include/hiredis.h	/^    int err; \/* Error flags, 0 when there is no error *\/$/;"	m	struct:redisContext
+err	thirdlib/libhiredis/include/hiredis.h	/^    int err; \/* Error flags, 0 when there is no error *\/$/;"	m	struct:redisReader
+errstr	thirdlib/libhiredis/include/async.h	/^    char *errstr;$/;"	m	struct:redisAsyncContext
+errstr	thirdlib/libhiredis/include/hiredis.h	/^    char errstr[128]; \/* String representation of error when applicable *\/$/;"	m	struct:redisContext
+errstr	thirdlib/libhiredis/include/hiredis.h	/^    char errstr[128]; \/* String representation of error when applicable *\/$/;"	m	struct:redisReader
+ev	thirdlib/libhiredis/include/async.h	/^    } ev;$/;"	m	struct:redisAsyncContext	typeref:struct:redisAsyncContext::__anon1
+events	thirdlib/libhiredis/include/adapters/libuv.h	/^  int                events;$/;"	m	struct:redisLibuvEvents
+fd	common/icl_log.c	/^static int fd;$/;"	v	file:
+fd	thirdlib/libhiredis/include/adapters/ae.h	/^    int fd;$/;"	m	struct:redisAeEvents
+fd	thirdlib/libhiredis/include/hiredis.h	/^    int fd;$/;"	m	struct:redisContext
+flags	thirdlib/libhiredis/include/hiredis.h	/^    int flags;$/;"	m	struct:redisContext
+fn	thirdlib/libhiredis/include/async.h	/^    redisCallbackFn *fn;$/;"	m	struct:redisCallback
+fn	thirdlib/libhiredis/include/hiredis.h	/^    redisReplyObjectFunctions *fn;$/;"	m	struct:redisReader
+fork	common/icl_fork.c	/^pid_t fork(void)$/;"	f
+free	thirdlib/libhiredis/include/sds.h	/^    int free;$/;"	m	struct:sdshdr
+freeObject	thirdlib/libhiredis/include/hiredis.h	/^    void (*freeObject)(void*);$/;"	m	struct:redisReplyObjectFunctions
+getCallback	samples/redis-cli/bak/example-ae.c	/^void getCallback(redisAsyncContext *c, void *r, void *privdata) {$/;"	f
+getCallback	samples/redis-cli/bak/example-libev.c	/^void getCallback(redisAsyncContext *c, void *r, void *privdata) {$/;"	f
+getCallback	samples/redis-cli/bak/example-libevent.c	/^void getCallback(redisAsyncContext *c, void *r, void *privdata) {$/;"	f
+getCallback	samples/redis-cli/bak/example-libuv.c	/^void getCallback(redisAsyncContext *c, void *r, void *privdata) {$/;"	f
+glevel	include/common/icl_log.h	/^static int glevel = 1;$/;"	v
+handle	thirdlib/libhiredis/include/adapters/libuv.h	/^  uv_poll_t          handle;$/;"	m	struct:redisLibuvEvents
+handle_error	samples/net/server/server.c	13;"	d	file:
+hashFunction	thirdlib/libhiredis/include/dict.h	/^    unsigned int (*hashFunction)(const void *key);$/;"	m	struct:dictType
+head	thirdlib/libhiredis/include/async.h	/^    redisCallback *head, *tail;$/;"	m	struct:redisCallbackList
+ht	thirdlib/libhiredis/include/dict.h	/^    dict *ht;$/;"	m	struct:dictIterator
+icl_accept	net/icl_net_tcp_base.c	/^int icl_accept(int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen)$/;"	f
+icl_array_append	common/icl_array.c	/^int icl_array_append(icl_array_t *iat) {$/;"	f
+icl_array_create	common/icl_array.c	/^icl_array_t *icl_array_create(int n, int size) {$/;"	f
+icl_array_destroy	common/icl_array.c	/^int icl_array_destroy(icl_array_t *iat) {$/;"	f
+icl_array_push_back	common/icl_array.c	/^void *icl_array_push_back(icl_array_t *iat) {$/;"	f
+icl_array_t	include/common/icl_array.h	/^struct icl_array_t {$/;"	s
+icl_array_t	include/common/icl_array.h	/^typedef struct icl_array_t icl_array_t;$/;"	t	typeref:struct:icl_array_t
+icl_asctime	common/icl_time.c	/^char *icl_asctime()$/;"	f
+icl_bind	net/icl_net_tcp_base.c	/^int icl_bind(int sockfd, const struct sockaddr *servaddr, socklen_t addrlen)$/;"	f
+icl_calloc	common/icl_mem.c	/^void *icl_calloc(int count, int len)$/;"	f
+icl_close_file	common/icl_log.c	/^void icl_close_file() {$/;"	f
+icl_connect	net/icl_net_tcp_base.c	/^int icl_connect(int sockfd, const struct sockaddr *servaddr, socklen_t addrlen)$/;"	f
+icl_errno	common/icl_string.c	/^int icl_errno(void)$/;"	f
+icl_fclose	common/icl_file_opt.c	/^int icl_fclose(FILE *stream)$/;"	f
+icl_fdopen	common/icl_file_opt.c	/^FILE *icl_fdopen(int fd, const char *mode)$/;"	f
+icl_fopen	common/icl_file_opt.c	/^FILE *icl_fopen(const char *path, const char *mode)$/;"	f
+icl_fread	common/icl_file_opt.c	/^int icl_fread(void *ptr, int size, int nmemb, FILE *stream)$/;"	f
+icl_free	common/icl_mem.c	/^void *icl_free(void *ptr)$/;"	f
+icl_fseek	common/icl_file_opt.c	/^int icl_fseek(FILE *stream, long off_set, int whence)$/;"	f
+icl_ftell	common/icl_file_opt.c	/^long icl_ftell(FILE *stream)$/;"	f
+icl_fwrite	common/icl_file_opt.c	/^int icl_fwrite(void *ptr, int size, int nmemb, FILE *stream)$/;"	f
+icl_get_flsz	common/icl_file_opt.c	/^unsigned long icl_get_flsz(const char *path)$/;"	f
+icl_getenv	common/icl_fork.c	/^char *icl_getenv(const char *name)$/;"	f
+icl_gethostbyname	net/icl_net_dns.c	/^struct hostent *icl_gethostbyname(char *hostname)$/;"	f
+icl_gethostbyname_r	net/icl_net_dns.c	/^struct hostent *icl_gethostbyname_r(char *hostname)$/;"	f
+icl_getopt	common/icl_fork.c	/^int icl_getopt(int argc, char * const argv[], const char *optstring)$/;"	f
+icl_hash_bin	common/icl_hash.c	/^unsigned icl_hash_bin(const void *key, size_t len)$/;"	f
+icl_hash_crc32	common/icl_hash.c	/^unsigned icl_hash_crc32(const void *buffer, size_t len)$/;"	f
+icl_hash_crc64	common/icl_hash.c	/^icl_int64 icl_hash_crc64(const void *buffer, size_t len)$/;"	f
+icl_hash_func2	common/icl_hash.c	/^unsigned icl_hash_func2(const void *key, size_t len)$/;"	f
+icl_hash_func3	common/icl_hash.c	/^unsigned icl_hash_func3(const void *key, size_t len)$/;"	f
+icl_hash_func4	common/icl_hash.c	/^unsigned icl_hash_func4(const void *key, size_t len)$/;"	f
+icl_hash_func5	common/icl_hash.c	/^unsigned icl_hash_func5(const void *key, size_t len)$/;"	f
+icl_hash_func6	common/icl_hash.c	/^unsigned icl_hash_func6(const void *key, size_t len)$/;"	f
+icl_hash_test	common/icl_hash.c	/^unsigned icl_hash_test(const void *key, size_t len)$/;"	f
+icl_htable_create	common/icl_htable.c	/^icl_htable_t *icl_htable_create(int size)$/;"	f
+icl_htable_destroy	common/icl_htable.c	/^int icl_htable_destroy(icl_htable_t *iht)$/;"	f
+icl_htable_get	common/icl_htable.c	/^int icl_htable_get(icl_htable_t *iht, const char *key, char *value,$/;"	f
+icl_htable_node	include/common/icl_htable.h	/^struct icl_htable_node$/;"	s
+icl_htable_node	include/common/icl_htable.h	/^typedef struct icl_htable_node icl_htable_node;$/;"	t	typeref:struct:icl_htable_node
+icl_htable_set	common/icl_htable.c	/^int icl_htable_set(icl_htable_t *iht, const char *key, const char *value)$/;"	f
+icl_htable_t	include/common/icl_htable.h	/^struct icl_htable_t$/;"	s
+icl_htable_t	include/common/icl_htable.h	/^typedef struct icl_htable_t icl_htable_t;$/;"	t	typeref:struct:icl_htable_t
+icl_htons	net/icl_net_tcp_base.c	/^uint16_t icl_htons(uint16_t host16bitvalue)$/;"	f
+icl_inet_aton	net/icl_net_tcp_base.c	/^int icl_inet_aton(const char *strptr, struct in_addr *addrptr)$/;"	f
+icl_inet_ntoa	net/icl_net_tcp_base.c	/^char *icl_inet_ntoa(struct in_addr inaddr)$/;"	f
+icl_int64	include/common/icl_hash.h	14;"	d
+icl_int_addr	net/icl_net_tcp_base.c	/^in_addr_t icl_int_addr(const char *strptr)$/;"	f
+icl_io	common/icl_file_opt.c	/^int icl_io(void *ptr, int size, int nmemb, void *stream, int flags)$/;"	f
+icl_link	common/icl_file_opt.c	/^int icl_link(const char *src_pathname, const char *dst_pathname)$/;"	f
+icl_list	include/common/icl_list.h	/^struct icl_list {$/;"	s
+icl_list_clear	common/icl_list.c	/^int icl_list_clear(ICL_LIST *h)$/;"	f
+icl_list_empty	common/icl_list.c	/^int icl_list_empty(ICL_LIST *h)$/;"	f
+icl_list_init	common/icl_list.c	/^ICL_LIST *icl_list_init()$/;"	f
+icl_list_pop_back	common/icl_list.c	/^ICL_LIST *icl_list_pop_back(ICL_LIST *h)$/;"	f
+icl_list_pop_front	common/icl_list.c	/^ICL_LIST *icl_list_pop_front(ICL_LIST *h)$/;"	f
+icl_list_push_back	common/icl_list.c	/^int icl_list_push_back(ICL_LIST *h, void *d)$/;"	f
+icl_list_push_front	common/icl_list.c	/^int icl_list_push_front(ICL_LIST *h, void *d)$/;"	f
+icl_list_size	common/icl_list.c	/^int icl_list_size(ICL_LIST *h)$/;"	f
+icl_listen	net/icl_net_tcp_base.c	/^int icl_listen(int sockfd, int backlog)$/;"	f
+icl_log_debug	include/common/icl_log.h	50;"	d
+icl_log_error	include/common/icl_log.h	46;"	d
+icl_log_fital	include/common/icl_log.h	48;"	d
+icl_log_info	include/common/icl_log.h	42;"	d
+icl_log_stdout	common/icl_log.c	/^void icl_log_stdout(char *fmt, ...)$/;"	f
+icl_log_track	include/common/icl_log.h	52;"	d
+icl_log_warn	include/common/icl_log.h	44;"	d
+icl_log_wn	common/icl_log.c	/^void icl_log_wn(int lvl, char *fmt, ...)$/;"	f
+icl_malloc	common/icl_mem.c	/^void *icl_malloc(int len)$/;"	f
+icl_net_read	net/icl_net_tcp_base.c	/^int icl_net_read(int clifd, char *buf, int len)$/;"	f
+icl_net_send	net/icl_net_tcp_base.c	/^int icl_net_send(int clifd, const char *buf, int len)$/;"	f
+icl_open	common/icl_file_opt.c	/^int icl_open(const char *path, int flags)$/;"	f
+icl_open2	common/icl_file_opt.c	/^int icl_open2(const char *path, int flags, mode_t mode)$/;"	f
+icl_open_file	common/icl_log.c	/^int icl_open_file(const char *filename) {$/;"	f
+icl_prtnow	common/icl_time.c	/^void icl_prtnow()$/;"	f
+icl_pthread_cancel	common/icl_thread.c	/^int icl_pthread_cancel(pthread_t tid)$/;"	f
+icl_pthread_cleanup_pop	include/common/icl_thread.h	31;"	d
+icl_pthread_cleanup_push	include/common/icl_thread.h	30;"	d
+icl_pthread_cond_broadcast	common/icl_thread.c	/^int icl_pthread_cond_broadcast(pthread_cond_t *cond)$/;"	f
+icl_pthread_cond_destroy	common/icl_thread.c	/^int icl_pthread_cond_destroy(pthread_cond_t *cond)$/;"	f
+icl_pthread_cond_init	common/icl_thread.c	/^int icl_pthread_cond_init(pthread_cond_t *cond,$/;"	f
+icl_pthread_cond_signal	common/icl_thread.c	/^int icl_pthread_cond_signal(pthread_cond_t *cond)$/;"	f
+icl_pthread_cond_timedwait	common/icl_thread.c	/^int icl_pthread_cond_timedwait(pthread_cond_t *cond, $/;"	f
+icl_pthread_cond_wait	common/icl_thread.c	/^int icl_pthread_cond_wait(pthread_cond_t *cond, $/;"	f
+icl_pthread_create	common/icl_thread.c	/^int icl_pthread_create(pthread_t *thread, const pthread_attr_t *attr,$/;"	f
+icl_pthread_detach	common/icl_thread.c	/^int icl_pthread_detach(pthread_t thread) {$/;"	f
+icl_pthread_equal	common/icl_thread.c	/^int icl_pthread_equal(pthread_t td1, pthread_t td2)$/;"	f
+icl_pthread_exit	common/icl_thread.c	/^void icl_pthread_exit(void *rval_ptr)$/;"	f
+icl_pthread_join	common/icl_thread.c	/^int icl_pthread_join(pthread_t thread, void **rval_ptr)$/;"	f
+icl_pthread_mutex_destory	common/icl_thread.c	/^int icl_pthread_mutex_destory(pthread_mutex_t *mutex)$/;"	f
+icl_pthread_mutex_init	common/icl_thread.c	/^int icl_pthread_mutex_init(pthread_mutex_t *mutex, const pthread_mutexattr_t *attr)$/;"	f
+icl_pthread_mutex_lock	common/icl_thread.c	/^int icl_pthread_mutex_lock(pthread_mutex_t *mutex)$/;"	f
+icl_pthread_mutex_trylock	common/icl_thread.c	/^int icl_pthread_mutex_trylock(pthread_mutex_t *mutex)$/;"	f
+icl_pthread_mutex_unlock	common/icl_thread.c	/^int icl_pthread_mutex_unlock(pthread_mutex_t *mutex)$/;"	f
+icl_pthread_rwlock_destroy	common/icl_thread.c	/^int icl_pthread_rwlock_destroy(pthread_rwlock_t *rwlock)$/;"	f
+icl_pthread_rwlock_init	common/icl_thread.c	/^int icl_pthread_rwlock_init(pthread_rwlock_t *rwlock,$/;"	f
+icl_pthread_rwlock_rdlock	common/icl_thread.c	/^int icl_pthread_rwlock_rdlock(pthread_rwlock_t *rwlock)$/;"	f
+icl_pthread_rwlock_tryrdlock	common/icl_thread.c	/^int icl_pthread_rwlock_tryrdlock(pthread_rwlock_t *rwlock)$/;"	f
+icl_pthread_rwlock_trywrlock	common/icl_thread.c	/^int icl_pthread_rwlock_trywrlock(pthread_rwlock_t *rwlock)$/;"	f
+icl_pthread_rwlock_unlock	common/icl_thread.c	/^int icl_pthread_rwlock_unlock(pthread_rwlock_t *rwlock)$/;"	f
+icl_pthread_rwlock_wrlock	common/icl_thread.c	/^int icl_pthread_rwlock_wrlock(pthread_rwlock_t *rwlock)$/;"	f
+icl_pthread_self	common/icl_thread.c	/^pthread_t icl_pthread_self(void)$/;"	f
+icl_putenv	common/icl_fork.c	/^int icl_putenv(char *str)$/;"	f
+icl_read	common/icl_file_opt.c	/^int icl_read(int fd, void *buf, int count)$/;"	f
+icl_realloc	common/icl_mem.c	/^void *icl_realloc(void *ptr, int len)$/;"	f
+icl_select	net/icl_net_select.c	/^int icl_select(int maxfdpl, fd_set *readset, fd_set *writeset, fd_set *exceptset,$/;"	f
+icl_set_level	common/icl_log.c	/^void icl_set_level(int lvl)$/;"	f
+icl_setenv	common/icl_fork.c	/^int icl_setenv(const char *name, const char *value, int rewrite)$/;"	f
+icl_sig_handler	common/icl_sig.c	/^void icl_sig_handler(int sig)$/;"	f
+icl_sig_register	common/icl_sig.c	/^int icl_sig_register(int index) $/;"	f
+icl_sig_setup	common/icl_sig.c	/^void icl_sig_setup(void)$/;"	f
+icl_socket	net/icl_net_tcp_base.c	/^int icl_socket(int family, int type, int protocol)$/;"	f
+icl_socket_domain	include/net/icl_net_tcp_base.h	/^enum icl_socket_domain$/;"	g
+icl_socket_type	include/net/icl_net_tcp_base.h	/^enum icl_socket_type$/;"	g
+icl_stat	common/icl_file_opt.c	/^void icl_stat(const char *pathname)$/;"	f
+icl_strcat	common/icl_string.c	/^char *icl_strcat(char *dst, char *src)$/;"	f
+icl_strcmp	common/icl_string.c	/^int icl_strcmp(char *dst, char *src)$/;"	f
+icl_strcpy	common/icl_string.c	/^int icl_strcpy(char *dst, char *src)$/;"	f
+icl_strdump	common/icl_string.c	/^char *icl_strdump(char *src)$/;"	f
+icl_strdump_free	common/icl_string.c	/^void icl_strdump_free(char *ptr)$/;"	f
+icl_strerror	common/icl_string.c	/^char *icl_strerror(void)$/;"	f
+icl_strlen	common/icl_string.c	/^int icl_strlen(char *ops)$/;"	f
+icl_strncmp	common/icl_string.c	/^int icl_strncmp(char *dst, char *src, int len)$/;"	f
+icl_uint64	include/common/icl_hash.h	15;"	d
+icl_unlink	common/icl_file_opt.c	/^int icl_unlink(const char *pathname)$/;"	f
+icl_write	common/icl_file_opt.c	/^int icl_write(int fd, void *buf, int count)$/;"	f
+icllib_icl_sig_h	include/common/icl_sig.h	10;"	d
+idx	thirdlib/libhiredis/include/hiredis.h	/^    int idx; \/* index in parent (array) object *\/$/;"	m	struct:redisReadTask
+index	thirdlib/libhiredis/include/dict.h	/^    int index;$/;"	m	struct:dictIterator
+integer	thirdlib/libhiredis/include/hiredis.h	/^    long long integer; \/* The integer when type is REDIS_REPLY_INTEGER *\/$/;"	m	struct:redisReply
+invalid	thirdlib/libhiredis/include/async.h	/^        redisCallbackList invalid;$/;"	m	struct:redisAsyncContext::__anon2
+key	include/common/icl_htable.h	/^	char key[KEY_SIZE];$/;"	m	struct:icl_htable_node
+key	thirdlib/libhiredis/include/dict.h	/^    void *key;$/;"	m	struct:dictEntry
+keyCompare	thirdlib/libhiredis/include/dict.h	/^    int (*keyCompare)(void *privdata, const void *key1, const void *key2);$/;"	m	struct:dictType
+keyDestructor	thirdlib/libhiredis/include/dict.h	/^    void (*keyDestructor)(void *privdata, void *key);$/;"	m	struct:dictType
+keyDup	thirdlib/libhiredis/include/dict.h	/^    void *(*keyDup)(void *privdata, const void *key);$/;"	m	struct:dictType
+len	thirdlib/libhiredis/include/hiredis.h	/^    int len; \/* Length of string *\/$/;"	m	struct:redisReply
+len	thirdlib/libhiredis/include/hiredis.h	/^    size_t len; \/* Buffer length *\/$/;"	m	struct:redisReader
+len	thirdlib/libhiredis/include/sds.h	/^    int len;$/;"	m	struct:sdshdr
+loop	samples/redis-cli/bak/example-ae.c	/^static aeEventLoop *loop;$/;"	v	file:
+loop	thirdlib/libhiredis/include/adapters/ae.h	/^    aeEventLoop *loop;$/;"	m	struct:redisAeEvents
+loop	thirdlib/libhiredis/include/adapters/libev.h	/^    struct ev_loop *loop;$/;"	m	struct:redisLibevEvents	typeref:struct:redisLibevEvents::ev_loop
+main	samples/array/array.c	/^int main(int argc, char *argv[])$/;"	f
+main	samples/iclio/iclio.c	/^int main(int argc, char *argv[])$/;"	f
+main	samples/net/client/client.c	/^int main(int argc, char *argv[]) {$/;"	f
+main	samples/net/servepoll/server_epoll.c	/^int main(int argc, char* argv[])$/;"	f
+main	samples/net/server/server.c	/^int main(int argc, char *argv[])$/;"	f
+main	samples/net/servselect/server_select.c	/^int main(int argc, char *argv[])$/;"	f
+main	samples/queue/queue.c	/^int main(int argc, char *argv[])$/;"	f
+main	samples/redis-cli/bak/example-ae.c	/^int main (int argc, char **argv) {$/;"	f
+main	samples/redis-cli/bak/example-libev.c	/^int main (int argc, char **argv) {$/;"	f
+main	samples/redis-cli/bak/example-libevent.c	/^int main (int argc, char **argv) {$/;"	f
+main	samples/redis-cli/bak/example-libuv.c	/^int main (int argc, char **argv) {$/;"	f
+main	samples/redis-cli/redis-cli.c	/^int main(int argc, char **argv) {$/;"	f
+main	samples/thread/thread.c	/^int main(int argc, char *argv[])$/;"	f
+maxbuf	thirdlib/libhiredis/include/hiredis.h	/^    size_t maxbuf; \/* Max length of unused buffer *\/$/;"	m	struct:redisReader
+min2tmspec	common/icl_time.c	/^void min2tmspec(TimeSpec *tsp, long minutes)$/;"	f
+nelt	include/common/icl_array.h	/^	int nelt;$/;"	m	struct:icl_array_t
+next	include/common/icl_htable.h	/^	icl_htable_node *next;$/;"	m	struct:icl_htable_node
+next	include/common/icl_list.h	/^	ICL_LIST *next;$/;"	m	struct:icl_list
+next	thirdlib/libhiredis/include/async.h	/^    struct redisCallback *next; \/* simple singly linked list *\/$/;"	m	struct:redisCallback	typeref:struct:redisCallback::redisCallback
+next	thirdlib/libhiredis/include/dict.h	/^    struct dictEntry *next;$/;"	m	struct:dictEntry	typeref:struct:dictEntry::dictEntry
+nextEntry	thirdlib/libhiredis/include/dict.h	/^    dictEntry *entry, *nextEntry;$/;"	m	struct:dictIterator
+obj	thirdlib/libhiredis/include/hiredis.h	/^    void *obj; \/* holds user-generated value for a read task *\/$/;"	m	struct:redisReadTask
+obuf	thirdlib/libhiredis/include/hiredis.h	/^    char *obuf; \/* Write buffer *\/$/;"	m	struct:redisContext
+onConnect	thirdlib/libhiredis/include/async.h	/^    redisConnectCallback *onConnect;$/;"	m	struct:redisAsyncContext
+onDisconnect	thirdlib/libhiredis/include/async.h	/^    redisDisconnectCallback *onDisconnect;$/;"	m	struct:redisAsyncContext
+on_close	thirdlib/libhiredis/include/adapters/libuv.h	/^static void on_close(uv_handle_t* handle) {$/;"	f
+p	include/common/icl_array.h	/^	void *p; \/\/start point$/;"	m	struct:icl_array_t
+p	include/common/icl_htable.h	/^	icl_htable_node **p;$/;"	m	struct:icl_htable_t
+parent	thirdlib/libhiredis/include/hiredis.h	/^    struct redisReadTask *parent; \/* parent task *\/$/;"	m	struct:redisReadTask	typeref:struct:redisReadTask::redisReadTask
+patterns	thirdlib/libhiredis/include/async.h	/^        struct dict *patterns;$/;"	m	struct:redisAsyncContext::__anon2	typeref:struct:redisAsyncContext::__anon2::dict
+pos	include/common/icl_array.h	/^	int pos; \/\/current position$/;"	m	struct:icl_array_t
+pos	thirdlib/libhiredis/include/hiredis.h	/^    size_t pos; \/* Buffer cursor *\/$/;"	m	struct:redisReader
+prev	include/common/icl_list.h	/^	ICL_LIST *prev;$/;"	m	struct:icl_list
+privdata	thirdlib/libhiredis/include/async.h	/^    void *privdata;$/;"	m	struct:redisCallback
+privdata	thirdlib/libhiredis/include/dict.h	/^    void *privdata;$/;"	m	struct:dict
+privdata	thirdlib/libhiredis/include/hiredis.h	/^    void *privdata; \/* user-settable arbitrary field *\/$/;"	m	struct:redisReadTask
+privdata	thirdlib/libhiredis/include/hiredis.h	/^    void *privdata;$/;"	m	struct:redisReader
+reader	thirdlib/libhiredis/include/hiredis.h	/^    redisReader *reader; \/* Protocol reader *\/$/;"	m	struct:redisContext
+reading	thirdlib/libhiredis/include/adapters/ae.h	/^    int reading, writing;$/;"	m	struct:redisAeEvents
+reading	thirdlib/libhiredis/include/adapters/libev.h	/^    int reading, writing;$/;"	m	struct:redisLibevEvents
+redisAeAddRead	thirdlib/libhiredis/include/adapters/ae.h	/^static void redisAeAddRead(void *privdata) {$/;"	f
+redisAeAddWrite	thirdlib/libhiredis/include/adapters/ae.h	/^static void redisAeAddWrite(void *privdata) {$/;"	f
+redisAeAttach	thirdlib/libhiredis/include/adapters/ae.h	/^static int redisAeAttach(aeEventLoop *loop, redisAsyncContext *ac) {$/;"	f
+redisAeCleanup	thirdlib/libhiredis/include/adapters/ae.h	/^static void redisAeCleanup(void *privdata) {$/;"	f
+redisAeDelRead	thirdlib/libhiredis/include/adapters/ae.h	/^static void redisAeDelRead(void *privdata) {$/;"	f
+redisAeDelWrite	thirdlib/libhiredis/include/adapters/ae.h	/^static void redisAeDelWrite(void *privdata) {$/;"	f
+redisAeEvents	thirdlib/libhiredis/include/adapters/ae.h	/^typedef struct redisAeEvents {$/;"	s
+redisAeEvents	thirdlib/libhiredis/include/adapters/ae.h	/^} redisAeEvents;$/;"	t	typeref:struct:redisAeEvents
+redisAeReadEvent	thirdlib/libhiredis/include/adapters/ae.h	/^static void redisAeReadEvent(aeEventLoop *el, int fd, void *privdata, int mask) {$/;"	f
+redisAeWriteEvent	thirdlib/libhiredis/include/adapters/ae.h	/^static void redisAeWriteEvent(aeEventLoop *el, int fd, void *privdata, int mask) {$/;"	f
+redisAsyncContext	thirdlib/libhiredis/include/async.h	/^typedef struct redisAsyncContext {$/;"	s
+redisAsyncContext	thirdlib/libhiredis/include/async.h	/^} redisAsyncContext;$/;"	t	typeref:struct:redisAsyncContext
+redisCallback	thirdlib/libhiredis/include/async.h	/^typedef struct redisCallback {$/;"	s
+redisCallback	thirdlib/libhiredis/include/async.h	/^} redisCallback;$/;"	t	typeref:struct:redisCallback
+redisCallbackFn	thirdlib/libhiredis/include/async.h	/^typedef void (redisCallbackFn)(struct redisAsyncContext*, void*, void*);$/;"	t
+redisCallbackList	thirdlib/libhiredis/include/async.h	/^typedef struct redisCallbackList {$/;"	s
+redisCallbackList	thirdlib/libhiredis/include/async.h	/^} redisCallbackList;$/;"	t	typeref:struct:redisCallbackList
+redisConnectCallback	thirdlib/libhiredis/include/async.h	/^typedef void (redisConnectCallback)(const struct redisAsyncContext*, int status);$/;"	t
+redisContext	thirdlib/libhiredis/include/hiredis.h	/^typedef struct redisContext {$/;"	s
+redisContext	thirdlib/libhiredis/include/hiredis.h	/^} redisContext;$/;"	t	typeref:struct:redisContext
+redisDisconnectCallback	thirdlib/libhiredis/include/async.h	/^typedef void (redisDisconnectCallback)(const struct redisAsyncContext*, int status);$/;"	t
+redisLibevAddRead	thirdlib/libhiredis/include/adapters/libev.h	/^static void redisLibevAddRead(void *privdata) {$/;"	f
+redisLibevAddWrite	thirdlib/libhiredis/include/adapters/libev.h	/^static void redisLibevAddWrite(void *privdata) {$/;"	f
+redisLibevAttach	thirdlib/libhiredis/include/adapters/libev.h	/^static int redisLibevAttach(EV_P_ redisAsyncContext *ac) {$/;"	f
+redisLibevCleanup	thirdlib/libhiredis/include/adapters/libev.h	/^static void redisLibevCleanup(void *privdata) {$/;"	f
+redisLibevDelRead	thirdlib/libhiredis/include/adapters/libev.h	/^static void redisLibevDelRead(void *privdata) {$/;"	f
+redisLibevDelWrite	thirdlib/libhiredis/include/adapters/libev.h	/^static void redisLibevDelWrite(void *privdata) {$/;"	f
+redisLibevEvents	thirdlib/libhiredis/include/adapters/libev.h	/^typedef struct redisLibevEvents {$/;"	s
+redisLibevEvents	thirdlib/libhiredis/include/adapters/libev.h	/^} redisLibevEvents;$/;"	t	typeref:struct:redisLibevEvents
+redisLibevReadEvent	thirdlib/libhiredis/include/adapters/libev.h	/^static void redisLibevReadEvent(EV_P_ ev_io *watcher, int revents) {$/;"	f
+redisLibevWriteEvent	thirdlib/libhiredis/include/adapters/libev.h	/^static void redisLibevWriteEvent(EV_P_ ev_io *watcher, int revents) {$/;"	f
+redisLibeventAddRead	thirdlib/libhiredis/include/adapters/libevent.h	/^static void redisLibeventAddRead(void *privdata) {$/;"	f
+redisLibeventAddWrite	thirdlib/libhiredis/include/adapters/libevent.h	/^static void redisLibeventAddWrite(void *privdata) {$/;"	f
+redisLibeventAttach	thirdlib/libhiredis/include/adapters/libevent.h	/^static int redisLibeventAttach(redisAsyncContext *ac, struct event_base *base) {$/;"	f
+redisLibeventCleanup	thirdlib/libhiredis/include/adapters/libevent.h	/^static void redisLibeventCleanup(void *privdata) {$/;"	f
+redisLibeventDelRead	thirdlib/libhiredis/include/adapters/libevent.h	/^static void redisLibeventDelRead(void *privdata) {$/;"	f
+redisLibeventDelWrite	thirdlib/libhiredis/include/adapters/libevent.h	/^static void redisLibeventDelWrite(void *privdata) {$/;"	f
+redisLibeventEvents	thirdlib/libhiredis/include/adapters/libevent.h	/^typedef struct redisLibeventEvents {$/;"	s
+redisLibeventEvents	thirdlib/libhiredis/include/adapters/libevent.h	/^} redisLibeventEvents;$/;"	t	typeref:struct:redisLibeventEvents
+redisLibeventReadEvent	thirdlib/libhiredis/include/adapters/libevent.h	/^static void redisLibeventReadEvent(int fd, short event, void *arg) {$/;"	f
+redisLibeventWriteEvent	thirdlib/libhiredis/include/adapters/libevent.h	/^static void redisLibeventWriteEvent(int fd, short event, void *arg) {$/;"	f
+redisLibuvAddRead	thirdlib/libhiredis/include/adapters/libuv.h	/^static void redisLibuvAddRead(void *privdata) {$/;"	f
+redisLibuvAddWrite	thirdlib/libhiredis/include/adapters/libuv.h	/^static void redisLibuvAddWrite(void *privdata) {$/;"	f
+redisLibuvAttach	thirdlib/libhiredis/include/adapters/libuv.h	/^static int redisLibuvAttach(redisAsyncContext* ac, uv_loop_t* loop) {$/;"	f
+redisLibuvCleanup	thirdlib/libhiredis/include/adapters/libuv.h	/^static void redisLibuvCleanup(void *privdata) {$/;"	f
+redisLibuvDelRead	thirdlib/libhiredis/include/adapters/libuv.h	/^static void redisLibuvDelRead(void *privdata) {$/;"	f
+redisLibuvDelWrite	thirdlib/libhiredis/include/adapters/libuv.h	/^static void redisLibuvDelWrite(void *privdata) {$/;"	f
+redisLibuvEvents	thirdlib/libhiredis/include/adapters/libuv.h	/^typedef struct redisLibuvEvents {$/;"	s
+redisLibuvEvents	thirdlib/libhiredis/include/adapters/libuv.h	/^} redisLibuvEvents;$/;"	t	typeref:struct:redisLibuvEvents
+redisLibuvPoll	thirdlib/libhiredis/include/adapters/libuv.h	/^static void redisLibuvPoll(uv_poll_t* handle, int status, int events) {$/;"	f
+redisReadTask	thirdlib/libhiredis/include/hiredis.h	/^typedef struct redisReadTask {$/;"	s
+redisReadTask	thirdlib/libhiredis/include/hiredis.h	/^} redisReadTask;$/;"	t	typeref:struct:redisReadTask
+redisReader	thirdlib/libhiredis/include/hiredis.h	/^typedef struct redisReader {$/;"	s
+redisReader	thirdlib/libhiredis/include/hiredis.h	/^} redisReader;$/;"	t	typeref:struct:redisReader
+redisReply	thirdlib/libhiredis/include/hiredis.h	/^typedef struct redisReply {$/;"	s
+redisReply	thirdlib/libhiredis/include/hiredis.h	/^} redisReply;$/;"	t	typeref:struct:redisReply
+redisReplyObjectFunctions	thirdlib/libhiredis/include/hiredis.h	/^typedef struct redisReplyObjectFunctions {$/;"	s
+redisReplyObjectFunctions	thirdlib/libhiredis/include/hiredis.h	/^} redisReplyObjectFunctions;$/;"	t	typeref:struct:redisReplyObjectFunctions
+redisReplyReaderCreate	thirdlib/libhiredis/include/hiredis.h	149;"	d
+redisReplyReaderFeed	thirdlib/libhiredis/include/hiredis.h	151;"	d
+redisReplyReaderFree	thirdlib/libhiredis/include/hiredis.h	150;"	d
+redisReplyReaderGetError	thirdlib/libhiredis/include/hiredis.h	155;"	d
+redisReplyReaderGetObject	thirdlib/libhiredis/include/hiredis.h	154;"	d
+redisReplyReaderGetReply	thirdlib/libhiredis/include/hiredis.h	152;"	d
+redisReplyReaderSetPrivdata	thirdlib/libhiredis/include/hiredis.h	153;"	d
+replies	thirdlib/libhiredis/include/async.h	/^    redisCallbackList replies;$/;"	m	struct:redisAsyncContext
+reply	thirdlib/libhiredis/include/hiredis.h	/^    void *reply; \/* Temporary reply pointer *\/$/;"	m	struct:redisReader
+rev	thirdlib/libhiredis/include/adapters/libev.h	/^    ev_io rev, wev;$/;"	m	struct:redisLibevEvents
+rev	thirdlib/libhiredis/include/adapters/libevent.h	/^    struct event rev, wev;$/;"	m	struct:redisLibeventEvents	typeref:struct:redisLibeventEvents::event
+ridx	thirdlib/libhiredis/include/hiredis.h	/^    int ridx; \/* Index of current read task *\/$/;"	m	struct:redisReader
+rstack	thirdlib/libhiredis/include/hiredis.h	/^    redisReadTask rstack[9];$/;"	m	struct:redisReader
+sds	thirdlib/libhiredis/include/sds.h	/^typedef char *sds;$/;"	t
+sdsavail	thirdlib/libhiredis/include/sds.h	/^static inline size_t sdsavail(const sds s) {$/;"	f
+sdshdr	thirdlib/libhiredis/include/sds.h	/^struct sdshdr {$/;"	s
+sdslen	thirdlib/libhiredis/include/sds.h	/^static inline size_t sdslen(const sds s) {$/;"	f
+sec2tmspec	common/icl_time.c	/^void sec2tmspec(TimeSpec *tsp, long seconds)$/;"	f
+setnonblocking	samples/net/servepoll/server_epoll.c	/^void setnonblocking(int sock)$/;"	f
+sig	common/icl_sig.c	/^int sig[SIGCOUNT];$/;"	v
+size	include/common/icl_htable.h	/^	int size;$/;"	m	struct:icl_htable_t
+size	thirdlib/libhiredis/include/dict.h	/^    unsigned long size;$/;"	m	struct:dict
+sizemask	thirdlib/libhiredis/include/dict.h	/^    unsigned long sizemask;$/;"	m	struct:dict
+std	samples/net/servepoll/server_epoll.c	/^using namespace std;$/;"	v
+str	thirdlib/libhiredis/include/hiredis.h	/^    char *str; \/* Used for both REDIS_REPLY_ERROR and REDIS_REPLY_STRING *\/$/;"	m	struct:redisReply
+sub	thirdlib/libhiredis/include/async.h	/^    } sub;$/;"	m	struct:redisAsyncContext	typeref:struct:redisAsyncContext::__anon2
+table	thirdlib/libhiredis/include/dict.h	/^    dictEntry **table;$/;"	m	struct:dict
+tail	thirdlib/libhiredis/include/async.h	/^    redisCallback *head, *tail;$/;"	m	struct:redisCallbackList
+type	thirdlib/libhiredis/include/dict.h	/^    dictType *type;$/;"	m	struct:dict
+type	thirdlib/libhiredis/include/hiredis.h	/^    int type; \/* REDIS_REPLY_* *\/$/;"	m	struct:redisReply
+type	thirdlib/libhiredis/include/hiredis.h	/^    int type;$/;"	m	struct:redisReadTask
+used	thirdlib/libhiredis/include/dict.h	/^    unsigned long used;$/;"	m	struct:dict
+val	thirdlib/libhiredis/include/dict.h	/^    void *val;$/;"	m	struct:dictEntry
+valDestructor	thirdlib/libhiredis/include/dict.h	/^    void (*valDestructor)(void *privdata, void *obj);$/;"	m	struct:dictType
+valDup	thirdlib/libhiredis/include/dict.h	/^    void *(*valDup)(void *privdata, const void *obj);$/;"	m	struct:dictType
+value	include/common/icl_htable.h	/^	char value[VAL_SIZE];$/;"	m	struct:icl_htable_node
+wev	thirdlib/libhiredis/include/adapters/libev.h	/^    ev_io rev, wev;$/;"	m	struct:redisLibevEvents
+wev	thirdlib/libhiredis/include/adapters/libevent.h	/^    struct event rev, wev;$/;"	m	struct:redisLibeventEvents	typeref:struct:redisLibeventEvents::
+writing	thirdlib/libhiredis/include/adapters/ae.h	/^    int reading, writing;$/;"	m	struct:redisAeEvents
+writing	thirdlib/libhiredis/include/adapters/libev.h	/^    int reading, writing;$/;"	m	struct:redisLibevEvents

@@ -41,7 +41,7 @@ int icl_net_read(int clifd, char *buf, int len)
 	char *p = buf;
 	// sanity check
 	if (clifd < 0) {
-		printf("icl_cli_confd init error.");
+		printf("icl_net_read: icl_cli_confd init error.\n");
 
 		return (-1);
 	}
@@ -52,14 +52,14 @@ int icl_net_read(int clifd, char *buf, int len)
 			p += used;
 		}
 		else if (used == 0) {
-			printf("break out from server.");
-			break;
+			printf("icl_net_read : break out from server.\n");
+			return -1;
 		}
 		else {
-			printf("return value < 0 from read . error: %d", strerror(errno));
+			printf("icl_net_read : return value :%d < 0 . error: %d\n", used, strerror(errno));
 		}
 	}
-	return (0);
+	return 0;
 }
 
 
@@ -76,6 +76,7 @@ int icl_net_send(int clifd, const char *buf, int len)
 	while (left > 0)
 	{
 		used = send(clifd, p, left, 0);
+		printf("used: %d\n", used);
 		if (used > 0) {
 			left -= used;
 			p += used;

@@ -11,17 +11,19 @@
 #include <sys/socket.h>
 #include <string.h>
 #include <errno.h>
+#include <stdlib.h>
 #include "icl_net_tcp_base.h"
 
-
+#define handle_error(msg)	\
+		do { perror(msg);exit(-1);} while(0)
 
 int main(int argc, char *argv[]) {
 	char dst[16] = "127.0.0.1";
 	struct sockaddr_in addr;
 	struct hostent *ip;
 	addr.sin_family = AF_INET;
-	addr.sin_port = htons(8080);
-	int clifd = socket(PF_INET, SOCK_STREAM, PROTOCOL);
+	addr.sin_port = htons(7744);
+	int clifd = socket(AF_INET, SOCK_STREAM, PROTOCOL);
 
 	/* 只是一个不可重入函数，详见icl_dns.c */
 	ip = gethostbyname(dst);
@@ -41,28 +43,32 @@ int main(int argc, char *argv[]) {
 
 	int ret = icl_connect(clifd, (struct sockaddr *)&addr, sizeof(struct sockaddr));
 	if (ret < 0) {
-		printf("connect error \n");
+		handle_error("connect error");
 		return -1;
 	}
-	char buffer[4096];
-	/* for test */
-	int i;
-	for (i = 0; i < 4096; i++) {
-		buffer[i] = 'a';
-	}
-	buffer[4095] = '\0';
-	ret = icl_net_send(clifd, buffer, strlen(buffer));
+	printf("icl_connect ok!\n");
+	char buffer[MAXLINE];
+	memset(buffer, 'a', MAXLINE-1);
+	buffer[MAXLINE-1] = '\0';
+	ret = icl_net_send(clifd, buffer, strlen(buffer)+1);
 	if (ret < 0) {
 		printf("icl_net_send error\n");
 		return -1;
 	}
-	ret = icl_net_read(clifd, buffer, 4096);
+	printf("icl_net_send ok!\n");
+	ret = icl_net_read(clifd, buffer, MAXLINE);
 	if (ret < 0) {
 		printf("icl_net_read error\n");
 		return -1;
 	}
-	
-
+	printf("icl_net_read ok!\n");
+	char *p = buffer;
+	int i = 0;
+	while(*p != '\0') {
+		//printf("i:%d, %c\n",i, *p);
+		i++;p++;
+	}
+		
 	close(clifd);
 	return 0;
 }

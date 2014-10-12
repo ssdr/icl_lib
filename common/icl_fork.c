@@ -67,7 +67,23 @@ pid_t icl_fork(void)
 	return fork();
 }
 
-int icl_execve(const char *pathname, const char *argv[], const char *envp[])
+int icl_execve(const char *pathname, char * const argv[], char * const envp[])
 {
 	return execve(pathname, argv, envp);
 }
+
+int icl_dup(int oldfd)
+{
+	return dup(oldfd);
+}
+
+int icl_pipe(int pipefd[2])
+{
+	int ret = pipe(pipefd);
+	/* fail */
+	if (ret == -1) {
+		return -1;
+	}
+	return 0;
+}
+	

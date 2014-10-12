@@ -10,12 +10,13 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <errno.h>
 
 int main(int argc, char argv[])
 {
 	pid_t pid = fork();
 	int fd = open("/tmp/a.txt", O_CREAT|O_WRONLY|O_TRUNC);
-
+	int fdbak = dup(fd);
 	switch (pid) {
 	case -1:
 		printf("fork error(%d:%s)\n", errno, strerror(errno));
@@ -25,18 +26,20 @@ int main(int argc, char argv[])
 		sleep(5);
 		break;
 	default:
-		printf("parent close fd\n");
+		printf("parent close fd %d\n", fd);
 		close(fd);
 		return -1;
 	}
 	/*child*/
 	char buf[] = "hello world";
-	int ret = write(fd, buf, sizeof(buf));
+	int ret = write(fdbak, buf, sizeof(buf));
 	if (ret == -1) {
 		printf("write error(%d:%s)\n", errno, strerror(errno));
 		return -1;
 	}
 	printf("child over\n");
+	printf("child close fd %d\n", fdbak);
+	close(fdbak);
 	return 0;
 }
 

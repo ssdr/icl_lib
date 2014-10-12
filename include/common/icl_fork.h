@@ -20,6 +20,7 @@ int icl_putenv(char *str);
 int icl_setenv(const char *name, const char *value, int rewrite);
 int icl_getopt(int argc, char * const argv[], const char *optstring);
 pid_t icl_fork(void);
-int icl_execve(const char *pathname, const char *argv[], const char *envp[]);
+int icl_dup(int oldfd);
+int icl_execve(const char *pathname, char * const argv[], char * const envp[]);
 
 #endif /*ICL_FORK_H_*/

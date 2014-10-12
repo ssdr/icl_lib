@@ -62,8 +62,12 @@ int icl_getopt(int argc, char * const argv[], const char *optstring)
 	}
 }
 
-pid_t fork(void)
+pid_t icl_fork(void)
 {
 	return fork();
 }
-	
+
+int icl_execve(const char *pathname, const char *argv[], const char *envp[])
+{
+	return execve(pathname, argv, envp);
+}

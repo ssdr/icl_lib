@@ -7,7 +7,7 @@
 #include <string.h>
 #include <icl_fork.h>
 
-	int
+int
 main(int argc, char *argv[])
 {
 	int pipefd[2];

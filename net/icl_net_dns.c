@@ -1,14 +1,14 @@
 /*
  *
- * author: xiemin
+ * author	: xiemin
  * file_name: icl_dns.c
- * company: ifeng
- * date: 2014-09-30
+ * company	: ifeng
+ * date		: 2014-09-30
  *
  */
 
 /*
- * gethostbyname 是不可重入函数，在多线程环境下会出现位置错误，可以使用gethostbyname_r代替
+ * gethostbyname 是不可重入函数，在多线程环境下会出现未知错误，可以使用gethostbyname_r代替
  */
 
 #include <icl_net_dns.h>

@@ -83,6 +83,7 @@ int icl_net_send(int clifd, const char *buf, int len)
 		}
 		else {
 			printf("send error , error: %d", strerror(errno));
+			return -1;
 		}
 	}
 	return (0);

@@ -20,7 +20,7 @@
  * family
  */
 
-#define MAXLINE  1024 * 1024 * 10
+#define MAXLINE  4096
 #define PROTOCOL 0
 
 enum icl_socket_domain

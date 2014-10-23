@@ -5,7 +5,8 @@
  *      Author: peterxiemin
  */
 
-
+#include <string.h>
+#include <stdlib.h>
 #include <icl_net_tcp_base.h>
 
 int icl_socket(int family, int type, int protocol)
@@ -34,30 +35,48 @@ int icl_accept(int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen)
 }
 
 
-/* some bug */
-int icl_net_peek_read(int clifd, char *buf, int buf_len, 
-			const char *peek, int peek_len)
+/* block */
+int icl_net_peek_read(int clifd, char *buf, int *ret_len, const char *peek)
 {
-	/* strict check for use input */
+	/* strict check for usr input */
 	char peek_def[2];
 	peek_def[0] = 13; /* CR */
 	peek_def[1] = 10; /* LF */
-	if (peek == NULL || peek_len <= 0) {
-		peek = peek_def;peek_len=2;
+	if (peek == NULL) {
+		peek = peek_def;
 	}
-	char *p = buf;
-	int left = buf_len;	
-	while (left >= 0) {
+	
+	buf =  malloc(MAXLINE);
+	int left = MAXLINE;
+	int used = 0;
+	char p[MAXLINE + 1] ;
+	int size = MAXLINE;
+	while (1) {
 		int ret = read(clifd, p, MAXLINE);
 		if (ret <= 0) return -1;
-		if (strstr(p, peek_def) != NULL) {
+		p[ret] = 0; //for strstr
+		if (ret > left) {
+			size *= 2;
+			char *new_buf = realloc(buf, size);
+			if (new_buf == NULL) {
+				*ret_len = 0;
+				free(buf);
+				return -1;
+			}
+			buf = new_buf;
+			left = size - used;
+		}
+		memcpy(&buf[used], p, ret);
+		used += ret;
+		left -= ret;
+		if (strstr(p, peek) != 0) {
+			*ret_len = used;
 			return 0;
 		}
-		p+=ret; left-=ret;
 	}
-	return -1;
 }
 
+/* block */
 int icl_net_read(int clifd, char *buf, int len)
 {
 	int left = len;
@@ -86,7 +105,7 @@ int icl_net_read(int clifd, char *buf, int len)
 				printf("EAGAIN OR EWOULDBLOCK\n");
 				continue;
 			}
-			printf("icl_net_read : read return value :%d < 0 . error: %d\n", used, strerror(errno));
+			printf("icl_net_read : read return value :%d < 0 . error: %s\n", used, strerror(errno));
 			return -1;
 		}
 	}
@@ -113,7 +132,7 @@ int icl_net_send(int clifd, const char *buf, int len)
 			p += used;
 		}
 		else {
-			printf("send error , error: %d", strerror(errno));
+			printf("send error , error: %s(%d)", strerror(errno), errno);
 			return -1;
 		}
 	}

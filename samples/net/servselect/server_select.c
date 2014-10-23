@@ -52,16 +52,17 @@ int main(int argc, char *argv[])
 			printf("accept ok!\n");
 			int clifd = accept(servfd, (struct sockaddr *)&cliaddr, (socklen_t *)&sock_len);
 			if (clifd == -1) {
-				handle_error("accept error");
+				handle_error("accept error\n");
 			}
 			for (i; i < FD_SETSIZE; i++) {
 				if (client[i] < 0) {
 					client[i] = clifd;
+				
 					break;
 				}
 			}
 			if (i == FD_SETSIZE) {
-				printf("too many clifd");
+				printf("too many clifd\n");
 				return -1;
 			}
 			FD_SET(clifd, &rset);
@@ -79,15 +80,18 @@ int main(int argc, char *argv[])
 				continue;
 			}
 			if (FD_ISSET(client[i], &rset)) {
-				int n = icl_net_read(client[i], rbuffer, MAXLINE);
+				//int n = icl_net_read(client[i], rbuffer, MAXLINE);
+				//int n = read(client[i], rbuffer, MAXLINE);
+				int n = recv(client[i], rbuffer, MAXLINE, 0);
 				if (n == 0) {
 					close(client[i]);
 					FD_CLR(client[i], &rset);
 					client[i] = -1;
 				}
-				printf("read ok!\n");
 				else {
-					int n = icl_net_send(client[i], rbuffer, n);
+					//int n = icl_net_send(client[i], rbuffer, n);
+					//icl_net_send(client[i], rbuffer, n);
+					write(client[i], rbuffer, n);
 					printf("send ok!\n");
 				}
 				if (--nready <= 0)

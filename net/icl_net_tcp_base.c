@@ -53,13 +53,19 @@ int icl_net_read(int clifd, char *buf, int len)
 		}
 		else if (used == 0) {
 			printf("icl_net_read : break out from server.\n");
+			return 0;
+		}
+		/* used < 0 */
+		else {
+			if (errno == EAGAIN || errno == EWOULDBLOCK) {
+				printf("EAGAIN OR EWOULDBLOCK\n");
+				continue;
+			}
+			printf("icl_net_read : return value :%d < 0 . error: %d\n", used, strerror(errno));
 			return -1;
 		}
-		else {
-			printf("icl_net_read : return value :%d < 0 . error: %d\n", used, strerror(errno));
-		}
 	}
-	return 0;
+	return 1;
 }
 
 

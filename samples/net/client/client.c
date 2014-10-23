@@ -50,22 +50,24 @@ int main(int argc, char *argv[]) {
 	char buffer[MAXLINE];
 	memset(buffer, 'a', MAXLINE-1);
 	buffer[MAXLINE-1] = '\0';
-	ret = icl_net_send(clifd, buffer, strlen(buffer)+1);
+	//ret = icl_net_send(clifd, buffer, strlen(buffer)+1);
+	ret = write(clifd, buffer, 1024);
 	if (ret < 0) {
 		printf("icl_net_send error\n");
 		return -1;
 	}
 	printf("icl_net_send ok!\n");
-	ret = icl_net_read(clifd, buffer, MAXLINE);
+	//ret = icl_net_read(clifd, buffer, MAXLINE);
+	ret = recv(clifd, buffer, MAXLINE, 0);
 	if (ret < 0) {
 		printf("icl_net_read error\n");
 		return -1;
 	}
-	printf("icl_net_read ok!\n");
+	printf("icl_net_read ok! ret: %d\n", ret);
 	char *p = buffer;
 	int i = 0;
 	while(*p != '\0') {
-		//printf("i:%d, %c\n",i, *p);
+		printf("i:%d, %c ",i, *p);
 		i++;p++;
 	}
 		

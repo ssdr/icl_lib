@@ -18,37 +18,25 @@ struct hostent *icl_gethostbyname(char *hostname)
 	return gethostbyname(hostname);
 }
 
+int icl_host2addr(const char *host, struct in_addr *addr, char *buff) {
+    struct hostent he, *result;
+    int herr, ret, bufsz = 512;
+    //char *buff = NULL;
+    do {
+        char *new_buff = (char *)realloc(buff, bufsz);
+        if (new_buff == NULL) {
+            free(buff);
+            return ENOMEM;
+        }
+        buff = new_buff;
+        ret = gethostbyname_r(host, &he, buff, bufsz, &result, &herr);
+        bufsz *= 2;
+    } while (ret == ERANGE);
 
-struct hostent *icl_gethostbyname_r(char *hostname)
-{
-	char    buf[1024];
-	struct  hostent  *hostinfo, *phost;
-	int     ret;
-
-	/* 这块内存需要自己释放，否则会存在内存泄露 */
-	hostinfo = malloc(sizeof(struct hostent));
-
-	if(gethostbyname_r(hostname, hostinfo, buf, sizeof(buf), &phost, &ret)) {
-		printf("ERROR:gethostbyname(%s) ret:%d", hostname, ret);
-		return NULL;
-	}
-	else {
-		int i;
-		printf("gethostbyname(%s) success:ret:%d,", hostname , ret);
-		if(phost) {
-			printf("name:%s,addrtype:%d(AF_INET:%d),len:%d",
-					phost->h_name,phost->h_addrtype,AF_INET,
-					phost->h_length);
-		}
-		for(i = 0;hostinfo->h_aliases[i];i++) {
-			//printf("hostinfo alias is:%s\n",hostinfo->h_aliases[i]);
-			;;
-		}
-		for(i = 0;hostinfo->h_addr_list[i];i++) {
-			//printf("host addr is:%s\n",inet_ntoa(*(struct in_addr*)hostinfo->h_addr_list[i]));
-			;;
-		}
-	}
-	return hostinfo;
+    if (ret == 0 && result != NULL)
+        *addr = *(struct in_addr *)he.h_addr;
+    else if (result != &he)
+        ret = herr;
+    //free(buff);
+    return ret;
 }
-

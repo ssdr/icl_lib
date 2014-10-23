@@ -47,34 +47,23 @@ int main(int argc, char *argv[]) {
 		return -1;
 	}
 	printf("icl_connect ok!\n");
-	//char buffer[MAXLINE];
-	//memset(buffer, 'a', MAXLINE-1);
-	//buffer[MAXLINE-1] = '\0';
-	char buffer[4];
-	memset(buffer, 'a', 2);
-	buffer[2] = 13; buffer[3] = 10;
-	ret = icl_net_send(clifd, buffer, 4);
-	//ret = write(clifd, buffer, MAXLINE);
+	char buffer[MAXLINE];
+	memset(buffer, 'a', MAXLINE);
+	ret = write(clifd, buffer, MAXLINE);
 	if (ret < 0) {
 		printf("icl_net_send error\n");
 		return -1;
 	}
+	buffer[ret] = 0;
+	printf("%s, ret: %d\n", buffer, ret);
 	printf("icl_net_send ok!\n");
 	//ret = icl_net_read(clifd, buffer, MAXLINE);
 	//ret = recv(clifd, buffer, MAXLINE, 0);
-	ret = icl_net_peek_read(clifd, buffer, MAXLINE, NULL, 0);
-	if (ret < 0) {
-		printf("icl_net_read error\n");
-		return -1;
-	}
-	printf("icl_net_read ok! ret: %d\n", ret);
-	char *p = buffer;
-	int i = 0;
-	while(*p != '\0') {
-		printf("i:%d, %c ",i, *p);
-		i++;p++;
-	}
-		
+	//ret = icl_net_peek_read(clifd, buffer, MAXLINE, NULL, 0);
+	//if (ret < 0) {
+	//	printf("icl_net_read error\n");
+	//	return -1;
+	//}
 	close(clifd);
 	return 0;
 }

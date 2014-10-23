@@ -33,6 +33,8 @@ int icl_accept(int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen)
 	return accept(sockfd, cliaddr, addrlen);
 }
 
+
+/* some bug */
 int icl_net_peek_read(int clifd, char *buf, int buf_len, 
 			const char *peek, int peek_len)
 {
@@ -46,16 +48,16 @@ int icl_net_peek_read(int clifd, char *buf, int buf_len,
 	char *p = buf;
 	int left = buf_len;	
 	while (left >= 0) {
-		int ret = read(clifd, p, peek_len);
+		int ret = read(clifd, p, MAXLINE);
 		if (ret <= 0) return -1;
-		if (strncmp(p, peek, peek_len) == 0) {
-			printf("readbuf find terminator.\n");
+		if (strstr(p, peek_def) != NULL) {
 			return 0;
 		}
-		p+=peek_len; left-=peek_len;
+		p+=ret; left-=ret;
 	}
 	return -1;
 }
+
 int icl_net_read(int clifd, char *buf, int len)
 {
 	int left = len;

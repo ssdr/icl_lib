@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 	}
 
 	char buffer[MAXLINE];
-	memset(buffer, 0,  MAXLINE);
+	memset(buffer, 'a',  MAXLINE);
 	while (1) {
 		int sock_len = sizeof(struct sockaddr);
 		int clifd = accept(servfd, (struct sockaddr *)&cliaddr, (socklen_t *)&sock_len);
@@ -41,16 +41,21 @@ int main(int argc, char *argv[])
 			handle_error("accept error");
 		}
 		printf("accept ok!\n");
-		int ret = icl_net_read(clifd, buffer, MAXLINE);
-		if (ret < 0) {
-			handle_error("read error");
+		int n = -1;
+		while (n != 0) {
+			n = read(clifd, buffer, 8192);
+			if (n < 0) {
+				handle_error("read error");
+			}
+			buffer[n] = 0;
+			printf("%d\n", n);
 		}
-		printf("icl_net_read ok!\n");
-		ret = icl_net_send(clifd, buffer, strlen(buffer)+1);
-		if (ret < 0) {
-			handle_error("send error");
-		}
-		printf("icl_net_send ok!\n");
+		//printf("icl_net_read ok!\n");
+		//ret = icl_net_send(clifd, buffer, strlen(buffer)+1);
+		//if (ret < 0) {
+		//	handle_error("send error");
+		//}
+		//printf("icl_net_send ok!\n");
 		close(clifd);
 	}
 

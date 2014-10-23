@@ -18,6 +18,6 @@
 
 struct hostent *icl_gethostbyname(char *hostname);
 
-struct hostent *icl_gethostbyname_r(char *hostname);
+int icl_host2addr(const char *host, struct in_addr *addr, char *buff);
 
 #endif /*ICL_DNS_H_*/

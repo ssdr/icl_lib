@@ -82,16 +82,17 @@ int main(int argc, char *argv[])
 			if (FD_ISSET(client[i], &rset)) {
 				//int n = icl_net_read(client[i], rbuffer, MAXLINE);
 				//int n = read(client[i], rbuffer, MAXLINE);
-				int n = recv(client[i], rbuffer, MAXLINE, 0);
-				if (n == 0) {
+				//int n = recv(client[i], rbuffer, MAXLINE, 0);
+				int n = icl_net_peek_read(client[i], rbuffer, MAXLINE, NULL, 0);
+				if (n < 0) {
 					close(client[i]);
 					FD_CLR(client[i], &rset);
 					client[i] = -1;
 				}
 				else {
 					//int n = icl_net_send(client[i], rbuffer, n);
-					//icl_net_send(client[i], rbuffer, n);
-					write(client[i], rbuffer, n);
+					icl_net_send(client[i], rbuffer, 4);
+					//write(client[i], rbuffer, n);
 					printf("send ok!\n");
 				}
 				if (--nready <= 0)

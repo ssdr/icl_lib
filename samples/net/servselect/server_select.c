@@ -38,14 +38,20 @@ int main(int argc, char *argv[])
 	char rbuffer[MAXLINE];
 	memset(rbuffer, 0,  MAXLINE);
 	/* select */
+
 	int client[FD_SETSIZE];
 	memset(client, -1, FD_SETSIZE);
-	fd_set rset;
-	FD_ZERO(&rset);
-	FD_SET(servfd, &rset);
+	fd_set rset, allset;
+	FD_ZERO(&allset);
+	FD_SET(servfd, &allset);
 	int maxfdpl = servfd;
 	int i;
 	for (;;) {
+		/* 
+		 * rset和allset必须区分开，一个做读操作(rset)，一个做写操作(allset) 
+		 * 否则FD_SET会修改allset的信息，导致读写时间丢失
+		 * */
+		rset = allset;
 		int nready = select(maxfdpl + 1, &rset, NULL, NULL, NULL);
 		if (FD_ISSET(servfd, &rset)) {
 			int sock_len = sizeof(struct sockaddr);
@@ -54,10 +60,9 @@ int main(int argc, char *argv[])
 			if (clifd == -1) {
 				handle_error("accept error\n");
 			}
-			for (i; i < FD_SETSIZE; i++) {
+			for (i=0; i < FD_SETSIZE; i++) {
 				if (client[i] < 0) {
 					client[i] = clifd;
-				
 					break;
 				}
 			}
@@ -65,11 +70,11 @@ int main(int argc, char *argv[])
 				printf("too many clifd\n");
 				return -1;
 			}
-			FD_SET(clifd, &rset);
+			FD_SET(clifd, &allset);
 			if (clifd > maxfdpl) {
 				maxfdpl = clifd;
 			}
-			/* 优先处理 accept */
+			/* 提高效率，不做无用功 */
 			if (--nready <= 0) {
 				continue;
 			}
@@ -81,18 +86,23 @@ int main(int argc, char *argv[])
 			}
 			if (FD_ISSET(client[i], &rset)) {
 				//int n = icl_net_read(client[i], rbuffer, MAXLINE);
-				//int n = read(client[i], rbuffer, MAXLINE);
+				/* 
+				 * 如果read配合select，那就是贪心算法，有多少取多少，不需要阻塞的问题
+				 */
+				int n = read(client[i], rbuffer, MAXLINE);
 				//int n = recv(client[i], rbuffer, MAXLINE, 0);
-				int n = icl_net_peek_read(client[i], rbuffer, MAXLINE, NULL, 0);
-				if (n < 0) {
+				//int n = icl_net_peek_read(client[i], rbuffer, MAXLINE, NULL, 0);
+				if (n <= 0) {
 					close(client[i]);
-					FD_CLR(client[i], &rset);
+					FD_CLR(client[i], &allset);
 					client[i] = -1;
+					printf("cli(%d) closed \n", client[i]);
 				}
 				else {
+					rbuffer[n] = 0;
 					//int n = icl_net_send(client[i], rbuffer, n);
-					icl_net_send(client[i], rbuffer, 4);
-					//write(client[i], rbuffer, n);
+					//icl_net_send(client[i], rbuffer, n);
+					write(client[i], rbuffer, n);
 					printf("send ok!\n");
 				}
 				if (--nready <= 0)

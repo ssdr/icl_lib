@@ -62,7 +62,7 @@ int icl_listen(int sockfd, int baklog);
 
 int icl_accept(int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen);
 
-int icl_net_peek_read(int clifd, char *buf, int *buf_len, 
+int icl_net_peek_read(int clifd, char **buf, int *buf_len, 
 			const char *peek);
 
 int icl_net_read(int clifd, char *buffer, int len);

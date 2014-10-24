@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
-	char *buffer;
+	char *buffer = NULL;
 	int buffer_size;
 	while (1) {
 		int sock_len = sizeof(struct sockaddr);
@@ -41,13 +41,18 @@ int main(int argc, char *argv[])
 			handle_error("accept error");
 		}
 		printf("accept ok!\n");
-		int ret = icl_net_peek_read(clifd, buffer, &buffer_size, NULL);
+		int ret = icl_net_peek_read(clifd, &buffer, &buffer_size, NULL);
 		if (ret < 0) {
 			handle_error("read error");
 		}
-		buffer[buffer_size] = 0;
-		printf("%s\n", buffer);
+		printf("read ok, buffer: %s\n", buffer);
+		ret = write(clifd, buffer, buffer_size);
+		if (ret <= 0) {
+			printf("write error\n");
+			return -1;
+		}
 		free(buffer);
+		printf("write ok\n");
 		//printf("icl_net_read ok!\n");
 		//ret = icl_net_send(clifd, buffer, strlen(buffer)+1);
 		//if (ret < 0) {

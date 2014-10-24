@@ -35,8 +35,10 @@ int icl_accept(int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen)
 }
 
 
-/* block */
-int icl_net_peek_read(int clifd, char *buf, int *ret_len, const char *peek)
+/* block , 贪心算法， 有多少去多少， 直到遇到结束标志
+ * 如果没有遇到结束标记，就会阻塞
+ * */
+int icl_net_peek_read(int clifd, char **buf, int *ret_len, const char *peek)
 {
 	/* strict check for usr input */
 	char peek_def[2];
@@ -46,7 +48,7 @@ int icl_net_peek_read(int clifd, char *buf, int *ret_len, const char *peek)
 		peek = peek_def;
 	}
 	
-	buf =  malloc(MAXLINE);
+	*buf =  malloc(MAXLINE);
 	int left = MAXLINE;
 	int used = 0;
 	char p[MAXLINE + 1] ;
@@ -57,16 +59,17 @@ int icl_net_peek_read(int clifd, char *buf, int *ret_len, const char *peek)
 		p[ret] = 0; //for strstr
 		if (ret > left) {
 			size *= 2;
-			char *new_buf = realloc(buf, size);
+			/* safe alloc */
+			char *new_buf = realloc(*buf, size);
 			if (new_buf == NULL) {
 				*ret_len = 0;
-				free(buf);
+				free(*buf);
 				return -1;
 			}
-			buf = new_buf;
+			*buf = new_buf;
 			left = size - used;
 		}
-		memcpy(&buf[used], p, ret);
+		memcpy(&(*buf[used]), p, ret);
 		used += ret;
 		left -= ret;
 		if (strstr(p, peek) != 0) {
@@ -76,7 +79,9 @@ int icl_net_peek_read(int clifd, char *buf, int *ret_len, const char *peek)
 	}
 }
 
-/* block */
+/* block len是多少，就取多少，如果内核缓冲区大于len
+ * 抛弃，如果不足，就会阻塞。
+ * */
 int icl_net_read(int clifd, char *buf, int len)
 {
 	int left = len;
@@ -125,8 +130,11 @@ int icl_net_send(int clifd, const char *buf, int len)
 	}
 	while (left > 0)
 	{
+		/*
+		 * the same func
+		 * used = write(clifd, p, left);
+		 */
 		used = send(clifd, p, left, 0);
-		printf("used: %d\n", used);
 		if (used > 0) {
 			left -= used;
 			p += used;

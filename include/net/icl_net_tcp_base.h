@@ -107,4 +107,12 @@ char *icl_inet_ntoa(struct in_addr inaddr);
 
 uint16_t icl_htons(uint16_t host16bitvalue);
 
+int icl_getsockopt(int sockfd, int level, int optname,
+		void *optval, socklen_t *optlen);
+
+int icl_setsockopt(int sockfd, int level, int optname,
+		const void *optval, socklen_t optlen);
+
+int icl_setnonblocking(int sockfd);
+
 #endif /* ICL_NET_TCP_BASE_H_ */

@@ -168,4 +168,29 @@ uint16_t icl_htons(uint16_t host16bitvalue)
 	return htons(host16bitvalue);
 }
 
+int icl_getsockopt(int sockfd, int level, int optname,
+		void *optval, socklen_t *optlen) {
+	/* level: SOL_SOCKET
+	 * optname: SO_SNDBUF SO_RCVBUF
+	 * optval int *
+	 */
+	return getsockopt(sockfd, level, optname, optval, optlen);
+	
+}
 
+int icl_setsockopt(int sockfd, int level, int optname,
+		const void *optval, socklen_t optlen) {
+	/* level: SOL_SOCKET
+	 * optname: SO_SNDBUF SO_RCVBUF
+	 * optval char *
+	 */
+	return setsockopt(sockfd, level, optname, optval, optlen);
+}
+
+int icl_setnonblocking(int sockfd)
+{
+	if (fcntl(sockfd, F_SETFL, fcntl(sockfd, F_GETFD, 0)|O_NONBLOCK) == -1) {
+		return -1;
+	}
+	return 0;
+}

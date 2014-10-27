@@ -41,6 +41,7 @@ int main(int argc, char *argv[])
 			handle_error("accept error");
 		}
 		printf("accept ok!\n");
+		continue;
 		int ret = icl_net_peek_read(clifd, &buffer, &buffer_size, NULL);
 		if (ret < 0) {
 			handle_error("read error");

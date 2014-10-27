@@ -52,12 +52,16 @@ int main(int argc, char *argv[]) {
 	buffer[MAXLINE/2-1] = 0;
 	buffer[MAXLINE/2-2] = 10;
 	buffer[MAXLINE/2-3] = 13;
-	ret = write(clifd, buffer, strlen(buffer));
+	buffer[MAXLINE/2-3] = 13;
+	//ret = write(clifd, buffer, strlen(buffer));
+	char *p = malloc(1024*1024*10);
+	getsockopt(fd, SOL_SOCKET, SO_SNDBUF, (int*)&send_buf, 
+	ret = send(clifd, p, 1, 0);
 	if (ret < 0) {
 		printf("icl_net_send error\n");
 		return -1;
 	}
-	printf("icl_net_send ok!\n");
+	printf("icl_net_send ok! ret: %d\n", ret);
 	memset(buffer, 0, MAXLINE/2);
 	ret = icl_net_read(clifd, buffer, MAXLINE/2-1);
 	if (ret < 0) {

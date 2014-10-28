@@ -15,9 +15,18 @@
 #include "icl_net_tcp_base.h"
 
 #define handle_error(msg)	\
-		do { perror(msg);exit(-1);} while(0)
+	do { perror(msg);exit(-1);} while(0)
 
-int main(int argc, char *argv[]) {
+int get_def_sbuf(int fd)
+{
+	int sock_def_buf;
+	int size = sizeof(int);
+	getsockopt(fd, SOL_SOCKET, SO_SNDBUF, (int*)&sock_def_buf, (socklen_t*)&size);
+	return sock_def_buf;
+}
+
+int main(int argc, char *argv[]) 
+{
 	char dst[16] = "127.0.0.1";
 	struct sockaddr_in addr;
 	struct hostent *ip;
@@ -52,12 +61,11 @@ int main(int argc, char *argv[]) {
 	buffer[MAXLINE/2-1] = 0;
 	buffer[MAXLINE/2-2] = 10;
 	buffer[MAXLINE/2-3] = 13;
-	buffer[MAXLINE/2-3] = 13;
 	//ret = write(clifd, buffer, strlen(buffer));
-	char *p = malloc(1024*1024*10);
-	getsockopt(fd, SOL_SOCKET, SO_SNDBUF, (int*)&send_buf, 
-	ret = send(clifd, p, 1, 0);
-	if (ret < 0) {
+	int sz =  get_def_sbuf(clifd) * 2 - 2096;
+	char buffer2[sz];
+	ret = write(clifd, buffer2, sz);
+	if (ret <= 0) {
 		printf("icl_net_send error\n");
 		return -1;
 	}
@@ -69,6 +77,7 @@ int main(int argc, char *argv[]) {
 		return -1;
 	}
 	printf("icl_net_read ok, buffer: %s\n", buffer);
+	printf("def_buf: %d\n", get_def_sbuf(clifd));
 	close(clifd);
 	return 0;
 }

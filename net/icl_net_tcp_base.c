@@ -8,6 +8,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <icl_net_tcp_base.h>
+#include <fcntl.h>
 
 int icl_socket(int family, int type, int protocol)
 {
@@ -177,7 +178,11 @@ int icl_getsockopt(int sockfd, int level, int optname,
 	return getsockopt(sockfd, level, optname, optval, optlen);
 	
 }
-
+/*
+ * send 的阻塞条件，经过测试， 如果send(fd, buf, size);如果
+ * size > SO_SNDBUF - 2096 ，则会出现阻塞，否则，无论对端是
+ * 否接受数据，都不会阻塞， 由内核自己去处理
+ */
 int icl_setsockopt(int sockfd, int level, int optname,
 		const void *optval, socklen_t optlen) {
 	/* level: SOL_SOCKET

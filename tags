@@ -5,6 +5,8 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
 .PHONY	samples/Makefile	/^.PHONY = all clean$/;"	m
+A	samples/array/array.c	/^struct A {$/;"	s	file:
+A	samples/array/array.c	/^typedef struct A A;$/;"	t	typeref:struct:A	file:
 ADD_TO_PTR	thirdlib/libmysql/include/my_global.h	813;"	d
 AF_LOCAL	thirdlib/libhiredis/include/net.h	39;"	d
 ALIGN_SIZE	thirdlib/libmysql/include/my_global.h	811;"	d
@@ -2704,6 +2706,12 @@ IS_PRI_KEY	thirdlib/libmysql/include/mysql.h	83;"	d
 IS_URL_CHAR	net/icl_http_parser.c	376;"	d	file:
 IS_URL_CHAR	net/icl_http_parser.c	380;"	d	file:
 IS_USERINFO_CHAR	net/icl_http_parser.c	370;"	d	file:
+Icl_Array	include/common/icl_array.h	/^struct Icl_Array {$/;"	s
+Icl_Array	include/common/icl_array.h	/^typedef struct Icl_Array Icl_Array;$/;"	t	typeref:struct:Icl_Array
+Icl_Htable	include/common/icl_htable.h	/^struct Icl_Htable$/;"	s
+Icl_Htable	include/common/icl_htable.h	/^typedef struct Icl_Htable Icl_Htable;$/;"	t	typeref:struct:Icl_Htable
+Icl_Htable_Node	include/common/icl_htable.h	/^struct Icl_Htable_Node$/;"	s
+Icl_Htable_Node	include/common/icl_htable.h	/^typedef struct Icl_Htable_Node Icl_Htable_Node;$/;"	t	typeref:struct:Icl_Htable_Node
 Icl_List	include/common/icl_list.h	/^typedef struct icl_list Icl_List;$/;"	t	typeref:struct:icl_list
 Icl_List_Add	samples/queue/queue.c	/^typedef int Icl_List_Add(Icl_List *h, void *d);$/;"	t	file:
 Icl_List_Del	samples/queue/queue.c	/^typedef Icl_List *Icl_List_Del(Icl_List *h);$/;"	t	file:
@@ -3719,6 +3727,7 @@ PROC	samples/curl/Makefile	/^PROC = curl$/;"	m
 PROC	samples/encode/Makefile	/^PROC = encode$/;"	m
 PROC	samples/execv/Makefile	/^PROC = execv$/;"	m
 PROC	samples/fork/Makefile	/^PROC = fork$/;"	m
+PROC	samples/htable/Makefile	/^PROC = htable$/;"	m
 PROC	samples/iclio/Makefile	/^PROC = iclio$/;"	m
 PROC	samples/memcached/Makefile	/^PROC = memcached$/;"	m
 PROC	samples/mysql/Makefile	/^PROC = mysql$/;"	m
@@ -4148,6 +4157,7 @@ TABLE_COMMENT_INLINE_MAXLEN	thirdlib/libmysql/include/mysql_com.h	38;"	d
 TABLE_COMMENT_MAXLEN	thirdlib/libmysql/include/mysql_com.h	39;"	d
 TABLE_PARTITION_COMMENT_MAXLEN	thirdlib/libmysql/include/mysql_com.h	42;"	d
 TARGET_OS_LINUX	thirdlib/libmysql/include/my_config.h	432;"	d
+TEST_SIZE	samples/array/array.c	11;"	d	file:
 TEST_SIZE	samples/queue/queue.c	53;"	d	file:
 THDVAR	thirdlib/libmysql/include/mysql/plugin.h	421;"	d
 THDVAR	thirdlib/libmysql/include/plugin.h	421;"	d
@@ -4918,7 +4928,7 @@ element	thirdlib/libhiredis/include/hiredis.h	/^    struct redisReply **element;
 elements	thirdlib/libhiredis/include/hiredis.h	/^    int elements; \/* number of elements in multibulk container *\/$/;"	m	struct:redisReadTask
 elements	thirdlib/libhiredis/include/hiredis.h	/^    size_t elements; \/* number of elements, for REDIS_REPLY_ARRAY *\/$/;"	m	struct:redisReply
 elements	thirdlib/libmysql/include/my_sys.h	/^  uint elements,max_element;$/;"	m	struct:st_dynamic_array
-elt_size	include/common/icl_array.h	/^	int elt_size;$/;"	m	struct:icl_array_t
+elt_size	include/common/icl_array.h	/^	int elt_size;$/;"	m	struct:Icl_Array
 embedded_info	thirdlib/libmysql/include/mysql.h	/^  struct embedded_query_result *embedded_info;$/;"	m	struct:st_mysql_data	typeref:struct:st_mysql_data::embedded_query_result
 enable_cleartext_plugin	thirdlib/libmysql/include/sql_common.h	/^  my_bool enable_cleartext_plugin;$/;"	m	struct:st_mysql_options_extention
 end	thirdlib/libmemcached/include/libmemcached-1.0/struct/string.h	/^  char *end;$/;"	m	struct:memcached_string_st
@@ -5298,12 +5308,11 @@ http_should_keep_alive	net/icl_http_parser.c	/^http_should_keep_alive (const htt
 http_strerror_tab	net/icl_http_parser.c	/^} http_strerror_tab[] = {$/;"	v	typeref:struct:__anon1	file:
 i64	thirdlib/libmysql/include/my_pthread.h	/^  __int64 i64;$/;"	m	union:ft64
 icl_accept	net/icl_net_tcp_base.c	/^int icl_accept(int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen)$/;"	f
-icl_array_append	common/icl_array.c	/^int icl_array_append(icl_array_t *iat) {$/;"	f
-icl_array_create	common/icl_array.c	/^icl_array_t *icl_array_create(int n, int size) {$/;"	f
-icl_array_destroy	common/icl_array.c	/^int icl_array_destroy(icl_array_t *iat) {$/;"	f
-icl_array_push_back	common/icl_array.c	/^void *icl_array_push_back(icl_array_t *iat) {$/;"	f
-icl_array_t	include/common/icl_array.h	/^struct icl_array_t {$/;"	s
-icl_array_t	include/common/icl_array.h	/^typedef struct icl_array_t icl_array_t;$/;"	t	typeref:struct:icl_array_t
+icl_array_append	common/icl_array.c	/^int icl_array_append(Icl_Array *iay) {$/;"	f
+icl_array_create	common/icl_array.c	/^Icl_Array *icl_array_create(int n, int size) {$/;"	f
+icl_array_destroy	common/icl_array.c	/^int icl_array_destroy(Icl_Array *iay) {$/;"	f
+icl_array_index	common/icl_array.c	/^void *icl_array_index(Icl_Array *iay, int idx)$/;"	f
+icl_array_push_back	common/icl_array.c	/^void *icl_array_push_back(Icl_Array *iay) $/;"	f
 icl_asctime	common/icl_time.c	/^char *icl_asctime()$/;"	f
 icl_assert	common/icl_unix.c	/^void icl_assert(int torf)$/;"	f
 icl_bind	net/icl_net_tcp_base.c	/^int icl_bind(int sockfd, const struct sockaddr *servaddr, socklen_t addrlen)$/;"	f
@@ -5337,14 +5346,10 @@ icl_hash_func5	common/icl_hash.c	/^unsigned icl_hash_func5(const void *key, size
 icl_hash_func6	common/icl_hash.c	/^unsigned icl_hash_func6(const void *key, size_t len)$/;"	f
 icl_hash_test	common/icl_hash.c	/^unsigned icl_hash_test(const void *key, size_t len)$/;"	f
 icl_host2addr	net/icl_net_dns.c	/^int icl_host2addr(const char *host, struct in_addr *addr, char *buff) {$/;"	f
-icl_htable_create	common/icl_htable.c	/^icl_htable_t *icl_htable_create(int size)$/;"	f
-icl_htable_destroy	common/icl_htable.c	/^int icl_htable_destroy(icl_htable_t *iht)$/;"	f
-icl_htable_get	common/icl_htable.c	/^int icl_htable_get(icl_htable_t *iht, const char *key, char *value,$/;"	f
-icl_htable_node	include/common/icl_htable.h	/^struct icl_htable_node$/;"	s
-icl_htable_node	include/common/icl_htable.h	/^typedef struct icl_htable_node icl_htable_node;$/;"	t	typeref:struct:icl_htable_node
-icl_htable_set	common/icl_htable.c	/^int icl_htable_set(icl_htable_t *iht, const char *key, const char *value)$/;"	f
-icl_htable_t	include/common/icl_htable.h	/^struct icl_htable_t$/;"	s
-icl_htable_t	include/common/icl_htable.h	/^typedef struct icl_htable_t icl_htable_t;$/;"	t	typeref:struct:icl_htable_t
+icl_htable_create	common/icl_htable.c	/^Icl_Htable *icl_htable_create(int size)$/;"	f
+icl_htable_destroy	common/icl_htable.c	/^int icl_htable_destroy(Icl_Htable *iht)$/;"	f
+icl_htable_get	common/icl_htable.c	/^int icl_htable_get(Icl_Htable *iht, const char *key, char *value,$/;"	f
+icl_htable_set	common/icl_htable.c	/^int icl_htable_set(Icl_Htable *iht, const char *key, const char *value)$/;"	f
 icl_htons	net/icl_net_tcp_base.c	/^uint16_t icl_htons(uint16_t host16bitvalue)$/;"	f
 icl_http_parse	samples/net/serv_mutiple_process/serv_muti_process.c	/^int icl_http_parse(void *data, int len)$/;"	f
 icl_http_parse	samples/net/serv_mutiple_thread/serv_muti_thread.c	/^int icl_http_parse(void *data, int len)$/;"	f
@@ -5691,7 +5696,7 @@ item_expiration	thirdlib/libmemcached/include/libmemcached-1.0/struct/result.h	/
 item_flags	thirdlib/libmemcached/include/libmemcached-1.0/struct/result.h	/^  uint32_t item_flags;$/;"	m	struct:memcached_result_st
 item_key	thirdlib/libmemcached/include/libmemcached-1.0/struct/result.h	/^  char item_key[MEMCACHED_MAX_KEY];$/;"	m	struct:memcached_result_st
 ketama	thirdlib/libmemcached/include/libmemcached-1.0/struct/memcached.h	/^  } ketama;$/;"	m	struct:memcached_st	typeref:struct:memcached_st::__anon65
-key	include/common/icl_htable.h	/^	char key[KEY_SIZE];$/;"	m	struct:icl_htable_node
+key	include/common/icl_htable.h	/^	char key[KEY_SIZE];$/;"	m	struct:Icl_Htable_Node
 key	thirdlib/libcurl/include/curl/curl.h	/^  const char *key; \/* points to a zero-terminated string encoded with base64$/;"	m	struct:curl_khkey
 key	thirdlib/libhiredis/include/dict.h	/^    void *key;$/;"	m	struct:dictEntry
 keyCompare	thirdlib/libhiredis/include/dict.h	/^    int (*keyCompare)(void *privdata, const void *key1, const void *key2);$/;"	m	struct:dictType
@@ -5932,6 +5937,7 @@ main	samples/curl/curl.c	/^int main(void)$/;"	f
 main	samples/encode/encode.c	/^int main(int argc, char *argv[])$/;"	f
 main	samples/execv/execv.c	/^int main(int argc, char *argv[]) {$/;"	f
 main	samples/fork/fork.c	/^int main(int argc, char argv[])$/;"	f
+main	samples/htable/htable.c	/^int main(int argc, char *argv[])$/;"	f
 main	samples/iclio/iclio.c	/^int main(int argc, char *argv[])$/;"	f
 main	samples/libaso/a.c	/^int main(int argc, char *argv[])$/;"	f
 main	samples/memcached/memcached.c	/^int main(int argc, char *argv[])$/;"	f
@@ -6503,14 +6509,14 @@ named_pipe	thirdlib/libmysql/include/mysql.h	/^  my_bool compress,named_pipe;$/;
 namelength	thirdlib/libcurl/include/curl/curl.h	/^  long namelength;                  \/* length of name length *\/$/;"	m	struct:curl_httppost
 native_cond	thirdlib/libmysql/include/my_pthread.h	/^  CONDITION_VARIABLE native_cond;$/;"	m	union:__anon5
 neg	thirdlib/libmysql/include/mysql_time.h	/^  my_bool       neg;$/;"	m	struct:st_mysql_time
-nelt	include/common/icl_array.h	/^	int nelt;$/;"	m	struct:icl_array_t
+nelt	include/common/icl_array.h	/^	int nelt;$/;"	m	struct:Icl_Array
 nesting_map	thirdlib/libmysql/include/my_global.h	/^typedef ulonglong nesting_map;  \/* Used for flags of nesting constructs *\/$/;"	t
 net	thirdlib/libmysql/include/mysql.h	/^  NET		net;			\/* Communication parameters *\/$/;"	m	struct:st_mysql
 net_buffer_length	thirdlib/libmysql/include/mysql.h	341;"	d
 net_new_transaction	thirdlib/libmysql/include/mysql_com.h	475;"	d
 new_thread	thirdlib/libmysql/include/mysql/psi/psi.h	/^  new_thread_v1_t new_thread;$/;"	m	struct:PSI_v1
 new_thread_v1_t	thirdlib/libmysql/include/mysql/psi/psi.h	/^typedef struct PSI_thread* (*new_thread_v1_t)$/;"	t	typeref:struct:new_thread_v1_t
-next	include/common/icl_htable.h	/^	icl_htable_node *next;$/;"	m	struct:icl_htable_node
+next	include/common/icl_htable.h	/^	Icl_Htable_Node *next;$/;"	m	struct:Icl_Htable_Node
 next	include/common/icl_list.h	/^	Icl_List *next;$/;"	m	struct:icl_list
 next	thirdlib/libcurl/include/curl/curl.h	/^  struct curl_httppost *next;       \/* next entry in the list *\/$/;"	m	struct:curl_httppost	typeref:struct:curl_httppost::curl_httppost
 next	thirdlib/libcurl/include/curl/curl.h	/^  struct curl_slist *next;$/;"	m	struct:curl_slist	typeref:struct:curl_slist::curl_slist
@@ -6602,8 +6608,8 @@ org_table	thirdlib/libmysql/include/mysql.h	/^  char *org_table;            \/* 
 org_table_length	thirdlib/libmysql/include/mysql.h	/^  unsigned int org_table_length;$/;"	m	struct:st_mysql_field
 os_off_t	thirdlib/libmysql/include/my_global.h	/^typedef off_t os_off_t;$/;"	t
 os_off_t	thirdlib/libmysql/include/my_global.h	/^typedef unsigned long long os_off_t;$/;"	t
-p	include/common/icl_array.h	/^	void *p; \/\/start point$/;"	m	struct:icl_array_t
-p	include/common/icl_htable.h	/^	icl_htable_node **p;$/;"	m	struct:icl_htable_t
+p	include/common/icl_array.h	/^	void *p; \/\/start point$/;"	m	struct:Icl_Array
+p	include/common/icl_htable.h	/^	Icl_Htable_Node **p;$/;"	m	struct:Icl_Htable
 p_max_allowed_packet	thirdlib/libmysql/include/mysql.h	/^  unsigned long *p_max_allowed_packet;$/;"	m	struct:st_mysql_parameters
 p_net_buffer_length	thirdlib/libmysql/include/mysql.h	/^  unsigned long *p_net_buffer_length;$/;"	m	struct:st_mysql_parameters
 pack_length	thirdlib/libmysql/include/mysql.h	/^  unsigned int  pack_length;	  \/* Internal length for packed data *\/$/;"	m	struct:st_mysql_bind
@@ -6660,7 +6666,7 @@ port	include/net/icl_http_parser.h	/^  uint16_t port;                \/* Convert
 port	thirdlib/libmemcached/include/libmemcached-1.0/struct/server.h	/^  in_port_t port;$/;"	m	struct:memcached_server_st
 port	thirdlib/libmysql/include/mysql.h	/^  unsigned int	port;$/;"	m	struct:st_mysql
 port	thirdlib/libmysql/include/mysql.h	/^  unsigned int port, protocol;$/;"	m	struct:st_mysql_options
-pos	include/common/icl_array.h	/^	int pos; \/\/current position$/;"	m	struct:icl_array_t
+pos	include/common/icl_array.h	/^	int pos; \/\/current position$/;"	m	struct:Icl_Array
 pos	thirdlib/libhiredis/include/hiredis.h	/^    size_t pos; \/* Buffer cursor *\/$/;"	m	struct:redisReader
 pos_in_file	thirdlib/libmysql/include/my_sys.h	/^  my_off_t              pos_in_file;$/;"	m	struct:st_io_cache_share
 pos_in_file	thirdlib/libmysql/include/my_sys.h	/^  my_off_t pos_in_file;$/;"	m	struct:st_io_cache
@@ -7228,7 +7234,7 @@ sint4korr	thirdlib/libmysql/include/byte_order_generic_x86_64.h	28;"	d
 sint8korr	thirdlib/libmysql/include/byte_order_generic.h	34;"	d
 sint8korr	thirdlib/libmysql/include/byte_order_generic_x86.h	54;"	d
 sint8korr	thirdlib/libmysql/include/byte_order_generic_x86_64.h	54;"	d
-size	include/common/icl_htable.h	/^	int size;$/;"	m	struct:icl_htable_t
+size	include/common/icl_htable.h	/^	int size;$/;"	m	struct:Icl_Htable
 size	thirdlib/libcurl/include/curl/curl.h	/^  curl_off_t size;$/;"	m	struct:curl_fileinfo
 size	thirdlib/libhiredis/include/dict.h	/^    unsigned long size;$/;"	m	struct:dict
 size	thirdlib/libmemcached/include/libmemcached-1.0/basic_string.h	/^  size_t size;$/;"	m	struct:memcached_string_t
@@ -7455,6 +7461,7 @@ suspend	thirdlib/libmysql/include/my_pthread.h	/^  mysql_cond_t suspend;$/;"	m	s
 swap_variables	thirdlib/libmysql/include/my_global.h	463;"	d
 system_vars	thirdlib/libmysql/include/mysql/plugin.h	/^  struct st_mysql_sys_var **system_vars;$/;"	m	struct:st_mysql_plugin	typeref:struct:st_mysql_plugin::st_mysql_sys_var
 system_vars	thirdlib/libmysql/include/plugin.h	/^  struct st_mysql_sys_var **system_vars;$/;"	m	struct:st_mysql_plugin	typeref:struct:st_mysql_plugin::st_mysql_sys_var
+t	samples/array/array.c	/^	int t;$/;"	m	struct:A	file:
 tab	thirdlib/libmysql/include/m_ctype.h	/^  uchar  *tab;$/;"	m	struct:my_uni_idx_st
 tab_from_uni	thirdlib/libmysql/include/m_ctype.h	/^  MY_UNI_IDX  *tab_from_uni;$/;"	m	struct:charset_info_st
 tab_to_uni	thirdlib/libmysql/include/m_ctype.h	/^  uint16      *tab_to_uni;$/;"	m	struct:charset_info_st
@@ -7670,7 +7677,7 @@ val_str	thirdlib/libmysql/include/mysql/plugin.h	/^  const char *(*val_str)(stru
 val_str	thirdlib/libmysql/include/plugin.h	/^  const char *(*val_str)(struct st_mysql_value *, char *buffer, int *length);$/;"	m	struct:st_mysql_value
 validate_password	thirdlib/libmysql/include/mysql/plugin_validate_password.h	/^  int (*validate_password)(mysql_string_handle password);$/;"	m	struct:st_mysql_validate_password
 validate_password	thirdlib/libmysql/include/plugin_validate_password.h	/^  int (*validate_password)(mysql_string_handle password);$/;"	m	struct:st_mysql_validate_password
-value	include/common/icl_htable.h	/^	char value[VAL_SIZE];$/;"	m	struct:icl_htable_node
+value	include/common/icl_htable.h	/^	char value[VAL_SIZE];$/;"	m	struct:Icl_Htable_Node
 value	thirdlib/libcurl/include/curl/curl.h	/^  const char     *value;$/;"	m	struct:curl_forms
 value	thirdlib/libmemcached/include/libmemcached-1.0/struct/result.h	/^  memcached_string_st value;$/;"	m	struct:memcached_result_st
 value	thirdlib/libmysql/include/my_getopt.h	/^  void       *value;                    \/**< A pointer to the variable value *\/$/;"	m	struct:my_option

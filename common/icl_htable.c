@@ -1,51 +1,57 @@
 /*
  * icl_htable.c
  *
- *  Created on: 2014-10-05
+ *  Created on: 2014-10-29
  *      Author: peterxiemin
  */
 #include <icl_hash.h>
 #include <icl_htable.h>
 
 
-icl_htable_t *icl_htable_create(int size)
+Icl_Htable *icl_htable_create(int size)
 {
-	icl_htable_t *iht = malloc(sizeof(icl_htable_t));
+	Icl_Htable *iht = malloc(sizeof(Icl_Htable));
+	if (iht == NULL) {
+		return NULL;
+	}	
 	iht->size = size;
-	iht->p = (icl_htable_node **) calloc(size, sizeof(icl_htable_node *));
+	iht->p = (Icl_Htable_Node **) calloc(size, sizeof(Icl_Htable_Node *));
+	if (iht->p == NULL) {
+		return NULL;
+	}
 	return iht;
 }
 
 
-int icl_htable_set(icl_htable_t *iht, const char *key, const char *value)
+int icl_htable_set(Icl_Htable *iht, const char *key, const char *value)
 {
 	unsigned long int n = icl_hash_func2(key, 1);
 	n = n % iht->size;
-	icl_htable_node *p = iht->p[0];// *(iht->p + n);
 
-	icl_htable_node *q = malloc(sizeof(icl_htable_node));
-	strncpy(q->key, key, strlen(key) + 1);
-	strncpy(q->value, value, strlen(value) + 1);
+	Icl_Htable_Node *q = malloc(sizeof(Icl_Htable_Node));
+	if (q == NULL) {
+		return -1;
+	}
+	snprintf(q->key, strlen(key) + 1, "%s", key);
+	snprintf(q->value, strlen(value) + 1, "%s", value);
 	q->next = NULL;
-
-	if (p == NULL) {
-		p = q;
+	if (iht->p[n] == NULL) {
+		iht->p[n] = q;
 	}
 	else {
-		while (!p->next) {
-			/* ����ظ�set�� ��ֱ�Ӻ��Ե� */
-			if (strncmp(key, p->key, strlen(key)+1) == 0) {
+		Icl_Htable_Node *p = iht->p[n];
+		do {
+			if (strcmp(key, p->key) == 0) {
 				printf("(key, value) replicate\n");
 				return 0;
 			}
-			p = p->next;
-		}
+		} while (p->next != NULL && (p=p->next));
 		p->next = q;
 	}
 	return 0;
 }
 
-int icl_htable_get(icl_htable_t *iht, const char *key, char *value,
+int icl_htable_get(Icl_Htable *iht, const char *key, char *value,
 		int value_size) {
 
 	/* sanity check */
@@ -55,36 +61,40 @@ int icl_htable_get(icl_htable_t *iht, const char *key, char *value,
 
 	unsigned long int n = icl_hash_func2(key, 1);
 	n = n % iht->size;
-	icl_htable_node *p = iht->p[0]; // *(iht->p + n);
-	while(!p) {
-		if (strncmp(key, p->key, strlen(key)+1) == 0) {
+	Icl_Htable_Node *p = iht->p[n]; // *(iht->p + n);
+	while (p != NULL) {
+		if (strcmp(key, p->key) == 0) {
 			snprintf(value, value_size, "%s", p->value);
 			return 0;
 		}
-		p->next;
+		p = p->next;
 	}
 	value = NULL;
 	return -1;
 }
 
-int icl_htable_destroy(icl_htable_t *iht)
+int icl_htable_destroy(Icl_Htable *iht)
 {
 	int i, n = iht->size;
 	for (i = 0; i < n; i++) {
-		icl_htable_node *p = iht->p[i];
-		icl_htable_node *q = p->next;
-		while (!p) {
-			if (q == NULL) {
-				free(p);
+		if (iht->p[i] == NULL) {
+			continue;
+		}
+		Icl_Htable_Node *t = iht->p[i];
+		Icl_Htable_Node *k = t->next;
+		while (1) {
+			if (k == NULL) {
+				free(t);
+				break;
 			}
-			else {
-				free(p);
-				p = q; q = q->next;
-			}
+			free(t);
+			t = k; k = k->next;
 		}
 	}
-	if (!iht->p)
+	if (iht->p != NULL) {
 		free(iht->p);
-	if (!iht)
+	}
+	if (iht != NULL) {
 		free(iht);
+	}
 }

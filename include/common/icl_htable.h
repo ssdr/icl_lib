@@ -12,25 +12,26 @@
 #include <icl_hash.h>
 #include <stdio.h>
 
-typedef struct icl_htable_node icl_htable_node;
+typedef struct Icl_Htable_Node Icl_Htable_Node;
 
 #define KEY_SIZE 64
 #define VAL_SIZE 128
 
-struct icl_htable_node
+struct Icl_Htable_Node
 {
 	char key[KEY_SIZE];
 	char value[VAL_SIZE];
-	icl_htable_node *next;
+	Icl_Htable_Node *next;
 };
 
-typedef struct icl_htable_t icl_htable_t;
-struct icl_htable_t
+typedef struct Icl_Htable Icl_Htable;
+
+struct Icl_Htable
 {
-	icl_htable_node **p;
+	Icl_Htable_Node **p;
 	int size;
 };
 
-icl_htable_t *icl_htable_create(int size);
+Icl_Htable *icl_htable_create(int size);
 
 #endif /*ICL_HTABLE_H_*/

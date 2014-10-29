@@ -13,16 +13,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct icl_array_t {
+struct Icl_Array {
 	int nelt;
 	int pos; //current position
 	int elt_size;
 	void *p; //start point
 };
-typedef struct icl_array_t icl_array_t;
-icl_array_t *icl_array_create(int n, int size);
-void *icl_array_push_back(icl_array_t *iat);
-int icl_array_append(icl_array_t *iat);
-int icl_array_destroy(icl_array_t *iat);
+typedef struct Icl_Array Icl_Array;
+
+Icl_Array *icl_array_create(int n, int size);
+
+void *icl_array_index(Icl_Array *iay, int idx);
+
+void *icl_array_push_back(Icl_Array *iay);
+
+int icl_array_append(Icl_Array *iay);
+
+int icl_array_destroy(Icl_Array *iay);
+
 #endif /*ICL_ARRAY_H_*/
 

@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-#include <icl_fork.h>
+#include <icl_unix.h>
 
 int
 main(int argc, char *argv[])

@@ -71,9 +71,7 @@ int icl_http_parse(void *data, int len)
 	size_t nparsed = http_parser_execute(&parser, &settings, data, len);
 
 	if (nparsed != (size_t)len) {
-		//printf(stderr,
-		//		"Error: %s (%s)\n",
-		//		http_errno_name(HTTP_PARSER_ERRNO(&parser)));
+		fprintf(stderr, "Error: %s (%s)\n", http_errno_name(HTTP_PARSER_ERRNO(&parser)));
 		goto fail;
 	}
 
@@ -90,7 +88,7 @@ static void * thread_start(void *arg)
 	int servfd = tinfo->servfd;
 	int ret = thread_process(servfd);
 	if (ret < 0) {
-		printf("thread_process error\n");
+		//printf("thread_process error\n");
 	}
 	return (void *)0;
 }
@@ -155,7 +153,7 @@ int main(int argc, char *argv[])
 	servaddr.sin_family = AF_INET;
 	servaddr.sin_port = htons(7744);
 	servaddr.sin_addr.s_addr = INADDR_ANY;
-	int t_num;
+	int t_num = 0;
 	char ch;
 
 	while((ch = getopt(argc, argv, "t:")) > 0) {
@@ -164,7 +162,7 @@ int main(int argc, char *argv[])
 				t_num = atoi(optarg);
 				break;
 			default:
-				printf("args error\n");
+				//printf("args error\n");
 				return -1;
 		}
 	}
@@ -173,7 +171,7 @@ int main(int argc, char *argv[])
 	void *res;
 	int ret = pthread_attr_init(&attr);
 	if (ret != 0) {
-		printf("pthread_attr_init error (%d)(%s) \n",errno, strerror(errno));
+		//printf("pthread_attr_init error (%d)(%s) \n",errno, strerror(errno));
 		return -1;
 	}
 	
@@ -200,17 +198,17 @@ int main(int argc, char *argv[])
 	
 	ret = pthread_attr_destroy(&attr);
 	if (ret != 0) {
-		printf("pthread_attr_init error (%d)(%s) \n",errno, strerror(errno));
+		//printf("pthread_attr_init error (%d)(%s) \n",errno, strerror(errno));
 		return -1;
 	}
 	
 	for (i = 0; i < t_num; i++) {
 		ret = pthread_join(tinfo[i].thread_id, &res);
 		if (ret != 0) {
-			printf("pthread_attr_init error (%d)(%s) \n",errno, strerror(errno));
+			//printf("pthread_attr_init error (%d)(%s) \n",errno, strerror(errno));
 			return -1;
 		}
-		printf("thread %d return value %s\n", tinfo[i].thread_id, (char *)res);
+		//printf("thread %d return value %s\n", tinfo[i].thread_id, (char *)res);
 		free(res);
 	}
 	free(tinfo);

@@ -5,15 +5,41 @@
  *      Author: peterxmw
  */
 
-#include "icl_list.h"
+#include <icl_list.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <assert.h>
 
-//整体的结构是一个闭环
+//整体的结构是一个闭环, 并且是一个双向链表
+/*    
+ *  其中H这个节点并不存放任何任何数据 
+ *                 
+ *   ------------------------
+ *   |                      |
+ *  \/                      |
+ * ----    ----    ----    ----  
+ * | H|--->|  |--->|  |--->|  |
+ * |  |<---|  |<---|  |<---|  |
+ * ----    ----    ----    ----
+ *  |                       /\ 
+ *  |                       |
+ *  -------------------------
+ *
+ *
+ *
+ */
 
-ICL_LIST *icl_list_init()
+
+
+static assert_null(Icl_List *h) 
 {
-	ICL_LIST *h = (ICL_LIST*) malloc ( sizeof(ICL_LIST) );
+	assert(h != NULL);
+}
+
+
+Icl_List *icl_list_init()
+{
+	Icl_List *h = (Icl_List*) malloc ( sizeof(Icl_List) );
 	if (h == NULL)
 	{
 		return NULL;
@@ -23,17 +49,20 @@ ICL_LIST *icl_list_init()
 	return h;
 }
 
-int icl_list_empty(ICL_LIST *h)
+int icl_list_empty(Icl_List *h)
 {
+	assert_null(h);
+
 	if (h->prev == h)
 		return 0;
 	else
 		return 1;
 }
 
-int icl_list_size(ICL_LIST *h)
+int icl_list_size(Icl_List *h)
 {
-	ICL_LIST *p;
+	assert_null(h);
+	Icl_List *p;
 	int count = 0;
 	for(p = h; p->next != h; p=p->next)
 	{
@@ -42,12 +71,14 @@ int icl_list_size(ICL_LIST *h)
 	return count;
 }
 
-int icl_list_push_back(ICL_LIST *h, void *d)
+int icl_list_push_back(Icl_List *h, void *d)
 {
-	ICL_LIST *q = (ICL_LIST*) malloc (sizeof(ICL_LIST));
+	assert_null(h);
+
+	Icl_List *q = (Icl_List*) malloc (sizeof(Icl_List));
 	if (q == NULL)
 	{
-		printf("%s(%d) malloc ICL_LIST fail.", __FILE__, __LINE__);
+		printf("%s(%d) malloc Icl_List fail.", __FILE__, __LINE__);
 		return -1;
 	}
     //如果只有h一个节点， 第二点如何加入？
@@ -60,12 +91,13 @@ int icl_list_push_back(ICL_LIST *h, void *d)
 	return 0;
 }
 
-int icl_list_push_front(ICL_LIST *h, void *d)
+int icl_list_push_front(Icl_List *h, void *d)
 {
-	ICL_LIST *q = (ICL_LIST*) malloc (sizeof(ICL_LIST));
+	assert_null(h);
+	Icl_List *q = (Icl_List*) malloc (sizeof(Icl_List));
 	if (q == NULL)
 	{
-		printf("%s(%d) malloc ICL_LIST fail.", __FILE__, __LINE__);
+		printf("%s(%d) malloc Icl_List fail.", __FILE__, __LINE__);
 		return -1;
 	}
 	q->data = d;
@@ -76,9 +108,10 @@ int icl_list_push_front(ICL_LIST *h, void *d)
 	return 0;
 }
 
-ICL_LIST *icl_list_pop_back(ICL_LIST *h)
+Icl_List *icl_list_pop_back(Icl_List *h)
 {
-	ICL_LIST *q;
+	assert_null(h);
+	Icl_List *q;
 	q = h->prev;
 	q->prev->next = h;
 	h->prev = q->prev;
@@ -87,9 +120,10 @@ ICL_LIST *icl_list_pop_back(ICL_LIST *h)
 	return q;
 }
 
-ICL_LIST *icl_list_pop_front(ICL_LIST *h)
+Icl_List *icl_list_pop_front(Icl_List *h)
 {
-	ICL_LIST *q;
+	assert_null(h);
+	Icl_List *q;
 	q = h->next;
 	q->next->prev = h;
 	h->next = q->next;
@@ -99,13 +133,26 @@ ICL_LIST *icl_list_pop_front(ICL_LIST *h)
 }
 
 
-int icl_list_clear(ICL_LIST *h)
+int icl_list_destroy(Icl_List *h)
 {
-	ICL_LIST *q;
-	while(icl_list_size(h) == 0)
+	assert_null(h);
+	Icl_List *q;
+	while(icl_list_size(h) != 0)
 	{
 		q = icl_list_pop_front(h);
-		free(q);
+		icl_list_free(q);
 	}
+	icl_list_free(h);
     return 0;
+}
+
+int icl_list_free(Icl_List *p)
+{
+	if (p->data != NULL) {
+		free(p->data);
+	}
+	if (p != NULL) {
+		free(p);
+	}
+	return 0;
 }

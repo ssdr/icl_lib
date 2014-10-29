@@ -54,7 +54,7 @@ OBJ_DST=$(COMMON_OBJS) $(NET_OBJS) $(PROC_OBJS)
 .PHONY = all clean
 PROC=
 
-all: clean $(OBJ_DST)
+all:	$(OBJ_DST)
 	$(CC) $(CFLAG) -o $(PROC) $(OBJ_DST) $(LDFLAGS)
 	
 $(COMMON_DIR)/%.o:	%.c

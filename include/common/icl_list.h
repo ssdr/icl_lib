@@ -5,31 +5,33 @@
  *      Author: peterxmw
  */
 
-#ifndef ICL_LIST_H_
-#define ICL_LIST_H_
+#ifndef Icl_List_H_
+#define Icl_List_H_
 
-typedef struct icl_list ICL_LIST;
+typedef struct icl_list Icl_List;
 
 struct icl_list {
 	void *data;
-	ICL_LIST *prev;
-	ICL_LIST *next;
+	Icl_List *prev;
+	Icl_List *next;
 };
 
-ICL_LIST* icl_list_init();
+Icl_List* icl_list_init();
 
-int icl_list_empty(ICL_LIST *h);
+int icl_list_empty(Icl_List *h);
 
-int icl_list_size(ICL_LIST *h);
+int icl_list_size(Icl_List *h);
 
-int icl_list_push_back(ICL_LIST *h, void *d);
+int icl_list_push_back(Icl_List *h, void *d);
 
-int icl_list_push_front(ICL_LIST *h, void *d);
+int icl_list_push_front(Icl_List *h, void *d);
 
-ICL_LIST *icl_list_pop_back(ICL_LIST *h);
+Icl_List *icl_list_pop_back(Icl_List *h);
 
-ICL_LIST *icl_list_pop_front(ICL_LIST *h);
+Icl_List *icl_list_pop_front(Icl_List *h);
 
-int icl_list_clear(ICL_LIST *h);
+int icl_list_clear(Icl_List *h);
 
-#endif /* ICL_LIST_H_ */
+int icl_list_destroy(Icl_List *p);
+
+#endif /* Icl_List_H_ */

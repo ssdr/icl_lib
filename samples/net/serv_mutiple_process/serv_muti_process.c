@@ -157,9 +157,6 @@ int main(int argc, char *argv[])
 		//printf("listen error\n");
 		return -1;
 	}
-
-
-
 	int i;
 	for (i = 0; i < pro_num; i++) {
 		pid_t pid = fork();

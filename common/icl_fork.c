@@ -45,20 +45,29 @@ int icl_setenv(const char *name, const char *value, int rewrite)
 
 int icl_getopt(int argc, char * const argv[], const char *optstring)
 {
+	int num = 0;
 	char ch;
-	switch(ch = getopt(argc, argv, "hr:t:f:X:")) {
-		case 'h':
-			break;
-		case 'r':
-			break;
-		case 't':
-			break;
-		case 'f':
-			break;
-		case 'X':
-			break;
-		default:
-			break;
+	/*
+	 * hr::t:f:X: 中 ":" 表示-t 后必须跟参数 "::"表示-r 后面可以跟参数也可以不跟参数
+	 * "" 表示h后面不跟参数。也可以后面一个参数都不跟
+	 */
+	while((ch = getopt(argc, argv, "hr::t:f:X:")) != -1) {
+		switch(ch) {
+			case 'h':
+				/* ./a.out -t 3 */
+				num = atoi(optarg);		
+				break;
+			case 'r':
+				break;
+			case 't':
+				break;
+			case 'f':
+				break;
+			case 'X':
+				break;
+			default:
+				break;
+		}
 	}
 }
 
@@ -86,4 +95,4 @@ int icl_pipe(int pipefd[2])
 	}
 	return 0;
 }
-	
+

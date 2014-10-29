@@ -39,45 +39,49 @@ int icl_accept(int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen)
 /* block , 贪心算法， 有多少去多少， 直到遇到结束标志
  * 如果没有遇到结束标记，就会阻塞
  * */
-int icl_net_peek_read(int clifd, char **buf, int *ret_len, const char *peek)
+int icl_net_peek_read(int clifd, char **buf, int *ret_info, const char *peek)
 {
 	/* strict check for usr input */
-	char peek_def[2];
-	peek_def[0] = 13; /* CR */
-	peek_def[1] = 10; /* LF */
 	if (peek == NULL) {
+		char peek_def[2];
+		/*
+		 * \r\n
+		 */
+		peek_def[0] = 13; /* CR */
+		peek_def[1] = 10; /* LF */
 		peek = peek_def;
 	}
-	
+
 	*buf =  malloc(MAXLINE);
-	int left = MAXLINE;
-	int used = 0;
-	char p[MAXLINE + 1] ;
 	int size = MAXLINE;
-	while (1) {
+	int left = MAXLINE;
+	char p[MAXLINE + 1] ;
+	int used = 0;
+	do{
+		memset(p, 0, MAXLINE + 1);
 		int ret = read(clifd, p, MAXLINE);
-		if (ret <= 0) return -1;
-		p[ret] = 0; //for strstr
+		if (ret <= 0) {
+			*ret_info = ret;
+			return -1;
+		}
 		if (ret > left) {
 			size *= 2;
 			/* safe alloc */
 			char *new_buf = realloc(*buf, size);
 			if (new_buf == NULL) {
-				*ret_len = 0;
+				*ret_info = -1;
 				free(*buf);
 				return -1;
 			}
 			*buf = new_buf;
 			left = size - used;
 		}
-		memcpy(&(*buf[used]), p, ret);
+		memcpy(&((*buf)[used]), p, ret);
 		used += ret;
 		left -= ret;
-		if (strstr(p, peek) != 0) {
-			*ret_len = used;
-			return 0;
-		}
-	}
+	} while(strstr(p, peek) == 0);
+	*ret_info = used;
+	return 0;
 }
 
 /* block len是多少，就取多少，如果内核缓冲区大于len
@@ -176,7 +180,7 @@ int icl_getsockopt(int sockfd, int level, int optname,
 	 * optval int *
 	 */
 	return getsockopt(sockfd, level, optname, optval, optlen);
-	
+
 }
 /*
  * send 的阻塞条件，经过测试， 如果send(fd, buf, size);如果
@@ -195,6 +199,14 @@ int icl_setsockopt(int sockfd, int level, int optname,
 int icl_setnonblocking(int sockfd)
 {
 	if (fcntl(sockfd, F_SETFL, fcntl(sockfd, F_GETFD, 0)|O_NONBLOCK) == -1) {
+		return -1;
+	}
+	return 0;
+}
+
+int icl_set_close_exec(int fd)
+{
+	if (fcntl(fd, F_SETFD, FD_CLOEXEC) == -1) {
 		return -1;
 	}
 	return 0;

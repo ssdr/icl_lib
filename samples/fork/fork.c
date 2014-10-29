@@ -16,30 +16,32 @@ int main(int argc, char argv[])
 {
 	pid_t pid = fork();
 	int fd = open("/tmp/a.txt", O_CREAT|O_WRONLY|O_TRUNC);
-	int fdbak = dup(fd);
 	switch (pid) {
 	case -1:
 		printf("fork error(%d:%s)\n", errno, strerror(errno));
 		return -1;
 	case 0:
 		/*child*/
-		sleep(5);
 		break;
-	default:
-		printf("parent close fd %d\n", fd);
-		close(fd);
-		return -1;
+	default: {
+				 char buf[] = "parent";
+				 int ret = write(fd, buf, sizeof(buf));
+				 if (ret == -1) {
+					 printf("parent write error(%d:%s)\n", errno, strerror(errno));
+				 }
+				 close(fd);
+				 return -1;
+			 }
 	}
 	/*child*/
-	char buf[] = "hello world";
-	int ret = write(fdbak, buf, sizeof(buf));
+	char buf[] = "child";
+	int ret = write(fd, buf, sizeof(buf));
 	if (ret == -1) {
-		printf("write error(%d:%s)\n", errno, strerror(errno));
+		printf("child write error(%d:%s)\n", errno, strerror(errno));
 		return -1;
 	}
-	printf("child over\n");
-	printf("child close fd %d\n", fdbak);
-	close(fdbak);
+	printf("child close fd %d\n", fd);
+	close(fd);
 	return 0;
 }
 

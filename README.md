@@ -11,6 +11,7 @@ icl_lib
 4 对select和epoll进行了封装
 5 实现了简单的tcp客户端程序
 6 对常用的网络API，如fcntl，set/getsockopt等函数进行了封装
+7 重点对socket的read和write进行了不用类型的封装
 
 二、高级数据结构
 1、icl_lib/samples/array

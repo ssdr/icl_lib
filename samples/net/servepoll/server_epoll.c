@@ -59,6 +59,7 @@ int epoll_dispatch(int epollfd, int listen_sock, struct epoll_event events[])
 		}
 
 		for (n = 0; n < nfds; ++n) {
+			printf("nfds: %d n:%d\n", nfds, n);
 			if (events[n].data.fd == listen_sock) {
 				int sock_len = sizeof(struct sockaddr);
 				conn_sock = accept(listen_sock, (struct sockaddr *) &local, (socklen_t *)&sock_len);
@@ -76,8 +77,8 @@ int epoll_dispatch(int epollfd, int listen_sock, struct epoll_event events[])
 			} else {
 				ev = events[n];
 				char rbuffer[MAXLINE];
-				int n = read(ev.data.fd, rbuffer, MAXLINE);
-				if (n <= 0) {
+				int ret = read(ev.data.fd, rbuffer, MAXLINE);
+				if (ret <= 0) {
 					if (epoll_ctl(epollfd, EPOLL_CTL_DEL, ev.data.fd, &ev) == -1) {
 						perror("epoll_ctl: fd");
 						exit(EXIT_FAILURE);
@@ -85,9 +86,9 @@ int epoll_dispatch(int epollfd, int listen_sock, struct epoll_event events[])
 					close(ev.data.fd);
 				}
 				else {
-					rbuffer[n] = 0;
-					printf("read ok, rbuffer:%s\n", rbuffer);
-					write(ev.data.fd, rbuffer, n);
+					rbuffer[ret] = 0;
+					printf("read ok, rbuffer:%d\n", ret);
+					write(ev.data.fd, rbuffer, ret);
 					printf("send ok!\n");
 				}
 			}
@@ -115,7 +116,7 @@ int main(int argc, char *argv[])
 				exit(-1);
 		}
 	}	
-	
+
 	/* Set up listening socket, 'listen_sock' (socket(),
 	   bind(), listen()) */
 	listen_sock = socket(AF_INET, SOCK_STREAM, 0);

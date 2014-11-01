@@ -12,6 +12,7 @@
 #include <unistd.h>
 #include <errno.h>
 
+int static_test = 10;
 int main(int argc, char argv[])
 {
 	pid_t pid = fork();
@@ -29,6 +30,10 @@ int main(int argc, char argv[])
 				 if (ret == -1) {
 					 printf("parent write error(%d:%s)\n", errno, strerror(errno));
 				 }
+				 int fd = open("/tmp/a.txt", O_CREAT|O_WRONLY|O_TRUNC);
+				 printf("parent fd: %d\n", fd);
+				 static_test = 20;
+				 printf("static_test : %d\n", static_test);
 				 close(fd);
 				 return -1;
 			 }
@@ -40,8 +45,14 @@ int main(int argc, char argv[])
 		printf("child write error(%d:%s)\n", errno, strerror(errno));
 		return -1;
 	}
+ 	int fd2 = open("/tmp/a.txt", O_CREAT|O_WRONLY|O_TRUNC);
+	printf("child fd: %d\n", fd2);
+	static_test = 30;
+	printf("static_test : %d\n", static_test);
+	
 	printf("child close fd %d\n", fd);
 	close(fd);
+	close(fd2);
 	return 0;
 }
 

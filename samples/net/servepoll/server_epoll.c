@@ -23,44 +23,34 @@ int setnonblocking(int sockfd)
 	return 0;
 }
 
-int main(int argc, char *argv[])
+void usage()
 {
-	int n;
-	char buf[MAXLINE];
-	struct epoll_event ev, events[MAX_EVENTS];
-	int listen_sock, conn_sock, nfds, epollfd;
-	/* Set up listening socket, 'listen_sock' (socket(),
-	   bind(), listen()) */
-	listen_sock = socket(AF_INET, SOCK_STREAM, 0);
-	struct sockaddr_in servaddr, local;
-	servaddr.sin_family = AF_INET;
-	servaddr.sin_port = htons(7744);
-	servaddr.sin_addr.s_addr = INADDR_ANY;
-	bzero(&(servaddr.sin_zero),8);
-	int ret = bind(listen_sock, (struct sockaddr *)&servaddr, sizeof(struct sockaddr));
-	if (ret < 0) {
-		handle_error("bind error port 7744:");
-		return -1;
-	}
-	ret = listen(listen_sock, 1024);
-	if (ret < 0) {
-		printf("listen error\n");
-		return -1;
-	}
-	/////////////////////////////////////////
+	printf("./a -t 3");
+}
 
-	epollfd = epoll_create(10);
-	if (epollfd == -1) {
-		perror("epoll_create");
-		exit(EXIT_FAILURE);
+int parent_process(int pnum, pid_t pids[])
+{
+	int i;
+	for (i = 0; i < pnum; i++) {
+		int ret = waitpid(pids[i], NULL, 0);
+		if (ret < 0) {
+			printf("waitpid error pid:%d\n", pids[i]);
+		}
 	}
+	return 0;
+}
 
-	ev.events = EPOLLIN;
-	ev.data.fd = listen_sock;
-	if (epoll_ctl(epollfd, EPOLL_CTL_ADD, listen_sock, &ev) == -1) {
-		perror("epoll_ctl: listen_sock");
-		exit(EXIT_FAILURE);
-	}
+int child_process(int epollfd, int listen_sock, struct epoll_event events[])
+{
+	int ret = epoll_dispatch(epollfd, listen_sock, events);
+	return ret;
+}
+
+int epoll_dispatch(int epollfd, int listen_sock, struct epoll_event events[])
+{
+	int nfds = 0, n, conn_sock;
+	struct epoll_event ev;
+	struct sockaddr_in local;
 	for (;;) {
 		nfds = epoll_wait(epollfd, events, MAX_EVENTS, -1);
 		if (nfds == -1) {
@@ -103,5 +93,88 @@ int main(int argc, char *argv[])
 			}
 		}
 	}
+}
+
+
+int main(int argc, char *argv[])
+{
+	int n, pnum = 0;
+	char buf[MAXLINE];
+	struct epoll_event ev, events[MAX_EVENTS];
+	int listen_sock, epollfd;
+	struct sockaddr_in  servaddr;
+
+	char ch;
+	while ((ch=getopt(argc, argv, "t:")) != -1) {
+		switch (ch) {
+			case 't':
+				pnum = atoi(optarg);
+				break;
+			default:
+				usage();
+				exit(-1);
+		}
+	}	
+	
+	/* Set up listening socket, 'listen_sock' (socket(),
+	   bind(), listen()) */
+	listen_sock = socket(AF_INET, SOCK_STREAM, 0);
+	servaddr.sin_family = AF_INET;
+	servaddr.sin_port = htons(7744);
+	servaddr.sin_addr.s_addr = INADDR_ANY;
+	bzero(&(servaddr.sin_zero),8);
+	int ret = bind(listen_sock, (struct sockaddr *)&servaddr, sizeof(struct sockaddr));
+	if (ret < 0) {
+		handle_error("bind error port 7744:");
+		return -1;
+	}
+	ret = listen(listen_sock, 1024);
+	if (ret < 0) {
+		printf("listen error\n");
+		return -1;
+	}
+	/////////////////////////////////////////
+
+	epollfd = epoll_create(10);
+	if (epollfd == -1) {
+		perror("epoll_create");
+		exit(EXIT_FAILURE);
+	}
+
+	ev.events = EPOLLIN;
+	ev.data.fd = listen_sock;
+	if (epoll_ctl(epollfd, EPOLL_CTL_ADD, listen_sock, &ev) == -1) {
+		perror("epoll_ctl: listen_sock");
+		exit(EXIT_FAILURE);
+	}
+
+	pid_t pids[pnum];
+	int i;
+	pid_t pid;
+	for (i = 0; i < pnum; i++) {
+		pid = fork();
+		switch (pid) {
+			case -1: {
+						 perror("fork error\n");
+						 exit(-1);
+					 }
+			case 0: {
+						/* parent */
+						printf("child:%d\n", i);
+						child_process(epollfd, listen_sock, events);
+						/* 这里直接退出，不会进入接下来的循环工作 */
+						exit(0);
+
+					}
+			default: {
+						 /* child */
+						 pids[i] = pid;
+						 printf("parent:%d\n", pid);
+						 break;
+
+					 }
+		}
+	}
+	parent_process(pnum, pids);
 	return 0;
 }

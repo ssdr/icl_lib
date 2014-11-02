@@ -13,14 +13,17 @@ icl_lib
 
 三种常用模型支持http协议解析（引入第三方http_parse)，可以使用webbench -cxx -txx http://xxx.xxx.xxx/xxx 进行性能测试
 
-4 对select和epoll进行了封装
+4、 对select和epoll进行了封装
 
-5 实现了简单的tcp客户端程序
+5、 实现了简单的tcp客户端程序
 
-6 对常用的网络API，如fcntl，set/getsockopt等函数进行了封装
+6、 对常用的网络API，如fcntl，set/getsockopt等函数进行了封装
 
-7 重点对socket的read和write进行了不用类型的封装
+7、 重点对socket的read和write进行了不用类型的封装
 
+8、 添加基于epoll的多进程模型
+
+9、 添加基于libevent的单进程单线程模型
 
 二、高级数据结构
 

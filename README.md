@@ -57,6 +57,9 @@ icl_lib
 
 4、引入libcurl 详见icl_lib/samples/curl
 
+5、引入libevent， 详见icl_lib/samples/serv_libevent
+
+
 引入常用的第三方库并在samples实现了常用的增删查改等操作
 
 

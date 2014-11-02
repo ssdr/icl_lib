@@ -100,6 +100,7 @@ int icl_net_read(int clifd, char *buf, int len)
 	}
 	while (left > 0) {
 		used = read(clifd, p, left);
+		printf("##########[icl_net_read] read ret :%d\n", used);
 		if (used > 0) {
 			left -= used;
 			p += used;
@@ -130,7 +131,7 @@ int icl_net_send(int clifd, const char *buf, int len)
 	const char *p = buf;
 	// sanity check
 	if (clifd < 0) {
-		printf("icl_cli_confd init error.");
+		printf("icl_cli_confd init error.\n");
 		return (-1);
 	}
 	while (left > 0)
@@ -145,7 +146,10 @@ int icl_net_send(int clifd, const char *buf, int len)
 			p += used;
 		}
 		else {
-			printf("send error , error: %s(%d)", strerror(errno), errno);
+			printf("send error , error: %s(%d)\n", strerror(errno), errno);
+			if (errno == EAGAIN || errno == EWOULDBLOCK) {
+				continue;
+			}
 			return -1;
 		}
 	}

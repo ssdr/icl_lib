@@ -56,27 +56,20 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 	printf("icl_connect ok!\n");
-	char buffer[MAXLINE/2];
-	memset(buffer, 'a', MAXLINE/2-3);
-	buffer[MAXLINE/2-1] = 0;
-	buffer[MAXLINE/2-2] = 10;
-	buffer[MAXLINE/2-3] = 13;
-	//ret = write(clifd, buffer, strlen(buffer));
-	int sz =  get_def_sbuf(clifd) * 2 - 2096;
-	char buffer2[sz];
-	ret = write(clifd, buffer2, sz);
+	int max_block_len =  get_def_sbuf(clifd) * 2 - 2096;
+	char buffer2[max_block_len];
+	ret = write(clifd, buffer2, max_block_len);
 	if (ret <= 0) {
 		printf("icl_net_send error\n");
 		return -1;
 	}
 	printf("icl_net_send ok! ret: %d\n", ret);
-	memset(buffer, 0, MAXLINE/2);
-	ret = icl_net_read(clifd, buffer, MAXLINE/2-1);
+	ret = icl_net_read(clifd, buffer2, max_block_len);
 	if (ret < 0) {
 		printf("icl_net_read error\n");
 		return -1;
 	}
-	printf("icl_net_read ok, buffer: %s\n", buffer);
+	printf("icl_net_read ok!, buffer2: %.*s\n", max_block_len, buffer2);
 	printf("def_buf: %d\n", get_def_sbuf(clifd));
 	close(clifd);
 	return 0;

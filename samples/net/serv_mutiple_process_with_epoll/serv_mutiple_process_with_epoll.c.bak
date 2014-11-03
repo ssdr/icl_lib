@@ -28,31 +28,6 @@ void usage()
 	printf("./a -t 3");
 }
 
-/*
- * epoll在多进程模型下，每个进程共享epollfd,则会出现read失败，返回（9）
- * Bad file descriptor.如果不共享，而是每个进程各自独有epollfd,则不会
- * 出现问题，目前还不清楚原因，需要结合epoll内部机制分析。libevent也遇
- * 到类似情况，需要在fork后， 对event_base，调用event_reinit，才能保证
- * 程序运行正常。
- */
-int epoll_base_init(int listen_sock, int *epollfd)
-{
-	struct epoll_event ev;
-	*epollfd = epoll_create(10);
-	if (*epollfd == -1) {
-		perror("epoll_create");
-		exit(EXIT_FAILURE);
-	}
-	
-	ev.events = EPOLLIN;
-	ev.data.fd = listen_sock;
-	if (epoll_ctl(*epollfd, EPOLL_CTL_ADD, listen_sock, &ev) == -1) {
-		perror("epoll_ctl: listen_sock");
-		exit(EXIT_FAILURE);
-	}
-}
-
-
 int parent_process(int pnum, pid_t pids[])
 {
 	int i;
@@ -65,18 +40,29 @@ int parent_process(int pnum, pid_t pids[])
 	return 0;
 }
 
-int child_process(int epollfd, int listen_sock, struct epoll_event events[])
+int child_process(int listen_sock, struct epoll_event events[])
 {
-	int ret = epoll_dispatch(epollfd, listen_sock, events);
+	int ret = epoll_dispatch(listen_sock, events);
 	return ret;
 }
 
-int epoll_dispatch(int epollfd, int listen_sock, struct epoll_event events[])
+int epoll_dispatch(int listen_sock, struct epoll_event events[])
 {
-	int nfds = 0, n, conn_sock;
+	int nfds = 0, n, epollfd, conn_sock;
 	struct epoll_event ev;
 	struct sockaddr_in local;
+	epollfd = epoll_create(10);
+	if (epollfd == -1) {
+		perror("epoll_create");
+		exit(EXIT_FAILURE);
+	}
 
+	ev.events = EPOLLIN;
+	ev.data.fd = listen_sock;
+	if (epoll_ctl(epollfd, EPOLL_CTL_ADD, listen_sock, &ev) == -1) {
+		perror("epoll_ctl: listen_sock");
+		exit(EXIT_FAILURE);
+	}
 	for (;;) {
 		nfds = epoll_wait(epollfd, events, MAX_EVENTS, -1);
 		if (nfds == -1) {
@@ -105,36 +91,35 @@ int epoll_dispatch(int epollfd, int listen_sock, struct epoll_event events[])
 				char rbuffer[MAXLINE];
 				int ret = read(ev.data.fd, rbuffer, MAXLINE);
 				if (ret <= 0) {
-					epoll_close(epollfd, &ev, "read");
+					epoll_close(epollfd, &ev);
 				}
 				else {
-					printf("read ok, rbuffer:%d\n", ret);
+					//printf("read ok, rbuffer:%d\n", ret);
 					//int m = icl_net_send(ev.data.fd, sendbuf, 10);
 					int m = write(ev.data.fd, rbuffer, ret);
 					if (m < 0) {
-						printf("write error\n");
+						//printf("write error\n");
 					}
 					else {
-						printf("write ok! :%d\n", m);
+						//printf("write ok! :%d\n", m);
 					}
-					epoll_close(epollfd, &ev, "write");
+					epoll_close(epollfd, &ev);
 				}
 			}
 		}
 	}
 }
 
-int epoll_close(int epollfd, struct epoll_event *ev, char *type)
+int epoll_close(int epollfd, struct epoll_event *ev)
 {
 	if (epoll_ctl(epollfd, EPOLL_CTL_DEL, ev->data.fd, ev) == -1) {
-		printf("epoll_ctl: epoll_close: %s, %d, %s\n", type, errno, strerror(errno));
+		perror("epoll_ctl: fd");
 		exit(EXIT_FAILURE);
 	}
-	printf("close client fd :%d\n", ev->data.fd);
+	//printf("close client fd :%d\n", ev->data.fd);
 	close(ev->data.fd);
+
 }
-
-
 
 int main(int argc, char *argv[])
 {
@@ -174,8 +159,9 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 	/////////////////////////////////////////
-	epoll_base_init(listen_sock, &epollfd);
-	/////////////////////////////////////////
+
+
+
 	pid_t pids[pnum];
 	int i;
 	pid_t pid;
@@ -189,7 +175,7 @@ int main(int argc, char *argv[])
 			case 0: {
 						/* parent */
 						printf("child:%d\n", i);
-						child_process(epollfd, listen_sock, events);
+						child_process(listen_sock, events);
 						/* 这里直接退出，不会进入接下来的循环工作 */
 						exit(0);
 

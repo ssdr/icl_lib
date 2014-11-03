@@ -104,5 +104,16 @@ void icl_assert(int torf)
 	 */
 	assert(torf);
 }
+
+void icl_prtf_wtpid(char *fmt, ...)
+{
+	va_list args;
+	va_start(args, fmt);
+	char buf[128];
+	int len = snprintf(buf, 128, "[%d]\t", getpid());
+	vsprintf(&buf[len], fmt, args);
+	printf("%s", buf);
+	va_end(args);
+}
 	
 

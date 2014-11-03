@@ -8,6 +8,10 @@
 
 #include <icl_array.h>
 #include <assert.h>
+/* TODO:
+ * 添加array的删除功能
+ */
+
 /*
  * create 和 init合二为一
  */
@@ -24,9 +28,10 @@ void *icl_array_index(Icl_Array *iay, int idx)
 {
 	assert(iay != NULL);
 	int index = idx;
-	if (idx > iay->pos) {
-		index = iay->pos;
-	}
+	//if (idx > iay->pos) {
+	//	index = iay->pos;
+	//}
+	assert(index <= iay->pos);
 	return iay->p + (iay->elt_size * index);
 }
 

@@ -34,4 +34,11 @@ struct Icl_Htable
 
 Icl_Htable *icl_htable_create(int size);
 
+int icl_htable_set(Icl_Htable *iht, const char *key, const char *value);
+
+int icl_htable_get(Icl_Htable *iht, const char *key, char *value, int value_size);
+
+int icl_htable_del(Icl_Htable *iht, const char *key);
+
+int icl_htable_destroy(Icl_Htable *iht);
 #endif /*ICL_HTABLE_H_*/

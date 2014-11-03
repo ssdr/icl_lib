@@ -15,7 +15,7 @@
 #include <string.h>
 #include <unistd.h> /*fork*/
 #include <assert.h>
-
+#include <stdarg.h>
 
 char *icl_getenv(const char *name);
 
@@ -37,4 +37,5 @@ int icl_pipe(int pipefd[2]);
 
 void icl_assert(int torf);
 
+void icl_prtf_wtpid(char *fmt, ...);
 #endif /*ICL_FORK_H_*/

@@ -1,12 +1,15 @@
 /*
  * icl_htable.c
  *
- *  Created on: 2014-10-29
+ *  Created on: 2014-11-03
  *      Author: peterxiemin
  */
 #include <icl_hash.h>
 #include <icl_htable.h>
 
+/* TODO:
+ * 添加htable的删除功能
+ */
 
 Icl_Htable *icl_htable_create(int size)
 {
@@ -25,6 +28,10 @@ Icl_Htable *icl_htable_create(int size)
 
 int icl_htable_set(Icl_Htable *iht, const char *key, const char *value)
 {
+	/* sanity check */
+	if (key == NULL) {
+		return -1;
+	}
 	unsigned long int n = icl_hash_func2(key, 1);
 	n = n % iht->size;
 
@@ -42,10 +49,10 @@ int icl_htable_set(Icl_Htable *iht, const char *key, const char *value)
 		Icl_Htable_Node *p = iht->p[n];
 		do {
 			if (strcmp(key, p->key) == 0) {
-				printf("(key, value) replicate\n");
+				printf("(key(%s), value(%s)) replicate\n", key, value);
 				return 0;
 			}
-		} while (p->next != NULL && (p=p->next));
+		} while (p->next != NULL && (p = p->next));
 		p->next = q;
 	}
 	return 0;
@@ -56,6 +63,10 @@ int icl_htable_get(Icl_Htable *iht, const char *key, char *value,
 
 	/* sanity check */
 	if (value_size > VAL_SIZE) {
+		return -1;
+	}
+	
+	if (key == NULL) {
 		return -1;
 	}
 
@@ -70,6 +81,32 @@ int icl_htable_get(Icl_Htable *iht, const char *key, char *value,
 		p = p->next;
 	}
 	value = NULL;
+	return -1;
+}
+
+int icl_htable_del(Icl_Htable *iht, const char *key)
+{
+	if (key == NULL) {
+		return -1;
+	}
+	unsigned long int n = icl_hash_func2(key, 1);
+	n = n % iht->size;
+	Icl_Htable_Node *p = iht->p[n];
+	while (p != NULL) {
+		if (strcmp(key, p->key) == 0) {
+			Icl_Htable_Node *q = iht->p[n];
+			if (q != p) {
+				for(; q->next != p; q = q->next);
+				q->next = p->next;
+			}
+			else {
+				iht->p[n] = NULL;
+			}
+			free(p);
+			return 0;
+		}
+		p = p->next;
+	}
 	return -1;
 }
 

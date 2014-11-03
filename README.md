@@ -21,7 +21,8 @@ icl_lib
 
 7、 重点对socket的read和write进行了不用类型的封装
 
-8、 添加基于epoll的多进程模型
+8、 添加基于epoll的多进程模型, 并对是否共享epoll_create返回的描述符问题上，做了详细的测试
+	请参考./sample/net/serv_mutipole_process_with_epoll，代码中有想详细注释
 
 9、 添加基于libevent的单进程单线程模型
 

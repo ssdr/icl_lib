@@ -5,7 +5,7 @@ icl_lib
 
 ###一、网络模型
 
-三种常用模型支持http协议解析（引入第三方http_parse)，可以使用`webbench -cxx -txx http://xxx.xxx.xxx/xxx`进行性能测试
+三种常用模型支持http协议解析（引入第三方http_parse)，可以使用`webbench -cxx -txx http://xxx.xxx.xxx.xxx`进行性能测试
 
 >1、icl_lib/samples/net/serv_single_process 单进程单线程模型
 

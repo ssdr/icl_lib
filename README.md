@@ -36,33 +36,32 @@ icl_lib
 
 ##三、系统相关
 
-1、对多进程编程的相关函数进行了封装
+>1、对多进程编程的相关函数进行了封装
 
-2、对多线程编程的相关函数进行了封装
+>2、对多线程编程的相关函数进行了封装
 
-3、对在linux常用的如pipe，dup、execve等函数进行了封装
+>3、对在linux常用的如pipe，dup、execve等函数进行了封装
 
-4、对时间函数进行了封装
+>4、对时间函数进行了封装
 
-5、对字符串处理函数进行了部分实现
+>5、对字符串处理函数进行了部分实现
 
-6、实现了日志处理模块，可以定日志级别和选择输入目标
+>6、实现了日志处理模块，可以定日志级别和选择输入目标
 
-7、对unix下的标准io和文件io进行了封装
+>7、对unix下的标准io和文件io进行了封装
 
 
 ##四、业务相关
 
-1、引入libmysqlclient_r 详见icl_lib/samples/mysql
+>1、引入libmysqlclient_r 详见icl_lib/samples/mysql
 
-2、引入libmemcached 详见icl_lib/samples/memcached
+>2、引入libmemcached 详见icl_lib/samples/memcached
 
-3、引入libhiredis 详见icl_lib/samples/redis-cli
+>3、引入libhiredis 详见icl_lib/samples/redis-cli
 
-4、引入libcurl 详见icl_lib/samples/curl
+>4、引入libcurl 详见icl_lib/samples/curl
 
-5、引入libevent， 详见icl_lib/samples/serv_libevent
-
+>5、引入libevent， 详见icl_lib/samples/serv_libevent
 
 引入常用的第三方库并在samples实现了常用的增删查改等操作
 

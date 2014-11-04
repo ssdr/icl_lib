@@ -1,4 +1,6 @@
 *.o
 *.obj
 .svn/
+.gitignore
+.git/
 

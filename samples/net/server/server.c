@@ -51,27 +51,29 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
-	char *buffer = NULL;
-	int buffer_size;
+	int buffer_size = 1024;
+	
+	char buffer[buffer_size];
 	while (1) {
 		int sock_len = sizeof(struct sockaddr);
 		int clifd = accept(servfd, (struct sockaddr *)&cliaddr, (socklen_t *)&sock_len);
 		if (clifd == -1) {
 			handle_error("accept error");
 		}
-		prt_def_rbuf(clifd);
 		printf("accept ok!\n");
-		continue;
-		int ret = icl_net_peek_read(clifd, &buffer, &buffer_size, NULL);
+		//int ret = icl_net_peek_read(clifd, &buffer, &buffer_size, NULL);
+		int ret = read(clifd, buffer, buffer_size);
 		if (ret < 0) {
 			handle_error("read error");
 		}
 
 		printf("read ok, buffer: %s\n", buffer);
-		ret = write(clifd, buffer, buffer_size);
-		if (ret <= 0) {
-			printf("write error\n");
-			return -1;
+		while(1) {
+			ret = write(clifd, buffer, buffer_size);
+			if (ret <= 0) {
+				printf("write error\n");
+				return -1;
+			}
 		}
 		free(buffer);
 		printf("write ok\n");

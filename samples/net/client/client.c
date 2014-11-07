@@ -13,7 +13,7 @@
 #include <errno.h>
 #include <stdlib.h>
 #include "icl_net_tcp_base.h"
-
+#include <time.h>
 #define handle_error(msg)	\
 	do { perror(msg);exit(-1);} while(0)
 
@@ -23,6 +23,15 @@ int get_def_sbuf(int fd)
 	int size = sizeof(int);
 	getsockopt(fd, SOL_SOCKET, SO_SNDBUF, (int*)&sock_def_buf, (socklen_t*)&size);
 	return sock_def_buf;
+}
+
+int set_socket_tmout(int fd)
+{
+	struct timeval timeout;
+	timeout.tv_sec = 5;
+	timeout.tv_usec = 0;
+	setsockopt(fd, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout, sizeof(struct timeval));
+	return 0;
 }
 
 int main(int argc, char *argv[]) 
@@ -64,10 +73,16 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 	printf("icl_net_send ok! ret: %d\n", ret);
-	ret = icl_net_read(clifd, buffer2, max_block_len);
-	if (ret < 0) {
-		printf("icl_net_read error\n");
-		return -1;
+	set_socket_tmout(clifd);
+	printf("clifd read block.....\n");
+	while(1) {
+		ret = read(clifd, buffer2, max_block_len);
+		//ret = icl_net_read(clifd, buffer2, max_block_len);
+		if (ret < 0) {
+			printf("icl_net_read error\n");
+			return -1;
+		}
+		printf("ret: %d", ret);
 	}
 	printf("icl_net_read ok!, buffer2: %.*s\n", max_block_len, buffer2);
 	printf("def_buf: %d\n", get_def_sbuf(clifd));

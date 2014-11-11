@@ -57,8 +57,11 @@ int main(int argc, char *argv[])
 	while (1) {
 		int sock_len = sizeof(struct sockaddr);
 		int clifd = accept(servfd, (struct sockaddr *)&cliaddr, (socklen_t *)&sock_len);
+		
+		printf("clifd:%d\n", clifd);
 		if (clifd == -1) {
-			handle_error("accept error");
+			perror("accept error");
+			continue;
 		}
 		printf("accept ok!\n");
 		//int ret = icl_net_peek_read(clifd, &buffer, &buffer_size, NULL);
@@ -80,7 +83,7 @@ int main(int argc, char *argv[])
 		//	handle_error("send error");
 		//}
 		//printf("icl_net_send ok!\n");
-		close(clifd);
+		//close(clifd);
 	}
 
 	return 0;

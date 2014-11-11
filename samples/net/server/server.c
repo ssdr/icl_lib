@@ -68,14 +68,11 @@ int main(int argc, char *argv[])
 		}
 
 		printf("read ok, buffer: %s\n", buffer);
-		while(1) {
-			ret = write(clifd, buffer, buffer_size);
-			if (ret <= 0) {
-				printf("write error\n");
-				return -1;
-			}
+		ret = write(clifd, buffer, buffer_size);
+		if (ret <= 0) {
+			printf("write error\n");
+			return -1;
 		}
-		free(buffer);
 		printf("write ok\n");
 		//printf("icl_net_read ok!\n");
 		//ret = icl_net_send(clifd, buffer, strlen(buffer)+1);

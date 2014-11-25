@@ -57,11 +57,13 @@ icl_lib
 
 >1、引入libmysqlclient_r 详见icl_lib/samples/mysql
 
->2、引入libmemcached 详见icl_lib/samples/memcached
+>2、添加mysqlapi，加入非查询操作的缓冲机制，重连机制和详细的mysql的error信息打印
 
->3、引入libhiredis 详见icl_lib/samples/redis-cli
+>3、引入libmemcached 详见icl_lib/samples/memcached
 
->4、引入libcurl 详见icl_lib/samples/curl
+>4、引入libhiredis 详见icl_lib/samples/redis-cli
 
->5、引入libevent， 详见icl_lib/samples/serv_libevent
+>5、引入libcurl 详见icl_lib/samples/curl
+
+>6、引入libevent， 详见icl_lib/samples/serv_libevent
 

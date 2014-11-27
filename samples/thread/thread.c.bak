@@ -5,8 +5,6 @@
 #include <unistd.h>
 #include <errno.h>
 #include <ctype.h>
-#include <sys/types.h>
-#include <sys/syscall.h>
 
 #define handle_error_en(en, msg) \
 	do { errno = en; perror(msg); exit(EXIT_FAILURE); } while (0)
@@ -20,43 +18,26 @@ struct thread_info {    /* Used as argument to thread_start() */
 	char     *argv_string;      /* From command-line argument */
 };
 
-typedef struct t {
-	int a;
-} T;
-
-
-pid_t gettid()
-{
-	return syscall(SYS_gettid);  /*这才是内涵*/
-}
-
 /* Thread start function: display address near top of our stack,
    and return upper-cased copy of argv_string */
 
 	static void *
 thread_start(void *arg)
 {
-	/*
-	   struct thread_info *tinfo = (struct thread_info *) arg;
-	   char *uargv, *p;
+	struct thread_info *tinfo = (struct thread_info *) arg;
+	char *uargv, *p;
 
-	   printf("Thread %d: top of stack near %p; argv_string=%s\n",
-	   tinfo->thread_num, &p, tinfo->argv_string);
+	printf("Thread %d: top of stack near %p; argv_string=%s\n",
+			tinfo->thread_num, &p, tinfo->argv_string);
 
-	   uargv = strdup(tinfo->argv_string);
-	   if (uargv == NULL)
-	   handle_error("strdup");
+	uargv = strdup(tinfo->argv_string);
+	if (uargv == NULL)
+		handle_error("strdup");
 
-	   for (p = uargv; *p != '\0'; p++)
-	 *p = toupper(*p);
+	for (p = uargv; *p != '\0'; p++)
+		*p = toupper(*p);
 
-	 return uargv;
-	 */
-	T *t = calloc(1, sizeof(T));
-	t->a++;
-	printf("(%d), %d\n", gettid(), t->a);
-	free(t);
-	return 0;
+	return uargv;
 }
 
 
@@ -85,8 +66,7 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	//num_threads = argc - optind;
-	num_threads = 100;
+	num_threads = argc - optind;
 
 	/* Initialize thread creation attributes */
 
@@ -135,8 +115,8 @@ int main(int argc, char *argv[])
 		if (s != 0)
 			handle_error_en(s, "pthread_join");
 
-		//printf("Joined with thread %d; returned value was %s\n",
-		//		tinfo[tnum].thread_num, (char *) res);
+		printf("Joined with thread %d; returned value was %s\n",
+				tinfo[tnum].thread_num, (char *) res);
 		free(res);      /* Free memory allocated by thread */
 	}
 

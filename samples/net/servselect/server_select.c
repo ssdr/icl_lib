@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 	fd_set rset, allset;
 	FD_ZERO(&allset);
 	FD_SET(servfd, &allset);
-	int maxfdpl = servfd;
+	int maxfdpl = servfd+1200;
 	int i;
 	for (;;) {
 		/* 
@@ -53,6 +53,11 @@ int main(int argc, char *argv[])
 		 * */
 		rset = allset;
 		int nready = select(maxfdpl + 1, &rset, NULL, NULL, NULL);
+		if (nready == -1) {
+			/* 单个进程的文件描述符必须在1024以内，否则select返回-1， errno为9（bad file....) */
+			printf("select error (%d)%s\n", errno, strerror(errno));
+			return -1;
+		}
 		if (FD_ISSET(servfd, &rset)) {
 			int sock_len = sizeof(struct sockaddr);
 			printf("accept ok!\n");

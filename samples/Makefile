@@ -26,6 +26,7 @@ all:
 	@(cd queue; make)
 	@(cd redis-cli; make)
 	@(cd thread; make)
+	@(cd webbench; make)
 clean:
 	@(cd array; make clean)
 	@(cd curl; make clean)
@@ -52,4 +53,5 @@ clean:
 	@(cd queue; make clean)
 	@(cd redis-cli; make clean)
 	@(cd thread; make clean)
+	@(cd webbench; make clean)
 

@@ -73,13 +73,13 @@ int main(int argc, char *argv[])
 	 */
 	char buffer2[max_block_len];
 
-/* 
- * 这里可以模拟http头信息
- * char buffer[] = "Get: https://github.com/peterxiemin/icl_lib/edit/master/samples/net/client/client.c"
- * 			       "User-Agent: Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.65 Safari/537.36"
- * 				   "X-Requested-With: ShockwaveFlash/15.0.0.223"
- *
- */
+	/* 
+	 * 这里可以模拟http头信息
+	 * char buffer[] = "Get: https://github.com/peterxiemin/icl_lib/edit/master/samples/net/client/client.c\r\n"
+	 * 			       "User-Agent: Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.65 Safari/537.36\r\n"
+	 * 				   "X-Requested-With: ShockwaveFlash/15.0.0.223\r\n\r\n"
+	 *
+	 */
 
 
 	ret = write(clifd, buffer2, max_block_len);

@@ -20,15 +20,17 @@ int main(int argc, char *argv[]) {
 	}
 	if (strncmp(argv[1], "0", strlen("0")) == 0) {
 		int fd = open("/tmp/a.txt", O_RDWR);
-		int fdbak = dup(fd);
-		int status = fcntl(fd, F_SETFD, FD_CLOEXEC);
-		if (status < 0) {
-			printf("fcntl error \n");
-		}
 		if (fd == -1) {
 			printf("fopen error(%d:%s)\n", errno, strerror(errno));
+			return -1;
 		}
-		printf("fd :%d, fdbak :%d\n", fd, fdbak);
+		//int fddup = dup(fd);
+		//int status = fcntl(fd, F_SETFD, FD_CLOEXEC);
+		//if (status < 0) {
+		//	printf("fcntl error \n");
+		//	return -1;
+		//}
+		//printf("fd :%d, fddup :%d\n", fd, fddup);
 		pid_t pid = fork();
 		switch (pid) {
 			case -1: {
@@ -36,42 +38,46 @@ int main(int argc, char *argv[]) {
 						 return -1;
 					 }
 			case 0:  {
-						 printf("child execl\n");
 						 argv[1] = "1";
 						 int ret = execvp(argv[0], argv);
 						 if (ret < 0) {
 							 printf("execv error(%d:%s)\n", errno, strerror(errno));
 						 }
+						 printf("child over!\n");
 						 return -1;
 					 }
 			default:
 					 break;
 		}
-		sleep(5);
 		char buf[128];
 		int ret = read(3, buf, 5);
 		buf[5] = '\0';
-		printf("exev read ret : %d (%d)(%s)\n", ret, errno, strerror(errno));
 		if (ret > 0) {
 			printf("buf:%s\n", buf);
+		} else {
+			printf("parent read ret : %d (%d)(%s)\n", ret, errno, strerror(errno));
 		}
+		printf("parent over!\n");
 	}
 
 	if (strncmp(argv[1], "1", strlen("1")) == 0) {
-		sleep(10);
+		sleep(1);
 		char buf[128];
-		int fd = open("/tmp/a.txt", O_RDWR);
-		printf("exec open fd :%d\n", fd);
-
-		int ret = read(3, buf, 5);
+		int fd = dup(3);
+		printf("exec dup fd :%d\n", fd);
+		int ret = read(fd, buf, 5);
 		buf[5] = '\0';
-		printf("exev read ret : %d (%d)(%s)\n", ret, errno, strerror(errno));
 		if (ret > 0) {
 			printf("buf:%s\n", buf);
+		} else {
+			printf("exev read ret : %d (%d)(%s)\n", ret, errno, strerror(errno));
 		}
+		int fd2 = open("/tmp/a.txt", O_RDWR);
+		printf("exec seconde open fd :%d\n", fd2);
 		close(fd);
 		close(4);
-		close(3);
+		close(fd2);
+		printf("exec over!\n");
 	}
 
 	return 0;

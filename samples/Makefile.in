@@ -1,24 +1,18 @@
 # Makefile
-# Created on: 2014-10-08
+#
 #     Author: peterxmw
+# Created on: 2014-10-08
 
 CC = gcc
-#CPP      = g++
 CFLAG = -g
-#AR      = ar
-#ARFL    = rv
-#RANLIB  = ranlib
-
 
 OUTPUT=../../debug
-
 COMMON_INC=../../include/common
 NET_INC=../../include/net
 PROC_INC=./
-
 THIRD_LIB_DIR=../../thirdlib
 
-#redis
+#第三方库
 REDISCLI_INC=$(THIRD_LIB_DIR)/libhiredis/include
 CURL_INC=$(THIRD_LIB_DIR)/libcurl/include
 MEMCACHED_INC=$(THIRD_LIB_DIR)/libmemcached/include
@@ -27,8 +21,8 @@ EVENT_INC=$(THIRD_LIB_DIR)/libevent2/include
 
 DIR_INC=-I$(COMMON_INC) -I$(NET_INC) -I$(PROC_INC) -I$(REDISCLI_INC) -I$(CURL_INC) -I$(MEMCACHED_INC) -I$(MYSQL_INC) -I$(EVENT_INC)
 
-#添加第三方库
-LDFLAGS=-L$(THIRD_LIB_DIR)/libhiredis/lib  -L$(THIRD_LIB_DIR)/libcurl/lib -L$(THIRD_LIB_DIR)/libmemcached/lib -L$(THIRD_LIB_DIR)/libmysql/lib -L$(THIRD_LIB_DIR)/libevent2/lib -lhiredis -lcurl -lmemcached -lpthread -lmysqlclient_r -levent
+LDFLAGS=-L$(THIRD_LIB_DIR)/libhiredis/lib -L$(THIRD_LIB_DIR)/libcurl/lib -L$(THIRD_LIB_DIR)/libmemcached/lib -L$(THIRD_LIB_DIR)/libmysql/lib -L$(THIRD_LIB_DIR)/libevent2/lib \
+	-lhiredis -lcurl -lmemcached -lpthread -lmysqlclient_r -levent
 
 
 COMMON_DIR=../../common
@@ -38,8 +32,6 @@ PROC_DIR=./
 COMMON_SRC=$(wildcard $(COMMON_DIR)/*.c)
 NET_SRC=$(wildcard $(NET_DIR)/*.c)
 PROC_SRC=$(wildcard *.c)
-
-#ALL_SRC=$(COMMON_SRC) $(NET_SRC)
 
 COMMON_OBJS=$(patsubst %.c, %.o, $(COMMON_SRC))
 NET_OBJS=$(patsubst %.c, %.o, $(NET_SRC))
@@ -57,15 +49,15 @@ PROC=
 
 all:	$(OBJ_DST)
 	$(CC) $(CFLAG) -o $(PROC) $(OBJ_DST) $(LDFLAGS)
-	
+
 $(COMMON_DIR)/%.o:	%.c
 	$(CC) -c $(CFLAG) $< -o $@ $(DIR_INC)
 
-$(NET_DIR)/%.o:	%.c
-	$(CC) -c $(CFLAG) $< -o $@	$(DIR_INC)
+$(NET_DIR)/%.o:		%.c
+	$(CC) -c $(CFLAG) $< -o $@ $(DIR_INC)
 
 $(PROC_DIR)/%.o:	%.c
-	$(CC) -c $(CFLAG) $< -o $@	$(DIR_INC)
+	$(CC) -c $(CFLAG) $< -o $@ $(DIR_INC)
 
 clean:
 	rm -f $(OBJ_DST) $(PROC)

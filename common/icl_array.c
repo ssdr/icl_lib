@@ -1,8 +1,8 @@
 /*
- * author: xiemin
- * file_name: icl_array.c
- * company: ifeng
- * date: 2014-10-29
+ * author    : xiemin
+ * file_name : icl_array.c
+ * company   : ifeng
+ * date      : 2014-10-29
  *
  */
 
@@ -35,7 +35,7 @@ void *icl_array_index(Icl_Array *iay, int idx)
 	return iay->p + (iay->elt_size * index);
 }
 
-void *icl_array_push_back(Icl_Array *iay) 
+void *icl_array_push_back(Icl_Array *iay)
 {
 	assert(iay != NULL);
 	if (iay->pos >= iay->nelt) {
@@ -50,7 +50,7 @@ void *icl_array_push_back(Icl_Array *iay)
 }
 
 int icl_array_append(Icl_Array *iay) {
-	
+
 	iay->nelt *= 2;
 	void *p = realloc(iay->p, iay->nelt * iay->elt_size);
 	/*

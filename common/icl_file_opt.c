@@ -14,11 +14,6 @@
 #include "icl_file_opt.h"
 
 
-FILE *icl_fopen(const char *path, const char *mode)
-{
-	return fopen(path, mode);
-}
-
 int icl_open(const char *path, int flags)
 {
 	return open(path, flags);
@@ -27,6 +22,11 @@ int icl_open(const char *path, int flags)
 int icl_open2(const char *path, int flags, mode_t mode)
 {
 	return open(path, flags, mode);
+}
+
+FILE *icl_fopen(const char *path, const char *mode)
+{
+	return fopen(path, mode);
 }
 
 FILE *icl_fdopen(int fd, const char *mode)
@@ -60,6 +60,73 @@ unsigned long icl_get_flsz(const char *path)
 	}
 	return filesize;
 }
+
+void icl_stat(const char *pathname)
+{
+	struct stat sb;
+	if (stat(pathname, &sb) == -1) {
+		perror("stat");
+		exit(EXIT_SUCCESS);
+	}
+	printf("File type:                ");
+
+	switch (sb.st_mode & S_IFMT) {
+		case S_IFBLK:  printf("block device\n");            break;
+		case S_IFCHR:  printf("character device\n");        break;
+		case S_IFDIR:  printf("directory\n");               break;
+		case S_IFREG:  printf("regular file\n");            break;
+		case S_IFSOCK: printf("socket\n");                  break;
+		default:       printf("unknown?\n");                break;
+	}
+	printf("Mode:                     %lo (octal)\n",
+			(unsigned long) sb.st_mode);
+
+	printf("Link count:               %ld\n", (long) sb.st_nlink);
+	printf("Ownership:                UID=%ld   GID=%ld\n",
+			(long) sb.st_uid, (long) sb.st_gid);
+
+	printf("Preferred I/O block size: %ld bytes\n",
+			(long) sb.st_blksize);
+	printf("File size:                %lld bytes\n",
+			(long long) sb.st_size);
+	printf("Blocks allocated:         %lld\n",
+			(long long) sb.st_blocks);
+
+	printf("Last status change:       %s", ctime(&sb.st_ctime));
+	printf("Last file access:         %s", ctime(&sb.st_atime));
+	printf("Last file modification:   %s", ctime(&sb.st_mtime));
+}
+
+/*
+ * 可以使用link和stat配合创建lockfile，避免使用记录锁，降低复杂度，提高性能
+ * 参考ts封包项目，lockfile解决多进程操作*.bin文件
+ *
+ * */
+int icl_link(const char *src_pathname, const char *dst_pathname)
+{
+	int ret = link(src_pathname, dst_pathname);
+	/* failed */
+	if (ret != 0)
+	{
+		printf("icl_link failed (%d)(%s)\n", errno, strerror(errno));
+	}
+	/* sucess */
+	return 0;
+}
+
+
+int icl_unlink(const char *pathname)
+{
+	int ret = unlink(pathname);
+	/* failed */
+	if (ret != 0)
+	{
+		printf("icl_unlink failed (%d)(%s)\n", errno, strerror(errno));
+	}
+	/* sucess */
+	return 0;
+}
+
 
 #define READ	0
 #define WRITE	1
@@ -98,34 +165,31 @@ int icl_io(void *ptr, int size, int nmemb, void *stream, int flags)
 	while (left) {
 		switch (flags) {
 			case FREAD: {
-							FILE *s = (FILE *) stream;			
-							ret = fread(p, nmemb, left/nmemb, s);
-						    printf("icl_io ret: %d\n", ret);
-							break;
-						}
+				FILE *s = (FILE *) stream;
+				ret = fread(p, nmemb, left/nmemb, s);
+				printf("icl_io ret: %d\n", ret);
+				break;
+			}
 			case FWRITE: {
-							 FILE *s = (FILE *) stream;			
-							 ret = fwrite(p, nmemb, left/nmemb, s);
-							 break;
-						 }
+				FILE *s = (FILE *) stream;
+				ret = fwrite(p, nmemb, left/nmemb, s);
+				break;
+			}
 			case READ: {
-						   int fd = *(int *) stream;
-						   ret = read(fd, p, left);
-						   printf("icl_io ret: %d\n", ret);
-						   break;
-					   }
+				int fd = *(int *) stream;
+				ret = read(fd, p, left);
+				printf("icl_io ret: %d\n", ret);
+				break;
+			}
 			case WRITE: {
-							int fd = *(int *) stream;
-							ret = write(fd, p, left);
-							break;
-
-						}
+				int fd = *(int *) stream;
+				ret = write(fd, p, left);
+				break;
+			}
 			default: {
-						 printf("flag error\n");
-						 return -1;
-						 ;;
-
-					 }
+				printf("flag error\n");
+				return -1;
+			}
 		}
 
 		if (ret == 0) {
@@ -141,73 +205,4 @@ int icl_io(void *ptr, int size, int nmemb, void *stream, int flags)
 	}
 	return 0;
 }
-
-
-void icl_stat(const char *pathname)
-{
-	struct stat sb;
-	if (stat(pathname, &sb) == -1) {
-		perror("stat");
-		exit(EXIT_SUCCESS);
-	}
-	printf("File type:                ");
-
-	switch (sb.st_mode & S_IFMT) {
-		case S_IFBLK:  printf("block device\n");            break;
-		case S_IFCHR:  printf("character device\n");        break;
-		case S_IFDIR:  printf("directory\n");               break;
-		case S_IFREG:  printf("regular file\n");            break;
-		case S_IFSOCK: printf("socket\n");                  break;
-		default:       printf("unknown?\n");                break;
-	}
-	printf("Mode:                     %lo (octal)\n",
-			(unsigned long) sb.st_mode);
-
-	printf("Link count:               %ld\n", (long) sb.st_nlink);
-	printf("Ownership:                UID=%ld   GID=%ld\n",
-			(long) sb.st_uid, (long) sb.st_gid);
-
-	printf("Preferred I/O block size: %ld bytes\n",
-			(long) sb.st_blksize);
-	printf("File size:                %lld bytes\n",
-			(long long) sb.st_size);
-	printf("Blocks allocated:         %lld\n",
-			(long long) sb.st_blocks);
-
-	printf("Last status change:       %s", ctime(&sb.st_ctime));
-	printf("Last file access:         %s", ctime(&sb.st_atime));
-	printf("Last file modification:   %s", ctime(&sb.st_mtime));
-}
-
-/* 
- *
- * 可以使用link和stat配合创建lockfile，避免使用记录锁，降低复杂度，提高性能
- * 参考ts封包项目，lockfile解决多进程操作*.bin文件
- *
- * */
-int icl_link(const char *src_pathname, const char *dst_pathname)
-{
-	int ret = link(src_pathname, dst_pathname);
-	/* failed */
-	if (ret != 0)
-	{
-		printf("icl_link failed (%d)(%s)\n", errno, strerror(errno));
-	}
-	/* sucess */
-	return 0;
-}
-
-
-int icl_unlink(const char *pathname)
-{
-	int ret = unlink(pathname);
-	/* failed */
-	if (ret != 0)
-	{
-		printf("icl_unlink failed (%d)(%s)\n", errno, strerror(errno));
-	}
-	/* sucess */
-	return 0;
-}
-
 

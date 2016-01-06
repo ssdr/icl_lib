@@ -1,8 +1,8 @@
 /*
- * author: xiemin
- * file_name: icl_deque.h
- * company: ifeng
- * date: 2014-09-29
+ * author    : xiemin
+ * file_name : icl_deque.h
+ * company   : ifeng
+ * date      : 2014-09-29
  *
  */
 

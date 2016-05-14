@@ -1,8 +1,8 @@
 /*
  * icl_log.h
  *
- *  Created on: 2014年3月2日
- *      Author: peterxiemin
+ *  Created on : 2014年3月2日
+ *      Author : peterxiemin
  */
 
 #ifndef ICL_LOG_H_
@@ -63,8 +63,6 @@ if (glevel >= ICL_TRACK) icl_log_wn(ICL_TRACK, fmt, __VA_ARGS__)
 //} G_LOG;
 //
 //ICL_ARRAY * g_logs;
-
-
 
 
 int icl_open_file(const char *filename);

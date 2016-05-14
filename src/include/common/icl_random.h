@@ -1,8 +1,8 @@
 /*
  * icl_conf.h
  *
- *  Created on: 2014-01-24
- *      Author: peterxmw
+ *  Created on : 2014-01-24
+ *      Author : peterxm
  */
 
 #ifndef ICL_RANDOM_H_

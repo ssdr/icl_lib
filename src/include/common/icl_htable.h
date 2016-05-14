@@ -1,8 +1,8 @@
 /*
  * icl_htable.h
  *
- *  Created on: 2014-10-25
- *      Author: peterxiemin
+ *  Created on : 2014-10-25
+ *      Author : peterxiemin
  */
 
 
@@ -41,4 +41,5 @@ int icl_htable_get(Icl_Htable *iht, const char *key, char *value, int value_size
 int icl_htable_del(Icl_Htable *iht, const char *key);
 
 int icl_htable_destroy(Icl_Htable *iht);
+
 #endif /*ICL_HTABLE_H_*/

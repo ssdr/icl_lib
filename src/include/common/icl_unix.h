@@ -1,11 +1,9 @@
 /*
  * icl_unix.h
  *
- *  Created on: 2014年10月29日
- *      Author: peterxm
+ *  Created on : 2014年10月29日
+ *      Author : peterxm
  */
-
-
 
 #ifndef ICL_FORK_H_
 #define ICL_FORK_H_
@@ -38,4 +36,5 @@ int icl_pipe(int pipefd[2]);
 void icl_assert(int torf);
 
 void icl_prtf_wtpid(char *fmt, ...);
+
 #endif /*ICL_FORK_H_*/

@@ -1,8 +1,8 @@
 /*
- * author: xiemin
- * file_name: icl_hash.h
- * company:ifeng
- * date:2014-09-29
+ * author    : xiemin
+ * file_name : icl_hash.h
+ * company   : ifeng
+ * date      : 2014-09-29
  *
  */
 
@@ -29,7 +29,4 @@ unsigned icl_hash_func5(const void *key, size_t len);
 unsigned icl_hash_func6(const void *key, size_t len);
 
 
-
-
 #endif /*ICL_HASH_H_*/
-

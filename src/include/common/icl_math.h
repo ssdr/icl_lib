@@ -1,8 +1,8 @@
 /*
- * author: xiemin
- * file_name: icl_math.h
- * company:ifeng
- * date:2014-11-24
+ * author    : xiemin
+ * file_name : icl_math.h
+ * company   : ifeng
+ * date      : 2014-11-24
  *
  */
 
@@ -15,4 +15,3 @@ void icl_divisor(int x);
 
 
 #endif /*ICL_MATH_H_*/
-

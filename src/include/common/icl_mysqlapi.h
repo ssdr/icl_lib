@@ -36,4 +36,3 @@ void icl_errordb(Icl_Mysql *icl_mysql);
 MYSQL_RES *icl_mysql_store_result(Icl_Mysql *icl_mysql);
 
 #endif /* ICL_MYSQLAPI_H_ */
-

@@ -1,8 +1,8 @@
 /*
  * icl_string.h
  *
- *  Created on: 2014年1月24日
- *      Author: peterxmw
+ *  Created on : 2014年1月24日
+ *      Author : peterxmw
  */
 
 #ifndef ICL_STRING_H_

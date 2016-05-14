@@ -1,8 +1,8 @@
 /*
- * author:    xiemin
- * filename:  icl_array.h
- * company:   ifeng
- * date:      2014-09-29
+ * author   : xiemin
+ * filename : icl_array.h
+ * company  : ifeng
+ * date     : 2014-09-29
  *
  */
 
@@ -32,4 +32,3 @@ int icl_array_append(Icl_Array *iay);
 int icl_array_destroy(Icl_Array *iay);
 
 #endif /*ICL_ARRAY_H_*/
-

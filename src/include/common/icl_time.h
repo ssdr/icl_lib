@@ -9,9 +9,9 @@
 #ifndef ICLLIB_ICL_TIME_H
 #define ICLLIB_ICL_TIME_H
 
-/*  
+/*
  * struct timespec {
- * time_t tv_sec; 
+ * time_t tv_sec;
  * long   tv_nsec;
  * } */
 typedef struct timespec TimeSpec;

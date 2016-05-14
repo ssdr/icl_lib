@@ -1,11 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-
 /*
  * icl_thread.h
  *
- *  Created on: 2014年9月2日
- *      Author: peterxm
+ *  Created on : 2014年9月2日
+ *      Author : peterxm
  */
 
 
@@ -13,8 +10,11 @@
 #define _ICL_THREAD_H_
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <pthread.h>
 #include "icl_time.h"
+
+
 /* static or stack pthread_cond_t */
 #define ICL_PTHREAD_COND_INITIALIZER PTHREAD_COND_INITIALIZER
 /* static or stack pthread_mutex_t */
@@ -66,6 +66,5 @@ void icl_pthread_exit(void *rval_ptr);
 int icl_pthread_join(pthread_t thread, void **rval_ptr);
 int icl_pthread_detach(pthread_t thread);
 int icl_pthread_cancel(pthread_t tid);
+
 #endif
-
-

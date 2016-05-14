@@ -1,8 +1,8 @@
 /*
- * author: xiemin
- * file_name: icl_type.h
- * company:ifeng
- * date:2014-12-02
+ * author    : xiemin
+ * file_name : icl_type.h
+ * company   : ifeng
+ * date      : 2014-12-02
  *
  */
 

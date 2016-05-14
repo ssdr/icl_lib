@@ -1,8 +1,8 @@
 /*
  * icl_string.c
  *
- *  Created on: 2014年4月11日
- *      Author: peterxmw
+ *  Created on : 2014年4月11日
+ *      Author : peterxmw
  */
 
 #include <stdio.h>

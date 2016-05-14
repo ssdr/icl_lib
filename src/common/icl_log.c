@@ -1,8 +1,8 @@
 /*
  * icl_log.c
  *
- *  Created on: 2014年4月14日
- *      Author: peterxmw
+ *  Created on : 2014年4月14日
+ *      Author : peterxmw
  */
 
 #include "icl_log.h"

@@ -1,9 +1,9 @@
 /*
  *
- * author	: xiemin
- * file_name: icl_dns.c
- * company	: ifeng
- * date		: 2014-09-30
+ * author    : xiemin
+ * file_name : icl_dns.c
+ * company   : ifeng
+ * date      : 2014-09-30
  *
  */
 

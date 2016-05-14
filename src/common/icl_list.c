@@ -1,8 +1,8 @@
 /*
  * icl_list.c
  *
- *  Created on: 2014年3月1日
- *      Author: peterxmw
+ *  Created on : 2014年3月1日
+ *      Author : peterxmw
  */
 
 #include <icl_list.h>
@@ -11,27 +11,25 @@
 #include <assert.h>
 
 //整体的结构是一个闭环, 并且是一个双向链表
-/*    
- *  其中H这个节点并不存放任何任何数据 
- *                 
+/*
+ *  其中H这个节点并不存放任何任何数据
+ *
  *   ------------------------
  *   |                      |
  *  \/                      |
- * ----    ----    ----    ----  
+ * ----    ----    ----    ----
  * | H|--->|  |--->|  |--->|  |
  * |  |<---|  |<---|  |<---|  |
  * ----    ----    ----    ----
- *  |                       /\ 
+ *  |                       /\
  *  |                       |
  *  -------------------------
- *
- *
  *
  */
 
 
 
-static assert_null(Icl_List *h) 
+static assert_null(Icl_List *h)
 {
 	assert(h != NULL);
 }
@@ -82,7 +80,7 @@ int icl_list_push_back(Icl_List *h, void *d)
 		return -1;
 	}
     //如果只有h一个节点， 第二点如何加入？
-    
+
 	q->data = d;
 	h->prev->next = q;
 	q->prev = h->prev;

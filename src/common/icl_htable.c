@@ -1,8 +1,8 @@
 /*
  * icl_htable.c
  *
- *  Created on: 2014-11-03
- *      Author: peterxiemin
+ *  Created on : 2014-11-03
+ *      Author : peterxiemin
  */
 #include <icl_hash.h>
 #include <icl_htable.h>

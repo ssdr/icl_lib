@@ -1,14 +1,13 @@
 /*
  *
- * author: xiemin
- * file_name: icl_math.c
- * company: ifeng
- * date: 2014-11-24
+ * author    : xiemin
+ * file_name : icl_math.c
+ * company   : ifeng
+ * date      : 2014-11-24
  *
  */
 #include <stdio.h>
 #include <icl_math.h>
-
 
 
 void icl_divisor(int x)

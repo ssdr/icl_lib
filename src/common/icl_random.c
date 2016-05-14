@@ -1,8 +1,9 @@
 /*
  * * icl_random.c
- *   Created on: 2014年4月14日
- *   Author: peterxmw
- * */
+ *
+ *   Created on : 2014年4月14日
+ *   Author     : peterxmw
+ */
 
 
 
@@ -10,10 +11,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <icl_random.h>
+
 /*
  * 返回值需要用户手动释放
  */
-
 
 char *get_char32_random(int seed)
 {

@@ -1,8 +1,8 @@
 /*
  * icl_mem.c
  *
- *  Created on: 2014-11-14
- *      Author: peterxm
+ *  Created on : 2014-11-14
+ *      Author : peterxm
  */
 
 #include <stdio.h>
@@ -67,4 +67,3 @@ int icl_check_leak()
 	printf("There are %d block not free\n", ptr_count);
 	return -1;
 }
-

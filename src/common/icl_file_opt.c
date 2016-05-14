@@ -1,8 +1,8 @@
 /*
  * icl_file_opt.c
  *
- *  Created on: 2014年9月1日
- *      Author: peterxmw
+ *  Created on : 2014年9月1日
+ *      Author : peterxmw
  */
 
 
@@ -205,4 +205,3 @@ int icl_io(void *ptr, int size, int nmemb, void *stream, int flags)
 	}
 	return 0;
 }
-

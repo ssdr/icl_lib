@@ -1,10 +1,9 @@
 /*
  * icl_unix.c
  *
- *  Created on: 2014年10月29日
- *      Author: peterxm
+ *  Created on : 2014年10月29日
+ *      Author : peterxm
  */
-
 
 #include <icl_unix.h>
 
@@ -115,5 +114,3 @@ void icl_prtf_wtpid(char *fmt, ...)
 	printf("%s", buf);
 	va_end(args);
 }
-	
-

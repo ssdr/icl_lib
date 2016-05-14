@@ -5,9 +5,8 @@
  * Created by peterxm on 14-3-20.
  * Copyright (c) 2014年 peterxm. All rights reserved.
  *
- *
  */
-  
+
 #include <stdio.h>
 #include <signal.h>
 #include <signal.h>
@@ -26,7 +25,7 @@ void icl_sig_handler(int sig)
 	;;
 }
 
-int icl_sig_register(int index) 
+int icl_sig_register(int index)
 {
 	if (index > 0 && index <= 64) {
 		if (sig[index] == 0) {

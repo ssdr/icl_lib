@@ -1,9 +1,10 @@
 /*
  * icl_thread.c
  *
- *  Created on: 2014年9月2日
- *      Author: peterxm
+ *  Created on : 2014年9月2日
+ *      Author : peterxm
  */
+
 #include "icl_thread.h"
 
 

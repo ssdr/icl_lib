@@ -1,8 +1,8 @@
 /*
  * icl_net_tcp_base.c
  *
- *  Created on: 2014年10月8日
- *      Author: peterxiemin
+ *  Created on : 2014年10月8日
+ *      Author : peterxiemin
  */
 
 #include <string.h>

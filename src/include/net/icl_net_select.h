@@ -1,10 +1,9 @@
 /*
  *
- * author: xiemin
- * filename: icl_net_select.h
- * company: ifeng
- * date: 2014-09-30
- *
+ * author   : xiemin
+ * filename : icl_net_select.h
+ * company  : ifeng
+ * date     : 2014-09-30
  *
  */
 
@@ -40,6 +39,3 @@ int icl_select(int maxfdpl, fd_set *readset, fd_set *writeset, fd_set *exceptset
 					struct timeval *timeout);
 
 #endif /*ICL_NET_SELECT_H*/
-
-
-

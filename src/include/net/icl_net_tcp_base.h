@@ -1,8 +1,8 @@
 /*
  * icl_net_tcp_base.h
  *
- *  Created on: 2014年10月8日
- *      Author: peterxiemin
+ *  Created on : 2014年10月8日
+ *      Author : peterxiemin
  */
 
 #ifndef ICL_NET_TCP_BASE_H_
@@ -92,8 +92,6 @@ int icl_net_send(int clifd, const char *buffer, int len);
  * 			sa_family_t sa_family;
  * 			char sa_data[14];
  * 	};
- *
- *
  *
  */
 
